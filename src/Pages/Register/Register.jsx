@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import {Link} from "react-router-dom"
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
@@ -18,6 +19,13 @@ const Register = () => {
         userCreate(data.email, data.password)
         .then(result => {
             console.log(result.user);
+            if(result.user){
+                Swal.fire({
+                    title: "Success!",
+                    text: "User Created Successfully.",
+                    icon: "success"
+                  });
+            }
         })
         .catch(error => {
             console.log(error.message);
@@ -37,7 +45,7 @@ const Register = () => {
                         <input className='w-full my-4 px-3 py-1' placeholder='Your Email' {...register('email',{ required: true })} />
                     </p>
                     <p>
-                        <input className='w-full my-4 px-3 py-1' placeholder='Your Password' {...register('password', {
+                        <input type='password' className='w-full my-4 px-3 py-1' placeholder='Your Password' {...register('password', {
                             required: true,
                             minLength: 6,
                             maxLength: 20,
