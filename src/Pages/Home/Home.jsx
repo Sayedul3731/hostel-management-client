@@ -1,13 +1,9 @@
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Banner from './Banner/Banner';
+
 const Home = () => {
     return (
         <div>
-            <Container maxWidth='lg'>
-                <Typography variant='h2'>
-                    This is home
-                </Typography>
-            </Container>
+                <Banner></Banner>
         </div>
     );
 };
