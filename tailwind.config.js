@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'font-family': "'Libre Franklin', sans-serif"
+    },
     extend: {},
   },
   plugins: [require("daisyui")],
