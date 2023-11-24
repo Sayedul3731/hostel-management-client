@@ -8,12 +8,13 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 const Register = () => {
 
-    const { userCreate } = useContext(AuthContext);
+    const { userCreate,userProfileUpdate } = useContext(AuthContext);
     const [show, setShow] = useState(false)
 
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -27,6 +28,12 @@ const Register = () => {
                         text: "User Created Successfully.",
                         icon: "success"
                     });
+                    userProfileUpdate(data.name, data.photoURL)
+                    .then( () => {
+                        console.log('profile updated');
+                        reset();
+                    })
+                    .catch(error => console.log(error))
                 }
             })
             .catch(error => {
@@ -36,12 +43,15 @@ const Register = () => {
 
 
     return (
-        <div className='min-h-[600px] w-full mx-auto m-3 flex justify-center items-center border'>
-            <div className='border w-1/2 bg-green-400 p-8 rounded-md'>
+        <div className='min-h-[550px] lg:min-h-[600px] w-full mx-auto flex justify-center items-center bg-red-100'>
+            <div className='border w-5/6 lg:w-1/2 bg-green-400 p-8 rounded-md'>
                 <h1 className='text-2xl font-semibold text-white mb-8'>Please Register!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
-                        <input className='w-full my-4 px-3 py-1' placeholder='Your Name' {...register('name', { required: true })} />
+                        <input type='text' className='w-full my-4 px-3 py-1' placeholder='Your Name' {...register('name', { required: true })} />
+                    </p>
+                    <p>
+                        <input type='text' className='w-full my-4 px-3 py-1' placeholder='Your photoURL' {...register('photoURL', { required: false })} />
                     </p>
                     <p>
                         <input className='w-full my-4 px-3 py-1' placeholder='Your Email' {...register('email', { required: true })} />
@@ -65,7 +75,7 @@ const Register = () => {
                         {
                             errors.password?.type === 'pattern' && <p className='text-red-600'>Password must have one capital letter, one special character, one digit and one small letter</p>
                         }
-                        <p onClick={() => setShow(!show)} className='border absolute cursor-pointer -mt-10 ml-[414px]'>
+                        <p onClick={() => setShow(!show)} className=' absolute cursor-pointer -mt-10 ml-[220px] md:ml-[550px]'>
                             { show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> :<BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>

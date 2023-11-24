@@ -29,8 +29,8 @@ const Login = () => {
     }
 
     return (
-        <div className='min-h-[600px] w-full mx-auto m-3 flex justify-center items-center border'>
-            <div className='border w-1/2 bg-green-400 p-8 rounded-md'>
+        <div className='min-h-[450px] md:min-h-[500px] lg:min-h-[600px] bg-red-100 w-full mx-auto flex justify-center items-center'>
+            <div className='border w-5/6  lg:w-1/2 bg-green-400 p-8 rounded-md'>
                 <h1 className='text-2xl font-semibold text-white mb-8'>Please Login!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
@@ -40,7 +40,7 @@ const Login = () => {
                         <p>
                             <input type={ show ? 'text': 'password'} className='w-full my-3 px-3 py-1' placeholder='Your Password' {...register('password', { required: true })} />
                         </p>
-                        <p onClick={() => setShow(!show)} className=' absolute cursor-pointer -mt-[37px] ml-[414px]'>
+                        <p onClick={() => setShow(!show)} className=' absolute cursor-pointer -mt-[37px] ml-[220px] md:ml-[550px]'>
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
