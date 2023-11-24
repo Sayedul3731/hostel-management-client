@@ -14,7 +14,7 @@ const HostelGallery = () => {
             <SectionTitle heading='Hostel Gallery'></SectionTitle>
             <div className="mb-10">
                 <img className="w-full" src={gallery1} alt="" />
-                <h4 className="text-xl text-center font-medium mt-2">The main building of the hostel</h4>
+                <h4 className="md:text-xl text-center font-medium mt-2">The main building of the hostel</h4>
             </div>
             <div>
                 <Marquee>
@@ -37,7 +37,7 @@ const HostelGallery = () => {
                         <img className="h-full" src={gallery7} alt="" />
                     </div>
                 </Marquee>
-                <h4 className="text-xl text-center font-medium mt-2 mb-10">Other Hostel Facilities</h4>
+                <h4 className="md:text-xl text-center font-medium mt-2 mb-10">Other Hostel Facilities</h4>
             </div>
         </div>
     );
