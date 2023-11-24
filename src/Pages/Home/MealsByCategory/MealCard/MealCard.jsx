@@ -1,20 +1,25 @@
 /* eslint-disable react/prop-types */
+import { HiOutlineCurrencyBangladeshi } from "react-icons/hi2";
 
-
-const MealCard = ({meal}) => {
-    const {title, image, price, rating} = meal
-    return (
-        <div className="card bg-base-100 shadow-xl">
-        <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-        <div className="card-body">
-          <h2 className="card-title">{title}</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Details</button>
-          </div>
+const MealCard = ({ meal }) => {
+  const { title, image, price, rating } = meal
+  return (
+    <div className=" bg-base-100 rounded shadow-xl p-4">
+      <div className="h-[300px]">
+        <figure className="h-[300px] w-full"><img className="h-full object-cover w-full rounded" src={image} alt="Shoes" /></figure>
+      </div>
+      <div className="">
+        <h2 className="card-title my-5">{title}</h2>
+        <div className="flex justify-between items-center mb-5">
+          <p className=" flex justify-start gap-[1px] items-center">{price} <span className="text-xl">< HiOutlineCurrencyBangladeshi /></span> </p>
+          <p className=" flex justify-end">{rating}</p>
+        </div>
+        <div className="card-actions justify-end">
+          <button className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Details</button>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default MealCard;
