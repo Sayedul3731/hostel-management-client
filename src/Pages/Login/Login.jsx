@@ -14,14 +14,14 @@ const Login = () => {
                 <h1 className='text-2xl font-semibold text-white mb-8'>Please Login!</h1>
                 <form onSubmit={handleSubmit((data) => console.log(data))}>
                     <p>
-                        <input className='w-full my-4 px-3 py-1' placeholder='Your Email' {...register('firstName')} />
+                        <input className='w-full my-3 px-3 py-1' placeholder='Your Email' {...register('email',{required: true})} />
                     </p>
                     <p>
-                        <input className='w-full my-4 px-3 py-1' placeholder='Your Password' {...register('lastName', { required: true })} />
+                        <input className='w-full my-3 px-3 py-1' placeholder='Your Password' {...register('password', { required: true })} />
                     </p>
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
                 </form>
-                <p className='mt-6 text-white text-center'>Don't Have an Account? Please <Link to="/register"><span className='text-red-500 font-semibold '>Register</span></Link> </p>
+                <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/register"><span className='text-red-500 font-semibold '>Register</span></Link> </p>
             </div>
 
         </div>
