@@ -1,0 +1,86 @@
+[
+    {
+      "id": 1,
+      "title": "Breakfast",
+      "image": "cozy_retreat.jpg",
+      "rating": 4.5,
+      "price": 45.99
+    },
+    {
+      "id": 2,
+      "title": "Breakfast",
+      "image": "urban_oasis.jpg",
+      "rating": 4.2,
+      "price": 39.99
+    },
+    {
+      "id": 3,
+      "title": "Breakfast",
+      "image": "sunset_view.jpg",
+      "rating": 4.8,
+      "price": 55.50
+    },
+    {
+      "id": 4,
+      "title": "Breakfast",
+      "image": "city_lights.jpg",
+      "rating": 4.0,
+      "price": 34.99
+    },
+    {
+      "id": 5,
+      "title": "Lunch",
+      "image": "nature_bliss.jpg",
+      "rating": 4.7,
+      "price": 49.75
+    },
+    {
+      "id": 6,
+      "title": "Lunch",
+      "image": "skyline_suites.jpg",
+      "rating": 4.6,
+      "price": 52.00
+    },
+    {
+      "id": 7,
+      "title": "Lunch",
+      "image": "tranquil_haven.jpg",
+      "rating": 4.9,
+      "price": 59.99
+    },
+    {
+      "id": 8,
+      "title": "Lunch",
+      "image": "serenity.jpg",
+      "rating": 4.4,
+      "price": 42.50
+    },
+    {
+      "id": 9,
+      "title": "Dinner",
+      "image": "downtown_delight.jpg",
+      "rating": 4.3,
+      "price": 48.00
+    },
+    {
+      "id": 10,
+      "title": "Dinner",
+      "image": "eco_friendly_retreat.jpg",
+      "rating": 4.5,
+      "price": 47.25
+    },
+    {
+      "id": 11,
+      "title": "Dinner",
+      "image": "lakeside_lodge.jpg",
+      "rating": 4.6,
+      "price": 54.99
+    },
+    {
+      "id": 12,
+      "title": "Dinner",
+      "image": "harbor_view.jpg",
+      "rating": 4.2,
+      "price": 38.50
+    }
+  ]
