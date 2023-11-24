@@ -1,10 +1,11 @@
 // import { useContext } from "react";
-import {  NavLink } from "react-router-dom";
-// import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { useContext } from "react";
 
 const Navbar = () => {
 
-//   const { logOut, user } = useContext(AuthContext)
+  const { logOut, user } = useContext(AuthContext)
 
 
   const navLinks = (
@@ -21,23 +22,25 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/allJobs">
-         Upcoming Meals
+          Upcoming Meals
         </NavLink>
       </li>
-      <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/login">
-          Join Us
-        </NavLink>
-      </li>
+      {
+        user ? ' ' : <li>
+          <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/login">
+            Join Us
+          </NavLink>
+        </li>
+      }
     </>
   );
 
-//   const handleSignOut = () => {
-//     logOut()
-//       .then()
-//       .catch()
-//   }
-
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch()
+  }
+console.log(user);
 
   return (
     <div className="navbar bg-gradient-to-r from-green-500 to-green-500 text-white">
@@ -76,18 +79,18 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="flex px-1">{navLinks}</ul>
       </div>
-      {/* <div className="navbar-end">
-        <div className="tooltip tooltip-left pr-2" data-tip={user?.displayName}>
-          {
-            user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
-          }
-        </div>
-        {
-          user ? <button className="border border-sky-400 py-1 px-2 font-semibold rounded-sm" onClick={handleSignOut}>Log Out</button> : <Link to="/login" className=" text-xl px-3 py-1 font-bold rounded-sm">
-            Login
-          </Link>
-        }
-      </div> */}
+      <div className="navbar-end">
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0}>{
+              user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
+            }</label>
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-green-400 rounded-box w-52">
+              <li><a>{user?.displayName}</a></li>
+              <Link><li><a>Dashboard</a></li></Link>
+              <li onClick={handleLogOut}><a>LogOut</a></li>
+            </ul>
+          </div>
+      </div>
     </div>
   );
 };
