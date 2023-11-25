@@ -5,11 +5,15 @@ import { Link } from "react-router-dom"
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+
 
 const Register = () => {
 
-    const { userCreate,userProfileUpdate } = useContext(AuthContext);
-    const [show, setShow] = useState(false)
+    const { userCreate,userProfileUpdate, logInWithGoogle } = useContext(AuthContext);
+    const [show, setShow] = useState(false);
+    const axiosSecure = useAxiosSecure();
 
     const {
         register,
@@ -31,6 +35,15 @@ const Register = () => {
                     userProfileUpdate(data.name, data.photoURL)
                     .then( () => {
                         console.log('profile updated');
+                        const userInfo = {
+                            name:data.name,
+                            email: data.email,
+                            Badge: "Bronze"
+                        }
+                        axiosSecure.post('/users', userInfo)
+                        .then(res => {
+                            console.log(res.data);
+                        })
                         reset();
                     })
                     .catch(error => console.log(error))
@@ -39,6 +52,33 @@ const Register = () => {
             .catch(error => {
                 console.log(error.message);
             })
+    }
+
+    const handleLogInWithGoogle = () => {
+        logInWithGoogle()
+        .then(result =>{
+            console.log(result.user);
+            if(result.user){
+                Swal.fire({
+                    title: "Success!",
+                    text: "User Created Successfully.",
+                    icon: "success"
+                });
+                console.log(result.user?.displayName, result.user?.email);
+                const userInfo = {
+                    name:result.user?.displayName,
+                    email:  result.user?.email,
+                    Badge: "Bronze"
+                }
+                axiosSecure.post('/users', userInfo)
+                .then(res => {
+                    console.log(res.data);
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
     }
 
 
@@ -82,6 +122,10 @@ const Register = () => {
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
                 </form>
                 <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/login"><span className='text-red-500 font-semibold '>Login</span></Link> </p>
+                <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
+                    <span><FcGoogle></FcGoogle></span>
+                    <p>Sign In With Google</p>
+                </div>
             </div>
 
         </div>
