@@ -9,6 +9,13 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import RequestedMeals from "../Pages/Dashboard/RequestedMeals/RequestedMeals";
 import MyReviews from "../Pages/Dashboard/MyReviews/MyReviews";
+import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
+import ManageUsers from "../Pages/Dashboard/ManageUsers/ManageUsers";
+import AddMeal from "../Pages/Dashboard/AddMeal/AddMeal";
+import AllMeals from "../Pages/Dashboard/AllMeals/AllMeals";
+import AllReviews from "../Pages/Dashboard/AllReviews/AllReviews";
+import ServeMeals from "../Pages/Dashboard/ServeMeals/ServeMeals";
+import UpcomingMeals from "../Pages/Dashboard/UpcomingMeals/UpcomingMeals";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +54,37 @@ const router = createBrowserRouter([
       path: "dashboard",
       element: <Dashboard></Dashboard>,
       children: [
+        // Admin Routes 
+        {
+          path: "adminProfile",
+          element: <AdminProfile></AdminProfile>
+        },
+        {
+          path: "manageUsers",
+          element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: "addMeal",
+          element: <AddMeal></AddMeal>
+        },
+        {
+          path: "allMeals",
+          element: <AllMeals></AllMeals>
+        },
+        {
+          path: "allReviews",
+          element: <AllReviews></AllReviews>
+        },
+        {
+          path: "serveMeals",
+          element: <ServeMeals></ServeMeals>
+        },
+        {
+          path: "upcomingMeals",
+          element: <UpcomingMeals></UpcomingMeals>
+        },
+
+        // user routes 
         {
           path: "myProfile",
           element: <MyProfile></MyProfile>
