@@ -3,42 +3,73 @@ import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { useState } from 'react';
 import MealCard from './MealCard/MealCard';
+import useMeals from '../../../hooks/useMeals';
 
 const MealsByCategory = () => {
 
-    const [allMeals, setAllMeals] = useState([])
+    const [meals] = useMeals();
+    const [allMeals, setAllMeals] = useState([]);
+    const [breakfastMeals, setBreakfastMeals] = useState([]);
+    const [lunchMeals, setLunchMeals] = useState([]);
+    const [dinnerMeals, setDinnerMeals] = useState([]);
+    console.log(meals);
+
+
 
     const handleAllMeals = () => {
-        fetch('meals.json')
-            .then(res => res.json())
-            .then(data => setAllMeals(data))
+        setAllMeals(meals)
     }
+    const handleBreakfastMeals = () => {
+        const breakfastMeals = meals.filter(meal => meal.title.toLowerCase() === 'breakfast')
+        setBreakfastMeals(breakfastMeals);
+    }
+    const handleLunchMeals = () => {
+        const lunchMeals = meals.filter(meal => meal.title.toLowerCase() === 'lunch')
+        setLunchMeals(lunchMeals);
+    }
+    const handleDinnerMeals = () => {
+        const dinnerMeals = meals.filter(meal => meal.title.toLowerCase() === 'breakfast')
+        setDinnerMeals(dinnerMeals);
+    }
+    console.log(breakfastMeals.length);
     return (
         <div>
             <SectionTitle heading='Meals By Category'></SectionTitle>
             <Tabs>
                 <TabList>
                     <Tab onClick={handleAllMeals}>All Meals</Tab>
-                    <Tab>Breakfast</Tab>
-                    <Tab>Lunch</Tab>
-                    <Tab>Dinner</Tab>
+                    <Tab onClick={handleBreakfastMeals}>Breakfast</Tab>
+                    <Tab onClick={handleLunchMeals}>Lunch</Tab>
+                    <Tab onClick={handleDinnerMeals}>Dinner</Tab>
                 </TabList>
-
+                
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                         {
-                            allMeals.map(meal => <MealCard key={meal._id} meal={meal} />)
+                            allMeals.length > 0 ? allMeals?.map(meal => <MealCard key={meal._id} meal={meal} />) : meals?.map(meal => <MealCard key={meal._id} meal={meal} />)
                         }
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Breakfast</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            breakfastMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                        }
+                    </div>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Lunch</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            lunchMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                        }
+                    </div>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Dinner</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        {
+                            dinnerMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                        }
+                    </div>
                 </TabPanel>
 
             </Tabs>

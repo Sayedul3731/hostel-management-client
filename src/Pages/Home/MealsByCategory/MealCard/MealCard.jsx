@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import { HiOutlineCurrencyBangladeshi } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const MealCard = ({ meal }) => {
-  const { title, image, price, rating } = meal
+  const { id, title, image, price, rating } = meal;
   return (
     <div className=" bg-base-100 rounded shadow-xl p-4">
       <div className="h-[300px]">
@@ -14,9 +15,13 @@ const MealCard = ({ meal }) => {
           <p className=" flex justify-start gap-[1px] items-center">{price} <span className="text-xl">< HiOutlineCurrencyBangladeshi /></span> </p>
           <p className=" flex justify-end">{rating}</p>
         </div>
-        <div className="card-actions justify-end">
-          <button className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Details</button>
-        </div>
+        <Link to={`meal/${id}`}>
+          <div className="card-actions border justify-end">
+
+            <button className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Details</button>
+
+          </div>
+        </Link>
       </div>
     </div>
   );

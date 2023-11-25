@@ -1,83 +1,71 @@
 [
     {
-      "id": 1,
       "title": "Breakfast",
       "image": "https://i.ibb.co/p4HBzBG/bloody-mary-obsessed-one-pan-healthy-and-simple-breakfast-recipe-4.jpg",
       "rating": 4.5,
       "price": 45.99
     },
     {
-      "id": 2,
       "title": "Breakfast",
       "image": "https://i.ibb.co/whxQjh5/French.jpg",
       "rating": 4.2,
       "price": 39.99
     },
     {
-      "id": 3,
       "title": "Breakfast",
       "image": "https://i.ibb.co/whd90vQ/f4604e05f6a9eaca99afddd69e849005-c02485d4-0841-4de6-b152-69deb38693f2.jpg",
       "rating": 4.8,
       "price": 55.50
     },
     {
-      "id": 4,
       "title": "Breakfast",
       "image": "https://i.ibb.co/gP79f2m/1588257306685.jpg",
       "rating": 4.0,
       "price": 34.99
     },
     {
-      "id": 5,
       "title": "Lunch",
       "image": "https://i.ibb.co/JrP4PKC/istockphoto-1317535161-612x612.jpg",
       "rating": 4.7,
       "price": 49.75
     },
     {
-      "id": 6,
       "title": "Lunch",
       "image": "https://i.ibb.co/W50JzWt/delish-220810-caribbean-cobb-salad-003-ab-web-1660582339.jpg",
       "rating": 4.6,
       "price": 52.00
     },
     {
-      "id": 7,
       "title": "Lunch",
       "image": "https://i.ibb.co/DgbzxNY/fish-taco-bowls-vertical-6421f8aa872d0.jpg",
       "rating": 4.9,
       "price": 59.99
     },
     {
-      "id": 8,
       "title": "Lunch",
       "image": "https://i.ibb.co/RBTVSzK/Homemade-Lunch-1-horiz.jpg",
       "rating": 4.4,
       "price": 42.50
     },
     {
-      "id": 9,
       "title": "Dinner",
       "image": "https://i.ibb.co/yNw8bFk/chicken-tamale-pie-secondary-64da954b55019.jpg",
       "rating": 4.3,
       "price": 48.00
     },
     {
-      "id": 10,
       "title": "Dinner",
       "image": "https://i.ibb.co/0VYsRy8/sub-buzz-3630-1658912098-18.jpg",
       "rating": 4.5,
       "price": 47.25
     },
     {
-      "id": 11,
       "title": "Dinner",
       "image": "https://i.ibb.co/G7k4zPV/lktbe7no-dinner-indian-food-625x300-11-May-22.webp",
       "rating": 4.6,
       "price": 54.99
     },
     {
-      "id": 12,
       "title": "Dinner",
       "image": "https://i.ibb.co/cT19Ktq/easy-dinner-recipes-f768402675e04452b1531360736da8b5.jpg",
       "rating": 4.2,
