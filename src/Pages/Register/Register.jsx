@@ -123,7 +123,7 @@ const Register = () => {
                 </form>
                 <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/login"><span className='text-red-500 font-semibold '>Login</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
-                    <span><FcGoogle></FcGoogle></span>
+                    <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>
                 </div>
             </div>

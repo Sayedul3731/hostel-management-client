@@ -5,11 +5,14 @@ import { Link } from "react-router-dom"
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+import { FcGoogle } from 'react-icons/fc';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const [show, setShow] = useState(false)
-    const { logIn } = useContext(AuthContext);
+    const { logIn, logInWithGoogle } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure()
 
     const onSubmit = (data) => {
         logIn(data.email, data.password)
@@ -26,6 +29,33 @@ const Login = () => {
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    const handleLogInWithGoogle = () => {
+        logInWithGoogle()
+        .then(result =>{
+            console.log(result.user);
+            if(result.user){
+                Swal.fire({
+                    title: "Success!",
+                    text: "User Logged In Successfully.",
+                    icon: "success"
+                });
+                console.log(result.user?.displayName, result.user?.email);
+                const userInfo = {
+                    name:result.user?.displayName,
+                    email:  result.user?.email,
+                    Badge: "Bronze"
+                }
+                axiosSecure.post('/users', userInfo)
+                .then(res => {
+                    console.log(res.data);
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error.message);
+        })
     }
 
     return (
@@ -47,6 +77,10 @@ const Login = () => {
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
                 </form>
                 <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/register"><span className='text-red-500 font-semibold '>Register</span></Link> </p>
+                <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
+                    <span className='text-2xl'><FcGoogle></FcGoogle></span>
+                    <p>Sign In With Google</p>
+                </div>
             </div>
 
         </div>
