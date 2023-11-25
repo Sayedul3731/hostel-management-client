@@ -86,7 +86,7 @@ console.log(user);
             }</label>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-green-400 rounded-box w-52">
               <li><a>{user?.displayName}</a></li>
-              <Link><li><a>Dashboard</a></li></Link>
+              <Link to="/dashboard"><li><a>Dashboard</a></li></Link>
               <li onClick={handleLogOut}><a>LogOut</a></li>
             </ul>
           </div>

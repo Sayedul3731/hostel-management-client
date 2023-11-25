@@ -31,7 +31,7 @@ const MealsByCategory = () => {
         const dinnerMeals = meals.filter(meal => meal.title.toLowerCase() === 'breakfast')
         setDinnerMeals(dinnerMeals);
     }
-    console.log(breakfastMeals.length);
+   
     return (
         <div>
             <SectionTitle heading='Meals By Category'></SectionTitle>
@@ -42,7 +42,7 @@ const MealsByCategory = () => {
                     <Tab onClick={handleLunchMeals}>Lunch</Tab>
                     <Tab onClick={handleDinnerMeals}>Dinner</Tab>
                 </TabList>
-                
+
                 <TabPanel>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                         {
