@@ -27,6 +27,22 @@ const AddMeal = () => {
             })
 
     }
+    const handleUpcomingMeal = async (data) => {
+     
+        await axiosSecure.post('/upcomingMeals', data)
+            .then(res => {
+                console.log(res.data);
+                if (res.data) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Upcoming Meal Added Successfully.",
+                        icon: "success"
+                    });
+                    // reset()
+                }
+            })
+
+    }
     return (
         <div className="p-8">
             <SectionTitle heading="add meal"></SectionTitle>
@@ -93,7 +109,7 @@ const AddMeal = () => {
                 <button type="submit" className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
                     Add Meal
                 </button>
-                <button type="submit" className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
+                <button onClick={handleSubmit(handleUpcomingMeal)} className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
                     Upcoming Meal
                 </button>
             </form>
