@@ -4,23 +4,22 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useMeals from "../../../hooks/useMeals";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const AllMeals = () => {
-    const [meals] = useMeals();
+    const [meals,refetch] = useMeals();
     const [identifiedMeal, setIdentifiedMeal] = useState({})
     const { title, category, price, image, like, rating, reviews, adminEmail, adminName, Ingredients, Description, _id } = identifiedMeal;
 
     const axiosSecure = useAxiosSecure();
-    const { register, handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
     const dataLoad = (id) => {
         const clickableMeal = meals.filter(meal => meal._id === id)
         setIdentifiedMeal(clickableMeal[0])
     }
-    const handleButtonClick = (id) => {
+    const handleUpdate = (id) => {
         if (id) {
             document.getElementById('update_modal').showModal()
             dataLoad(id)
@@ -35,12 +34,43 @@ const AllMeals = () => {
                 if (res.data) {
                     Swal.fire({
                         title: "Success!",
-                        text: "Meal Added Successfully.",
+                        text: "Meal Updated Successfully.",
                         icon: "success"
                     });
-                    reset()
+                    reset();
+                    refetch();
                 }
             })
+    }
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/meals/${id}`)
+                .then(res => {
+                    console.log(res.data);
+                   if(res.data){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "The meal has been deleted",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      refetch()
+                   }
+                })
+            }
+          });
+     
 
     }
     return (
@@ -73,9 +103,9 @@ const AllMeals = () => {
                                 </td>
                                 <td className="text-center">{meal?.adminName}</td>
                                 <td className="text-center">{meal?.adminEmail}</td>
-                                <td onClick={() => handleButtonClick(meal._id)} className="text-center cursor-pointer">Update</td>
-                                <td className="text-center cursor-pointer">Delete</td>
-                                <td className="text-center cursor-pointer">Details</td>
+                                <td onClick={() => handleUpdate(meal._id)} className="text-center cursor-pointer">Update</td>
+                                <td onClick={() => handleDelete(meal._id)} className="text-center cursor-pointer">Delete</td>
+                               <Link to={`/meal/${meal._id}`} > <td className="text-center cursor-pointer">View Meal</td></Link>
                             </tr>)
                         }
                     </tbody>
@@ -146,8 +176,8 @@ const AllMeals = () => {
                                 <input defaultValue={adminEmail} className='w-full my-4 px-3 py-1' placeholder='Admin Email' {...register('adminEmail', { required: true })} />
                             </p>
                         </div>
-                        <button type="submit" className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
-                           Update
+                        <button type="submit" className='text-center modal-backdrop font-semibold text-white w-full mt-5 bg-red-500 py-2'>
+                            Update
                         </button>
                     </form>
                     <div className="modal-action">

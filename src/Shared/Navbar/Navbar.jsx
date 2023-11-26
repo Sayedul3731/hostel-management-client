@@ -93,9 +93,9 @@ console.log(user);
             <label tabIndex={0}>{
               user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
             }</label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-green-400 rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-green-400 rounded-box w-52">
               <li>{user?.displayName}</li>
-              <Link to="/dashboard"><li>Dashboard</li></Link>
+              <Link to="/dashboard"><li className="my-2">Dashboard</li></Link>
               <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>
             </ul>
           </div>
