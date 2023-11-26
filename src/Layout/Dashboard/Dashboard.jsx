@@ -1,15 +1,15 @@
-import { FaUsers, FaUtensils } from "react-icons/fa";
+import { FaHome, FaUsers, FaUtensils } from "react-icons/fa";
 import { GiMeal } from "react-icons/gi"
 import { CgProfile } from "react-icons/cg";
 import { MdFoodBank, MdRateReview } from "react-icons/md"
 import { NavLink, Outlet } from "react-router-dom";
 import { BiSolidFoodMenu } from "react-icons/bi";
-// import useAdmin from "../hooks/useAdmin";
+import useAdmin from "../../hooks/useAdmin";
 
 
 const Dashboard = () => {
+    const [isAdmin] = useAdmin();
 
-    const isAdmin = true;
     return (
         <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-64 md:min-h-screen bg-green-500">
@@ -51,6 +51,14 @@ const Dashboard = () => {
                             </>
                     }
                 </ul>
+                <div className="divider"></div>
+                <>
+                    <ul className="menu">
+                        <li>
+                            <NavLink to="/"><FaHome /> Home</NavLink>
+                        </li>
+                    </ul>
+                </>
             </div>
             <div className="flex-1">
                 <Outlet></Outlet>
