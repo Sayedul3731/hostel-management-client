@@ -28,7 +28,7 @@ const MealsByCategory = () => {
         setLunchMeals(lunchMeals);
     }
     const handleDinnerMeals = () => {
-        const dinnerMeals = meals.filter(meal => meal.title.toLowerCase() === 'breakfast')
+        const dinnerMeals = meals.filter(meal => meal.title.toLowerCase() === 'dinner')
         setDinnerMeals(dinnerMeals);
     }
    
