@@ -15,11 +15,9 @@ const MealCard = ({ meal }) => {
           <p className=" flex justify-start gap-[1px] items-center">{price} <span className="text-xl">< HiOutlineCurrencyBangladeshi /></span> </p>
           <p className=" flex justify-end">{rating}</p>
         </div>
-        <Link to={`meal/${_id}`}>
+        <Link to={`/meal/${_id}`}>
           <div className="card-actions border justify-end">
-
             <button className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Details</button>
-
           </div>
         </Link>
       </div>
