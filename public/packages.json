@@ -1,0 +1,18 @@
+[
+    {
+    "title": "Silver",
+    "price": 300,
+    "details": "Basic accommodation with essential amenities. The Silver Package offers a clean and secure environment, suitable for a short and simple stay. Guests can enjoy standard room facilities and access to common areas, creating a comfortable and affordable lodging experience."
+  },
+  {
+    "title": "Gold",
+    "price": 400,
+    "details": "Comfortable stay with additional features like free Wi-Fi and breakfast. Priced at $80, the Gold Package caters to guests seeking a more enriched experience. In addition to the amenities of the Silver Package, guests can enjoy perks such as complimentary breakfast and access to free Wi-Fi. This package strikes a balance between affordability and enhanced services."
+  },
+  {
+    "title": "Platinum",
+    "price": 500,
+    "details": "Luxurious accommodation with premium services, including room service and access to gym and spa facilities. The Platinum Package, priced at $120, is designed for those desiring a premium experience. In addition to all the features of the Silver and Gold packages, Platinum offers exclusive benefits such as room service and access to the hostel's gym and spa facilities. Ideal for guests looking for a sophisticated and indulgent stay."
+  }
+]
+  
