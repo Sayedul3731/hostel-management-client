@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ badge }) => {
     const [error, setError] = useState('')
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('')
@@ -11,41 +13,42 @@ const CheckoutForm = () => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const user = useAuth();
+    console.log(user);
     const price = 300;
 
-    useEffect( () => {
-        axiosSecure.post('/create-payment-intent', {price})
-        .then( res => {
-            console.log('client secret',res.data.clientSecret);
-            setClientSecret(res.data.clientSecret)
-        })
-    },[axiosSecure])
-    const handleSubmit = async(e) => {
+    useEffect(() => {
+        axiosSecure.post('/create-payment-intent', { price })
+            .then(res => {
+                console.log('client secret', res.data.clientSecret);
+                setClientSecret(res.data.clientSecret)
+            })
+    }, [axiosSecure])
+    const handleSubmit = async (e) => {
 
         e.preventDefault();
 
-        if(!stripe || !elements){
+        if (!stripe || !elements) {
             return;
         }
         const card = elements.getElement(CardElement)
-        if(card === null){
+        if (card === null) {
             return;
         }
         // payment method 
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
-        if(error){
+        if (error) {
             console.log('payment error', error);
             setError(error.message)
-        }else{
+        } else {
             console.log('payment method', paymentMethod);
             setError('')
         }
 
         // confirm payment 
-        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
@@ -54,21 +57,31 @@ const CheckoutForm = () => {
                 }
             }
         })
-        if(confirmError){
+        if (confirmError) {
             console.log('confirm error');
         }
-        else{
+        else {
             console.log('payment intent', paymentIntent);
-            if(paymentIntent.status === 'succeeded'){
+            if (paymentIntent.status === 'succeeded') {
                 console.log('transaction id', paymentIntent.id);
+                Swal.fire({
+                    title: "Success!",
+                    text: "Your payment has been succeeded.",
+                    icon: "success"
+                });
                 setTransactionId(paymentIntent.id)
+                axiosSecure.patch(`/users/${user?.email}`, { badge })
+                    .then(res => {
+                        console.log('user update', res.data);
+                    })
             }
         }
-
     }
+
+
     return (
-      <form onSubmit={handleSubmit}>
-        <CardElement
+        <form onSubmit={handleSubmit}>
+            <CardElement
                 options={{
                     style: {
                         base: {
@@ -87,11 +100,11 @@ const CheckoutForm = () => {
             <button className="px-7 py-1 font-semibold rounded-sm shadow-sm hover:shadow-red-500 bg-green-500 text-white my-4" type="submit" disabled={!stripe || !clientSecret} >
                 Pay
             </button>
-                <p className="text-red-500 ">{error}</p>
-                {
-                    transactionId && <p className="text-green-500">Your Transaction Id: {transactionId}</p>
-                }
-      </form>
+            <p className="text-red-500 ">{error}</p>
+            {
+                transactionId && <p className="text-green-500">Your Transaction Id: {transactionId}</p>
+            }
+        </form>
     );
 };
 
