@@ -19,6 +19,7 @@ const MealDetails = () => {
 
 
   const meal = useLoaderData()
+  console.log(meal);
   const handleLike = (id) => {
     console.log('click on', id);
     if (user?.email) {
@@ -95,7 +96,8 @@ const MealDetails = () => {
       const reviewsInfo = {
         reviews: data.reviews,
         userName: user?.displayName,
-        userEmail: user?.email
+        userEmail: user?.email,
+        mealId: meal?._id
       }
       axiosSecure.post('/reviews', reviewsInfo)
         .then(res => {
@@ -107,6 +109,10 @@ const MealDetails = () => {
               showConfirmButton: false,
               timer: 1500
             });
+            axiosSecure.patch(`/meals/${meal?._id}`)
+            .then(res => {
+              console.log(res.data);
+            })
           }
         })
     }
