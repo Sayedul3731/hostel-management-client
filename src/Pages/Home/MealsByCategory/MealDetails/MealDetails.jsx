@@ -1,20 +1,89 @@
 import { GrLike } from "react-icons/gr";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useMeals from "../../../../hooks/useMeals";
+import useAuth from "../../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 
 const MealDetails = () => {
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useMeals();
+  const user = useAuth();
+  const navigate = useNavigate();
+
+
 
 
   const meal = useLoaderData()
   const handleLike = (id) => {
     console.log('click on', id);
-    axiosSecure.patch(`/meals/${id}`)
-      .then(res => {
-        console.log(res.data);
-      })
+    if (user?.email) {
+      axiosSecure.patch(`/meals/${id}`)
+        .then(res => {
+          console.log(res.data);
+          refetch();
+        })
+    }
+  }
+  const handleMealRequest = () => {
+    if (!user?.email) {
+      Swal.fire({
+        title: "You aren't logged in!",
+        text: "Do you want to log in?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Swal.fire({
+          //   title: "Deleted!",
+          //   text: "Your file has been deleted.",
+          //   icon: "success"
+          // });
+          navigate('/login')
+        }
+      });
+    } else if (user?.email) {
+      axiosSecure.get(`/users/${user.email}`)
+        .then(res => {
+          console.log(res.data);
+          if (res.data[0].Badge !== 'Bronze') {
+            console.log('Not Bronze');
+            const newInfo = {
+              title: meal?.title,
+              like: meal?.like,
+              reviews: meal?.reviews,
+              status: 'pending',
+              userName: res.data[0].name,
+              userEmail: res.data[0].email
+            }
+            axiosSecure.post('/requestedMeals', newInfo)
+              .then(res => {
+                console.log(res.data);
+                if (res.data) {
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your request is succeeded!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                }
+              })
+          } else {
+            console.log('Yes Bronze');
+            Swal.fire({
+              title: "Oh Sorry!",
+              text: "Your aren't purchase any package!",
+              icon: "error"
+            });
+          }
+        })
+    }
 
   }
 
@@ -42,7 +111,7 @@ const MealDetails = () => {
             <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
           </div>
           <div>
-            <button className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Meal Request</button>
+            <button onClick={handleMealRequest} className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Meal Request</button>
           </div>
         </div>
       </div>
