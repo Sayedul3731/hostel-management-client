@@ -5,6 +5,7 @@ import useMeals from "../../../../hooks/useMeals";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react"
 
 
 
@@ -14,16 +15,25 @@ const MealDetails = () => {
   const [, refetch] = useMeals();
   const user = useAuth();
   const navigate = useNavigate();
+  const meal = useLoaderData();
+  const [reviews, setReviews] = useState([])
+
+console.log(meal);
 
 
+  useEffect(() => {
+    refetch()
+    axiosSecure.get(`/reviews/${meal?._id}`)
+      .then(res => {
+        console.log(res.data);
+        setReviews(res.data)
+      })
+  }, [axiosSecure, meal._id,refetch])
 
-
-  const meal = useLoaderData()
-  console.log(meal);
   const handleLike = (id) => {
     console.log('click on', id);
     if (user?.email) {
-      axiosSecure.patch(`/meals/${id}`)
+      axiosSecure.patch(`/meals/${id}`, {lk : 1})
         .then(res => {
           console.log(res.data);
           refetch();
@@ -42,11 +52,6 @@ const MealDetails = () => {
         confirmButtonText: "Yes!"
       }).then((result) => {
         if (result.isConfirmed) {
-          // Swal.fire({
-          //   title: "Deleted!",
-          //   text: "Your file has been deleted.",
-          //   icon: "success"
-          // });
           navigate('/login')
         }
       });
@@ -62,7 +67,17 @@ const MealDetails = () => {
               reviews: meal?.reviews,
               status: 'pending',
               userName: res.data[0].name,
-              userEmail: res.data[0].email
+              userEmail: res.data[0].email,
+              image: meal?.image,
+              time: meal?.time,
+              rating: meal?.rating,
+              price: meal?.price,
+              category: meal?.category,
+              adminName: meal?.adminName,
+              adminEmail: meal?.adminEmail,
+              Description: meal?.Description,
+              Ingredients : meal?.Ingredients
+
             }
             axiosSecure.post('/requestedMeals', newInfo)
               .then(res => {
@@ -75,6 +90,7 @@ const MealDetails = () => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                  refetch()
                 }
               })
           } else {
@@ -94,14 +110,19 @@ const MealDetails = () => {
     if (user?.email) {
       console.log(user);
       const reviewsInfo = {
-        reviews: data.reviews,
+        review: data.reviews,
         userName: user?.displayName,
         userEmail: user?.email,
-        mealId: meal?._id
+        mealId: meal?._id,
+        title: meal?.title,
+        like: meal?.like,
+        reviews: meal?.reviews
+
       }
       axiosSecure.post('/reviews', reviewsInfo)
         .then(res => {
-          if(res.data){
+          if (res.data) {
+            refetch()
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -109,10 +130,11 @@ const MealDetails = () => {
               showConfirmButton: false,
               timer: 1500
             });
-            axiosSecure.patch(`/meals/${meal?._id}`)
-            .then(res => {
-              console.log(res.data);
-            })
+            axiosSecure.patch(`/meals/${meal?._id}`, {rev: 1})
+              .then(res => {
+                console.log(res.data);
+                refetch()
+              })
           }
         })
     }
@@ -124,7 +146,7 @@ const MealDetails = () => {
       <Link to="/meals">
         <button className="my-5 px-5  bg-red-500 py-2 text-white font-semibold rounded-sm">SEE All</button>
       </Link>
-      <div className=" bg-base-100 rounded shadow-xl p-4">
+      <div className=" bg-base-100 rounded shadow-sm p-4">
         <div className="">
           <figure className="h-[500px]"><img className="h-full w-full object-cover  rounded" src={meal?.image} alt="Shoes" /></figure>
         </div>
@@ -147,9 +169,20 @@ const MealDetails = () => {
         </div>
       </div>
       {/* reviews section here  */}
-      <div>
+      <div className="p-4">
         <h1 className="text-3xl font-semibold text-center mt-10 mb-5">Reviews Section
         </h1>
+
+        <div className="mb-5">
+          {
+            reviews.map((review, index) => <div key={review._id}>
+             <div className="flex justify-between items-center">
+             <h1 className=""> {index + 1}<span className="text-xl">.</span> {review.reviews}</h1>
+             <p className="font-thin text-sm">review by {review.userName}</p>
+             </div>
+            </div> )
+          }
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">
             <Controller
