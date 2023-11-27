@@ -4,10 +4,12 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useMeals from "../../../../hooks/useMeals";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useForm, Controller } from "react-hook-form";
 
 
 
 const MealDetails = () => {
+  const { handleSubmit, control } = useForm();
   const axiosSecure = useAxiosSecure();
   const [, refetch] = useMeals();
   const user = useAuth();
@@ -86,6 +88,29 @@ const MealDetails = () => {
     }
 
   }
+  const onSubmit = (data) => {
+
+    if (user?.email) {
+      console.log(user);
+      const reviewsInfo = {
+        reviews: data.reviews,
+        userName: user?.displayName,
+        userEmail: user?.email
+      }
+      axiosSecure.post('/reviews', reviewsInfo)
+        .then(res => {
+          if(res.data){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your review is added!",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+    }
+  }
 
   return (
 
@@ -105,7 +130,7 @@ const MealDetails = () => {
           <p ><span className="font-semibold">Ingredients:</span> {meal?.Ingredients}</p>
           <p className="my-1"><span className="font-semibold">Posting Time:</span> {meal?.time} </p>
 
-          <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer" /><span>{meal?.like}</span> </p>
+          <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer text-green-500" /><span>{meal?.like}</span> </p>
           <div className="flex justify-between items-center mb-5">
             <p ><span className="font-semibold">Reviews:</span> {meal?.reviews} </p>
             <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
@@ -114,6 +139,22 @@ const MealDetails = () => {
             <button onClick={handleMealRequest} className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Meal Request</button>
           </div>
         </div>
+      </div>
+      {/* reviews section here  */}
+      <div>
+        <h1 className="text-3xl font-semibold text-center mt-10 mb-5">Reviews Section
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="">
+            <Controller
+              name="reviews"
+              control={control}
+              render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: 'lightgray' }} />}
+            />
+          </div>
+          <button type="submit" className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Add Review</button>
+        </form>
+
       </div>
     </div>
   );
