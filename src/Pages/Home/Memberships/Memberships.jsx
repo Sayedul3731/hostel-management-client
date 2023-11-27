@@ -13,7 +13,7 @@ const Memberships = () => {
                 We provide quality services to our students. Below are three types of service <br /> packages. Purchase any of the following packages to avail our maximum benefits.
             </p>
             <div className="grid  grid-cols-1 md:grid-cols-3 gap-5 mt-8">
-                <Link to="/checkout/silver">
+                <Link to="/checkout/Silver">
                     <div className="card bg-base-100 shadow-xl  hover:shadow-red-500 hover:bg-green-500 cursor-pointer hover:text-white">
                         <div className=" lg:h-[400px]">
                             <figure><img className="h-full object-cover p-3" src={silver} alt="Shoes" /></figure>
@@ -26,7 +26,7 @@ const Memberships = () => {
                         </div>
                     </div>
                 </Link>
-                <Link   to="/checkout/gold">
+                <Link   to="/checkout/Gold">
                     <div className="card bg-base-100 shadow-xl hover:shadow-green-500 hover:bg-red-500 cursor-pointer hover:text-white">
                         <div className=" lg:h-[400px]">
                             <figure><img className="h-full object-cover p-3" src={gold} alt="Shoes" /></figure>
@@ -39,7 +39,7 @@ const Memberships = () => {
                         </div>
                     </div>
                 </Link>
-                <Link  to="/checkout/platinum">
+                <Link  to="/checkout/Platinum">
                     <div className="card bg-base-100 shadow-xl hover:shadow-red-500 hover:bg-green-500 cursor-pointer hover:text-white">
                         <div className=" lg:h-[400px]">
                             <figure><img className="h-full object-cover p-3" src={platinum} alt="Shoes" /></figure>

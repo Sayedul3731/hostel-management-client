@@ -51,7 +51,8 @@ const router = createBrowserRouter([
         },
         {
           path: "/checkout/:type",
-          element: <Checkout></Checkout>
+          element: <Checkout></Checkout>,
+          loader: ({params}) => fetch(`http://localhost:5000/packages/${params.type}`)
         }
       ]
     },
