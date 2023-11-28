@@ -2,6 +2,7 @@ import MealCard from "../Home/MealsByCategory/MealCard/MealCard";
 import useMeals from "../../hooks/useMeals";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 const Meals = () => {
@@ -29,8 +30,8 @@ const Meals = () => {
         console.log(data);
         const minPrice = data.price.split('-')[0]
         const maxPrice = data.price.split('-')[1]
-        console.log(minPrice,maxPrice);
-        const searchPrice = meals.filter(item => item.price >=minPrice && item.price <=maxPrice);
+        console.log(minPrice, maxPrice);
+        const searchPrice = meals.filter(item => item.price >= minPrice && item.price <= maxPrice);
         console.log('search Price', searchPrice);
         setPriceRangeItems(searchPrice)
         setCategoryItems([])
@@ -72,12 +73,22 @@ const Meals = () => {
                     </form>
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                {
-                    searchingItems.length > 0 ? searchingItems.map(meal => <MealCard key={meal._id} meal={meal} />) :  categoryItems.length > 0 ? categoryItems.map(meal => <MealCard key={meal._id} meal={meal} />) : priceRangeItems.length > 0 ? priceRangeItems.map(meal => <MealCard key={meal._id} meal={meal} />) : meals.map(meal => <MealCard key={meal._id} meal={meal} />)
+            <InfiniteScroll dataLength={meals.length}
+                loader={<h4>Loading...</h4>}
+                endMessage={
+                    <p style={{ textAlign: 'center' }}>
+                        <b>Yay! You have seen it all</b>
+                    </p>
                 }
                 
-            </div>
+            >
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+
+                    {
+                        searchingItems.length > 0 ? searchingItems.map(meal => <MealCard key={meal._id} meal={meal} />) : categoryItems.length > 0 ? categoryItems.map(meal => <MealCard key={meal._id} meal={meal} />) : priceRangeItems.length > 0 ? priceRangeItems.map(meal => <MealCard key={meal._id} meal={meal} />) : meals.map(meal => <MealCard key={meal._id} meal={meal} />)
+                    }
+                </div>
+            </InfiniteScroll>
         </div>
     );
 };
