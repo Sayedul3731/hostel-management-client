@@ -19,7 +19,7 @@ const UpcomingMealCard = ({meal}) => {
         }
       }
     return (
-        <div className=" bg-base-100 rounded shadow-sm p-4">
+        <div className=" bg-base-100 rounded shadow-md p-4">
         <div className="">
           <figure className="h-[500px]"><img className="h-full w-full object-cover  rounded" src={meal?.image} alt="food image" /></figure>
         </div>
@@ -32,13 +32,6 @@ const UpcomingMealCard = ({meal}) => {
           <p className="my-1"><span className="font-semibold">Posting Time:</span> {meal?.time} </p>
 
           <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer text-green-500" /><span>{meal?.like}</span> </p>
-          <div className="flex justify-between items-center mb-5">
-            <p ><span className="font-semibold">Reviews:</span> {meal?.reviews} </p>
-            <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
-          </div>
-          <div>
-            <button  className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Meal Request</button>
-          </div>
         </div>
       </div>
     );

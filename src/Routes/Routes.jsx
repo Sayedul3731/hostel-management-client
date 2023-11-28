@@ -18,97 +18,98 @@ import ServeMeals from "../Pages/Dashboard/ServeMeals/ServeMeals";
 import UpcomingMeals from "../Pages/Dashboard/UpcomingMeals/UpcomingMeals";
 import Checkout from "../components/Checkout/Checkout";
 import UpcomingUMeals from "../Pages/UpcomingUMeals/UpcomingUMeals";
+import PrivetRoutes from "./PrivetRoutes";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      children: [
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-            path: "/meals",
-            element: <Meals></Meals>
-        },
-        {
-          path: 'upcomingMeals',
-          element: <UpcomingUMeals></UpcomingUMeals>
-        },
-        {
-          path: "/login",
-          element: <Login></Login>
-        },
-        {
-          path: "/register",
-          element: <Register></Register>
-        },
-        {
-          path: "/meal/:id",
-          element: <MealDetails></MealDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
-        },
-        {
-          path: "/meals/meal/:id",
-          element: <MealDetails></MealDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/meals/${params.id}`)
-        },
-        {
-          path: "/checkout/:type",
-          element: <Checkout></Checkout>,
-          loader: ({params}) => fetch(`http://localhost:5000/packages/${params.type}`)
-        }
-      ]
-    },
-    {
-      path: "dashboard",
-      element: <Dashboard></Dashboard>,
-      children: [
-        // Admin Routes 
-        {
-          path: "adminProfile",
-          element: <AdminProfile></AdminProfile>
-        },
-        {
-          path: "manageUsers",
-          element: <ManageUsers></ManageUsers>
-        },
-        {
-          path: "addMeal",
-          element: <AddMeal></AddMeal>
-        },
-        {
-          path: "allMeals",
-          element: <AllMeals></AllMeals>
-        },
-        {
-          path: "allReviews",
-          element: <AllReviews></AllReviews>
-        },
-        {
-          path: "serveMeals",
-          element: <ServeMeals></ServeMeals>
-        },
-        {
-          path: "upcomingMeals",
-          element: <UpcomingMeals></UpcomingMeals>
-        },
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "/meals",
+        element: <Meals></Meals>
+      },
+      {
+        path: 'upcomingMeals',
+        element: <UpcomingUMeals></UpcomingUMeals>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      },
+      {
+        path: "/meal/:id",
+        element: <MealDetails></MealDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
+      },
+      {
+        path: "/meals/meal/:id",
+        element: <MealDetails></MealDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/${params.id}`)
+      },
+      {
+        path: "/checkout/:type",
+        element: <PrivetRoutes><Checkout></Checkout></PrivetRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:5000/packages/${params.type}`)
+      }
+    ]
+  },
+  {
+    path: "dashboard",
+    element: <PrivetRoutes><Dashboard></Dashboard></PrivetRoutes>,
+    children: [
+      // Admin Routes 
+      {
+        path: "adminProfile",
+        element: <AdminProfile></AdminProfile>
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "addMeal",
+        element: <AddMeal></AddMeal>
+      },
+      {
+        path: "allMeals",
+        element: <AllMeals></AllMeals>
+      },
+      {
+        path: "allReviews",
+        element: <AllReviews></AllReviews>
+      },
+      {
+        path: "serveMeals",
+        element: <ServeMeals></ServeMeals>
+      },
+      {
+        path: "upcomingMeals",
+        element: <UpcomingMeals></UpcomingMeals>
+      },
 
-        // user routes 
-        {
-          path: "myProfile",
-          element: <MyProfile></MyProfile>
-        },
-        {
-          path: "requestedMeals",
-          element: <RequestedMeals></RequestedMeals>
-        },
-        {
-          path: "myReviews",
-          element: <MyReviews></MyReviews>
-        }
-      ]
-    }
-  ]);
+      // user routes 
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: "requestedMeals",
+        element: <RequestedMeals></RequestedMeals>
+      },
+      {
+        path: "myReviews",
+        element: <MyReviews></MyReviews>
+      }
+    ]
+  }
+]);
 export default router;

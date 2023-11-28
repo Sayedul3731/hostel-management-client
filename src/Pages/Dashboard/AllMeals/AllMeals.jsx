@@ -3,15 +3,21 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useMeals from "../../../hooks/useMeals";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./pagination.css"
 
 
 const AllMeals = () => {
     const [meals,refetch] = useMeals();
-    const [identifiedMeal, setIdentifiedMeal] = useState({})
+    const [identifiedMeal, setIdentifiedMeal] = useState({});
+    const [currentPage, setCurrentPage] = useState(0);
+    const [foods, setFoods] = useState([])
     const { title, category, price, image, like, rating, reviews, adminEmail, adminName, Ingredients, Description, _id } = identifiedMeal;
-
+    const totalData = meals.length;
+    const itemPerPage = 10;
+    const totalPage = Math.ceil(totalData / itemPerPage);
+    const pages = [...Array(totalPage).keys()]
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -73,10 +79,35 @@ const AllMeals = () => {
      
 
     }
+
+    useEffect( () => {
+        console.log(currentPage, itemPerPage);
+        axiosSecure.get(`/meals?page=${currentPage}&size=${itemPerPage}`)
+        .then(res => {
+            console.log(res.data);
+            setFoods(res.data)
+        })
+    },[axiosSecure, currentPage, itemPerPage])
+
+    const handleCurrentPage = (page) => {
+        console.log(page);
+        setCurrentPage(page)
+    }
+    console.log(currentPage);
+    const handlePrevPage = () =>{
+        if(currentPage > 0){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextPage = () =>{
+        if(currentPage < totalPage - 1){
+            setCurrentPage(currentPage + 1)
+        }
+    }
     return (
         <div className="p-8">
             <SectionTitle heading='all meals'></SectionTitle>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -94,7 +125,7 @@ const AllMeals = () => {
                     </thead>
                     <tbody className="bg-gray-100">
                         {
-                            meals?.map((meal, index) => <tr key={meal?._id}>
+                            foods?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>
                                 <td>{meal?.title}</td>
                                 <td>{meal?.like}</td>
@@ -188,6 +219,17 @@ const AllMeals = () => {
                     </div>
                 </div>
             </dialog>
+
+            <div className="pagination ">
+               <button onClick={handlePrevPage}>Prev</button>
+               {
+                pages.map((page, index) => <button
+                onClick={() => handleCurrentPage(page )}
+                className={currentPage === page  ? 'selected' : ''}
+                 key={page}>{index + 1}</button> )
+               }
+               <button onClick={handleNextPage}>Next</button>
+            </div>
         </div>
     );
 };
