@@ -76,7 +76,7 @@ console.log(user);
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-400 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-red-500 rounded-box w-52"
           >
             {navLinks}
           </ul>
@@ -85,7 +85,7 @@ console.log(user);
           HappyHostel
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center  hidden lg:flex">
         <ul className="flex px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
@@ -93,7 +93,7 @@ console.log(user);
             <label tabIndex={0}>{
               user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
             }</label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-green-400 rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-red-500 rounded-box w-52">
               <li>{user?.displayName}</li>
               <Link to="/dashboard"><li className="my-2">Dashboard</li></Link>
               <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>
