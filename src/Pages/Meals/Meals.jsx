@@ -8,29 +8,75 @@ const Meals = () => {
 
     const [meals] = useMeals();
     const [searchingItems, setSearchingItems] = useState([]);
+    const [categoryItems, setCategoryItems] = useState([]);
+    const [priceRangeItems, setPriceRangeItems] = useState([])
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
         console.log(data);
         const searchItem = meals.filter(item => item.title.toLowerCase().includes(data.text.toLowerCase()))
         setSearchingItems(searchItem);
+        setCategoryItems([])
+        setPriceRangeItems([])
     }
-    console.log(searchingItems);
+    const handleFilterByCategory = data => {
+        console.log(data);
+        const searchCategory = meals.filter(item => item.category.toLowerCase().includes(data.category.toLowerCase()))
+        setCategoryItems(searchCategory);
+        setSearchingItems([])
+        setPriceRangeItems([])
+    }
+    const handleFilterByPrice = data => {
+        console.log(data);
+        const minPrice = data.price.split('-')[0]
+        const maxPrice = data.price.split('-')[1]
+        console.log(minPrice,maxPrice);
+        const searchPrice = meals.filter(item => item.price >=minPrice && item.price <=maxPrice);
+        console.log('search Price', searchPrice);
+        setPriceRangeItems(searchPrice)
+        setCategoryItems([])
+        setSearchingItems([])
+    }
+
     return (
         <div className="mb-5">
             <h1 className="text-4xl font-semibold text-center my-8">All Meals</h1>
-            <div className="input-group flex justify-end mb-3">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-2 justify-center items-center">
-                    <input className='w-full h-full my-3 px-3 py-3' placeholder='Search...' {...register('text')} />
-                    <button type="submit" className="bg-white text-black  px-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                </form>
+            <div className="flex flex-col md:flex-row justify-center items-center w-full">
+                <div className="w-1/2 md:w-1/4 bg-green-100 lg:mr-[180px]">
+                    <form onSubmit={handleSubmit(handleFilterByCategory)}>
+
+                        <select className="w-full md:w-1/2 h-8" {...register("category")}>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Rice">Rice</option>
+                        </select>
+                        <button className="font-semibold pl-4" type="submit">filter by category</button>
+                    </form>
+                </div>
+                <div className="w-1/2 md:w-1/4 bg-green-100 ">
+                    <form onSubmit={handleSubmit(handleFilterByPrice)}>
+                        <select className="w-full md:w-1/2 h-8" {...register("price")}>
+                            <option value="40-70">40-70</option>
+                            <option value="70-120">71-120</option>
+                            <option value="120-200">121-200</option>
+                        </select>
+                        <button className="font-semibold pl-7" type="submit">filter by price</button>
+                    </form>
+                </div>
+                <div className="input-group flex justify-end w-1/2 md:w-1/3 mt-5 md:mt-0">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-400 justify-center items-center">
+                        <input className='w-full h-full my-3 px-3 py-3' placeholder='Search by title...' {...register('text')} />
+                        <button type="submit" className="bg-white text-black  px-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    searchingItems.length > 0 ? searchingItems.map(meal => <MealCard key={meal._id} meal={meal} />) : meals.map(meal => <MealCard key={meal._id} meal={meal} />)
+                    searchingItems.length > 0 ? searchingItems.map(meal => <MealCard key={meal._id} meal={meal} />) :  categoryItems.length > 0 ? categoryItems.map(meal => <MealCard key={meal._id} meal={meal} />) : priceRangeItems.length > 0 ? priceRangeItems.map(meal => <MealCard key={meal._id} meal={meal} />) : meals.map(meal => <MealCard key={meal._id} meal={meal} />)
                 }
+                
             </div>
         </div>
     );
