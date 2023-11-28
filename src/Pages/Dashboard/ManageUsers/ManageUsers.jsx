@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUsers from "../../../hooks/useUsers";
 import { useForm } from 'react-hook-form';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const ManageUsers = () => {
@@ -13,6 +13,13 @@ const ManageUsers = () => {
     console.log(users);
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit } = useForm();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [paginateUsers, setPaginateUsers] = useState([])
+
+    const totalData = users.length;
+    const itemPerPage = 10;
+    const totalPage = Math.ceil(totalData / itemPerPage);
+    const pages = [...Array(totalPage).keys()]
 
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
@@ -37,11 +44,35 @@ const ManageUsers = () => {
 
     }
     console.log(searchingUser[0]);
+    useEffect( () => {
+        console.log(currentPage, itemPerPage);
+        axiosSecure.get(`/users?page=${currentPage}&size=${itemPerPage}`)
+        .then(res => {
+            console.log(res.data);
+            setPaginateUsers(res.data)
+        })
+    },[axiosSecure, currentPage, itemPerPage])
+
+    const handleCurrentPage = (page) => {
+        console.log(page);
+        setCurrentPage(page)
+    }
+    console.log(currentPage);
+    const handlePrevPage = () =>{
+        if(currentPage > 0){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextPage = () =>{
+        if(currentPage < totalPage - 1){
+            setCurrentPage(currentPage + 1)
+        }
+    }
     return (
         <div className="p-8">
             <SectionTitle heading='manage users'></SectionTitle>
             <div className="input-group flex justify-end mb-3">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-2 justify-center items-center">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-500 justify-center items-center">
                     <input className='w-full h-full my-3 px-3 py-3' placeholder='Search...' {...register('text')} />
                     <button type="submit" className="bg-white text-black  px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -50,7 +81,7 @@ const ManageUsers = () => {
                 </form>
 
             </div>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto md:min-h-screen lg:min-h-[580px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -74,7 +105,7 @@ const ManageUsers = () => {
                                }
                            </td>
                            <td className="text-center">{user?.Badge}</td>
-                       </tr>) : users?.map((user, index) => <tr key={user?._id}>
+                       </tr>) : paginateUsers?.map((user, index) => <tr key={user?._id}>
                                 <th>{index + 1}</th>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
@@ -88,6 +119,16 @@ const ManageUsers = () => {
                         }
                     </tbody>
                 </table>
+            </div>
+            <div className="pagination ">
+               <button onClick={handlePrevPage}>Prev</button>
+               {
+                pages.map((page, index) => <button
+                onClick={() => handleCurrentPage(page )}
+                className={currentPage === page  ? 'selected' : ''}
+                 key={page}>{index + 1}</button> )
+               }
+               <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );
