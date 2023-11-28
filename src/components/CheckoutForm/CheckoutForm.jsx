@@ -5,7 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({ badge }) => {
+const CheckoutForm = ({ badge, price }) => {
     const [error, setError] = useState('')
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('')
@@ -14,7 +14,6 @@ const CheckoutForm = ({ badge }) => {
     const axiosSecure = useAxiosSecure();
     const user = useAuth();
     console.log(user);
-    const price = 300;
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
@@ -22,7 +21,7 @@ const CheckoutForm = ({ badge }) => {
                 console.log('client secret', res.data.clientSecret);
                 setClientSecret(res.data.clientSecret)
             })
-    }, [axiosSecure])
+    }, [axiosSecure, price])
     const handleSubmit = async (e) => {
 
         e.preventDefault();

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const Navbar = () => {
 
@@ -25,6 +26,11 @@ const Navbar = () => {
         <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/upcomingMeals">
           Upcoming Meals
         </NavLink>
+      </li>
+      <li>
+        <div className="mr-4">
+          <NotificationsIcon></NotificationsIcon>
+        </div>
       </li>
       {
         user ? ' ' : <li>
@@ -49,7 +55,7 @@ const Navbar = () => {
       })
       .catch()
   }
-console.log(user);
+  console.log(user);
 
   return (
     <div className="navbar bg-gradient-to-r from-green-500 to-green-500 text-white">
@@ -89,16 +95,16 @@ console.log(user);
         <ul className="flex px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0}>{
-              user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
-            }</label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-red-500 rounded-box w-52">
-              <li>{user?.displayName}</li>
-              <Link to="/dashboard"><li className="my-2">Dashboard</li></Link>
-              <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>
-            </ul>
-          </div>
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0}>{
+            user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
+          }</label>
+          <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-red-500 rounded-box w-52">
+            <li>{user?.displayName}</li>
+            <Link to="/dashboard"><li className="my-2">Dashboard</li></Link>
+            <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

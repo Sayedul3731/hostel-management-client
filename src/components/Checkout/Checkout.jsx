@@ -8,7 +8,8 @@ const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_key);
 const Checkout = () => {
     const packageData = useLoaderData();
     console.log('package', packageData);
-    const badge = packageData.title
+    const badge = packageData.title;
+    const price = packageData.price;
     return (
         <div className="px-12">
             <SectionTitle heading="checkout"></SectionTitle>
@@ -18,7 +19,7 @@ const Checkout = () => {
             <div className="flex justify-center">
                 <div className="w-1/2 mb-5 border border-green-400 p-5">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm badge={badge}></CheckoutForm>
+                        <CheckoutForm badge={badge} price={price}></CheckoutForm>
                     </Elements>
                 </div>
             </div>
