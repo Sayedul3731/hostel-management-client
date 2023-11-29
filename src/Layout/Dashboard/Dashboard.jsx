@@ -2,14 +2,25 @@ import { FaHome, FaUsers, FaUtensils } from "react-icons/fa";
 import { GiMeal } from "react-icons/gi"
 import { CgProfile } from "react-icons/cg";
 import { MdFoodBank, MdRateReview } from "react-icons/md"
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import useAdmin from "../../hooks/useAdmin";
+import { useEffect } from "react"
 
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
-  
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log(location.pathname);
+        if (location.pathname == '/') {
+            document.title = 'HappyHostel | Home'
+        } else {
+            document.title = `HappyHostel ${location.pathname.replace('/', '| ')}`
+        }
+    }, [location.pathname])
+
 
     return (
         <div className="flex flex-col md:flex-row">
