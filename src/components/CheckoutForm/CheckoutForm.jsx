@@ -101,7 +101,7 @@ const CheckoutForm = ({ badge, price }) => {
             </button>
             <p className="text-red-500 ">{error}</p>
             {
-                transactionId && <p className="text-green-500">Your Transaction Id: {transactionId}</p>
+                transactionId && <p> <span className="font-semibold">Your Transaction Id:</span> <span className="text-green-500">{transactionId}</span></p>
             }
         </form>
     );

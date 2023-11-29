@@ -118,7 +118,7 @@ const MyReviews = () => {
                                 <td className="text-center cursor-pointer">Edit</td>
                                 <td onClick={() => handleUpdate(meal)} className="text-center cursor-pointer">Update</td>
                                 <td onClick={() => handleDelete(meal?._id)} className="text-center cursor-pointer">Delete</td>
-                                <td className="text-center"><Link to={`/meals/meal/${meal?._id}`}>View Meal </Link></td>
+                                <td className="text-center"><Link to={`/meal/${meal?._id}`}>View Meal </Link></td>
                             </tr>)
                         }
                     </tbody>

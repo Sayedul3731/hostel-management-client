@@ -48,17 +48,17 @@ const router = createBrowserRouter([
       {
         path: "/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/meals/meal/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/${params.id}`)
       },
       {
         path: "/meals/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/meals/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/${params.id}`)
       },
       {
         path: "/checkout/:type",
         element: <PrivetRoutes><Checkout></Checkout></PrivetRoutes>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/packages/${params.type}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/packages/${params.type}`)
       }
     ]
   },

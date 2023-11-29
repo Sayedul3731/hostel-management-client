@@ -38,12 +38,13 @@ const ManageUsers = () => {
             })
     }
     const onSubmit = async (data) => {
-        console.log(data);
         const res = await axiosSecure.get(`/users/${data.text}`)
+        console.log('searching user', res.data);
         setSearchingUser(res.data);
 
     }
     console.log(searchingUser[0]);
+    console.log('current page & item per page', currentPage, itemPerPage);
     useEffect( () => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/users?page=${currentPage}&size=${itemPerPage}`)
@@ -69,6 +70,7 @@ const ManageUsers = () => {
             setCurrentPage(currentPage + 1)
         }
     }
+    console.log('all users', users);
     return (
         <div className="p-8">
             <SectionTitle heading='manage users'></SectionTitle>
@@ -96,13 +98,13 @@ const ManageUsers = () => {
                     </thead>
                     <tbody className="bg-gray-100">
                         {
-                           searchingUser.length > 0 && searchingUser[0] !== null ? searchingUser?.map((user, index) => <tr key={user?._id}>
-                           <th>{index + 1}</th>
+                           searchingUser.length > 0 && searchingUser[0] !== 'null' ? searchingUser?.map((user, index) => <tr key={user?._id}>
+                           <th> { user?.email && index + 1}</th>
                            <td>{user?.name}</td>
                            <td>{user?.email}</td>
                            <td className="text-center">
                                {
-                                   user?.role === 'Admin' ? <button className="bg-green-200 font-semibold px-7 py-1">Admin</button> : <button onClick={() => handleMakeAdmin(user)} className="bg-red-200 font-semibold text-sm px-2 py-1">Make Admin</button>
+                                   user?.role === 'Admin' ? <button className="bg-green-200 font-semibold px-7 py-1">Admin</button> : user?.email && <button onClick={() => handleMakeAdmin(user)} className="bg-red-200 font-semibold text-sm px-2 py-1">Make Admin</button>
                                }
                            </td>
                            <td className="text-center">{user?.Badge}</td>

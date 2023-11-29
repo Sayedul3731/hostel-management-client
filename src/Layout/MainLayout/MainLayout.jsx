@@ -8,12 +8,9 @@ const MainLayout = () => {
     const location = useLocation()
 
     useEffect(() => {
-        console.log(location.pathname);
         if (location.pathname == '/') {
             document.title = 'HappyHostel | Home'
-        } else if(location.pathname == '/dashboard') {
-            document.title = `HappyHostel ${location.pathname.replace('/', '| ')}`
-        }else{
+        } else {
             document.title = `HappyHostel ${location.pathname.replace('/', '|')}`
         }
     }, [location.pathname])

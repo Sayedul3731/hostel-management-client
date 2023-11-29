@@ -13,7 +13,7 @@ const Login = () => {
     const [show, setShow] = useState(false)
     const { logIn, logInWithGoogle } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure()
-    const location = useLocation()
+    const location = useLocation();
     const navigate = useNavigate()
 
     let from = location.state?.from?.pathname || "/";
@@ -30,7 +30,6 @@ const Login = () => {
                         icon: "success"
                     });
                     navigate(from, { replace: true })
-                    console.log('from', from);
                 }
             })
             .catch(error => {

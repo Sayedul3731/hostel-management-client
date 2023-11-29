@@ -1,5 +1,5 @@
 import { GrLike } from "react-icons/gr";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useMeals from "../../../../hooks/useMeals";
 import useAuth from "../../../../hooks/useAuth";
@@ -15,6 +15,7 @@ const MealDetails = () => {
   const [, refetch] = useMeals();
   const user = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const meal = useLoaderData();
   const [reviews, setReviews] = useState([])
 
@@ -52,7 +53,8 @@ console.log(meal);
         confirmButtonText: "Yes!"
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/login')
+          console.log(location.pathname);
+          navigate('/login' )
         }
       });
     } else if (user?.email) {
@@ -107,7 +109,14 @@ console.log(meal);
   }
   const onSubmit = (data) => {
 
-    if (user?.email) {
+    if(!user?.email){
+      Swal.fire({
+        title: "Oh sorry!",
+        text: "You are not logged in!",
+        icon: "error"
+      });
+    }
+     else if (user?.email) {
       console.log(user);
       const reviewsInfo = {
         review: data.reviews,
