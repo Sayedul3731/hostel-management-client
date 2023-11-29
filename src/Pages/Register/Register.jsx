@@ -11,7 +11,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Register = () => {
 
-    const { userCreate,userProfileUpdate, logInWithGoogle } = useContext(AuthContext);
+    const { userCreate, userProfileUpdate, logInWithGoogle } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const axiosSecure = useAxiosSecure();
 
@@ -33,52 +33,57 @@ const Register = () => {
                         icon: "success"
                     });
                     userProfileUpdate(data.name, data.photoURL)
-                    .then( () => {
-                        console.log('profile updated');
-                        const userInfo = {
-                            name:data.name,
-                            email: data.email,
-                            Badge: "Bronze"
-                        }
-                        axiosSecure.post('/users', userInfo)
-                        .then(res => {
-                            console.log(res.data);
+                        .then(() => {
+                            console.log('profile updated');
+                            const userInfo = {
+                                name: data.name,
+                                email: data.email,
+                                Badge: "Bronze"
+                            }
+                            axiosSecure.post('/users', userInfo)
+                                .then(res => {
+                                    console.log(res.data);
+                                })
+                            reset();
                         })
-                        reset();
-                    })
-                    .catch(error => console.log(error))
+                        .catch(error => console.log(error))
                 }
             })
             .catch(error => {
                 console.log(error.message);
+                Swal.fire({
+                    title: "Oh!",
+                    text: `${error.message}`,
+                    icon: "error"
+                });
             })
     }
 
     const handleLogInWithGoogle = () => {
         logInWithGoogle()
-        .then(result =>{
-            console.log(result.user);
-            if(result.user){
-                Swal.fire({
-                    title: "Success!",
-                    text: "User Created Successfully.",
-                    icon: "success"
-                });
-                console.log(result.user?.displayName, result.user?.email);
-                const userInfo = {
-                    name:result.user?.displayName,
-                    email:  result.user?.email,
-                    Badge: "Bronze"
+            .then(result => {
+                console.log(result.user);
+                if (result.user) {
+                    Swal.fire({
+                        title: "Success!",
+                        text: "User Created Successfully.",
+                        icon: "success"
+                    });
+                    console.log(result.user?.displayName, result.user?.email);
+                    const userInfo = {
+                        name: result.user?.displayName,
+                        email: result.user?.email,
+                        Badge: "Bronze"
+                    }
+                    axiosSecure.post('/users', userInfo)
+                        .then(res => {
+                            console.log(res.data);
+                        })
                 }
-                axiosSecure.post('/users', userInfo)
-                .then(res => {
-                    console.log(res.data);
-                })
-            }
-        })
-        .catch(error => {
-            console.log(error.message);
-        })
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
     }
 
 
@@ -116,7 +121,7 @@ const Register = () => {
                             errors.password?.type === 'pattern' && <p className='text-red-600'>Password must have one capital letter, one special character, one digit and one small letter</p>
                         }
                         <p onClick={() => setShow(!show)} className=' absolute cursor-pointer -mt-10 ml-[220px] md:ml-[550px]'>
-                            { show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> :<BsFillEyeFill></BsFillEyeFill>}
+                            {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
