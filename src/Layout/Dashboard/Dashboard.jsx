@@ -9,6 +9,7 @@ import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
+  
 
     return (
         <div className="flex flex-col md:flex-row">

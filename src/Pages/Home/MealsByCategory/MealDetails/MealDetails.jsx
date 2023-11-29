@@ -188,7 +188,7 @@ console.log(meal);
             <Controller
               name="reviews"
               control={control}
-              render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: 'lightgray' }} />}
+              render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
             />
           </div>
           <button type="submit" className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Add Review</button>

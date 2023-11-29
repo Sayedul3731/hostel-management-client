@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
@@ -13,6 +13,11 @@ const Login = () => {
     const [show, setShow] = useState(false)
     const { logIn, logInWithGoogle } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    let from = location.state?.from?.pathname || "/";
+    console.log('location in the login page', from);
 
     const onSubmit = (data) => {
         logIn(data.email, data.password)
@@ -24,6 +29,8 @@ const Login = () => {
                         text: "User Logged In Successfully.",
                         icon: "success"
                     });
+                    navigate(from, { replace: true })
+                    console.log('from', from);
                 }
             })
             .catch(error => {

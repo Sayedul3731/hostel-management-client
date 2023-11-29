@@ -4,11 +4,12 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
 
   const { logOut, user } = useContext(AuthContext)
-
+  const [isAdmin] = useAdmin();
 
   const navLinks = (
     <>
@@ -101,7 +102,7 @@ const Navbar = () => {
           }</label>
           <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-red-500 rounded-box w-52">
             <li>{user?.displayName}</li>
-            <Link to="/dashboard"><li className="my-2">Dashboard</li></Link>
+            <Link to={isAdmin ? "/dashboard/adminProfile" : "/dashboard/myProfile"}><li className="my-2">Dashboard</li></Link>
             <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>
           </ul>
         </div>

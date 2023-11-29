@@ -82,7 +82,7 @@ const AllReviews = () => {
     }
 
     return (
-        <div>
+        <div className="p-8">
             <SectionTitle heading='all reviews'></SectionTitle>
             <div className="overflow-x-auto lg:min-h-[600px]">
                 <table className="table">

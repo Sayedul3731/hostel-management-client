@@ -11,6 +11,14 @@ const MyReviews = () => {
     const axiosSecure = useAxiosSecure();
     const [meals, setMeals] = useState([]);
 
+    const [currentPage, setCurrentPage] = useState(0);
+    const [paginateReviewsMeals, setPaginateReviewsMeals] = useState([])
+
+    const totalData = meals.length;
+    const itemPerPage = 10;
+    const totalPage = Math.ceil(totalData / itemPerPage);
+    const pages = [...Array(totalPage).keys()]
+
     console.log(user?.email);
     useEffect(() => {
         axiosSecure.get(`/reviews/${user?.email}`)
@@ -57,10 +65,35 @@ const MyReviews = () => {
             })
     }
 
+
+    useEffect( () => {
+        console.log(currentPage, itemPerPage);
+        axiosSecure.get(`/requestedMeals/${user?.email}?page=${currentPage}&size=${itemPerPage}`)
+        .then(res => {
+            console.log(res.data);
+            setPaginateReviewsMeals(res.data)
+        })
+    },[axiosSecure, currentPage, itemPerPage, user.email])
+
+    const handleCurrentPage = (page) => {
+        console.log(page);
+        setCurrentPage(page)
+    }
+    console.log(currentPage);
+    const handlePrevPage = () =>{
+        if(currentPage > 0){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextPage = () =>{
+        if(currentPage < totalPage - 1){
+            setCurrentPage(currentPage + 1)
+        }
+    }
     return (
-        <div>
+        <div className="p-8">
             <SectionTitle heading='my reviews'></SectionTitle>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto lg:min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -77,7 +110,7 @@ const MyReviews = () => {
                     </thead>
                     <tbody className="bg-gray-100">
                         {
-                            meals?.map((meal, index) => <tr key={meal?._id}>
+                            paginateReviewsMeals?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>
                                 <td>{meal?.title}</td>
                                 <td className="text-center">{meal?.like}</td>
@@ -91,6 +124,16 @@ const MyReviews = () => {
                     </tbody>
 
                 </table>
+            </div>
+            <div className="pagination ">
+               <button onClick={handlePrevPage}>Prev</button>
+               {
+                pages.map((page, index) => <button
+                onClick={() => handleCurrentPage(page )}
+                className={currentPage === page  ? 'selected' : ''}
+                 key={page}>{index + 1}</button> )
+               }
+               <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

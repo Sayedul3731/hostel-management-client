@@ -15,7 +15,7 @@ const ManageUsers = () => {
     const { register, handleSubmit } = useForm();
     const [currentPage, setCurrentPage] = useState(0);
     const [paginateUsers, setPaginateUsers] = useState([])
-
+    console.log(users);
     const totalData = users.length;
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
@@ -52,6 +52,7 @@ const ManageUsers = () => {
             setPaginateUsers(res.data)
         })
     },[axiosSecure, currentPage, itemPerPage])
+    console.log('paginate users', paginateUsers);
 
     const handleCurrentPage = (page) => {
         console.log(page);
