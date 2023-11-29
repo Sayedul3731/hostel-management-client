@@ -91,7 +91,7 @@ const AllReviews = () => {
                         <tr className="bg-green-500 text-black">
                             <th>SL.</th>
                             <th>Title</th>
-                            <th>Likes</th>
+                            <th className="text-center">Likes</th>
                             <th className="text-center">Reviews</th>
                             <th className="text-center">Button</th>
                             <th className="text-center">Button</th>

@@ -12,7 +12,7 @@ const MealCard = ({ meal }) => {
       <div className="">
         <h2 className="card-title my-5">{title}</h2>
         <div className="flex justify-between items-center mb-5">
-          <p className=" flex justify-start gap-[1px] items-center">{price} <span className="text-xl">< HiOutlineCurrencyBangladeshi /></span> </p>
+          <p className=" flex justify-start gap-[1px] items-center font-semibold">{price} <span className="text-xl">< HiOutlineCurrencyBangladeshi /></span> </p>
           <p className=" flex justify-end items-center"><span className="font-semibold mr-1">Rating:</span> {rating}</p>
         </div>
         <Link to={`/meal/${_id}`}>

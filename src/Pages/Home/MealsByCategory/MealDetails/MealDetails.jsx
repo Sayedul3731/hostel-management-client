@@ -177,7 +177,7 @@ console.log(meal);
           {
             reviews.map((review, index) => <div key={review._id}>
              <div className="flex justify-between items-center">
-             <h1 className=""> {index + 1}<span className="text-xl">.</span> {review.reviews}</h1>
+             <h1 className=""> {index + 1}<span className="text-xl">.</span> {review.review}</h1>
              <p className="font-thin text-sm">review by {review.userName}</p>
              </div>
             </div> )
