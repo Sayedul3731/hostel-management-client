@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUpcomingMeals from "../../../hooks/useUpcomingMeals";
@@ -6,7 +7,7 @@ import {useState, useEffect} from "react"
 
 
 const UpcomingMeals = () => {
-    const [meals] = useUpcomingMeals();
+    const [meals, refetch] = useUpcomingMeals();
     const axiosSecure = useAxiosSecure();
     console.log(meals);
     const [currentPage, setCurrentPage] = useState(0);
@@ -16,6 +17,31 @@ const UpcomingMeals = () => {
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()]
+
+    const handlePublish = (meal) => {
+        console.log('meal click', meal);
+        if(meal.like >= 10 ){
+            axiosSecure.post('/meals', meal)
+            .then(res => {
+                console.log(res.data);
+                if(res.data){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "The meal has been saved in meal collection.",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    axiosSecure.delete(`/upcomingMeals/${meal._id}`)
+                    .then(res => {
+                        console.log(res.data);
+                        refetch()
+                    })
+                }
+                
+            })
+        }
+    }
     
     useEffect( () => {
         console.log(currentPage, itemPerPage);
@@ -70,7 +96,7 @@ const UpcomingMeals = () => {
                                 </td>
                                 <td className="text-center">{meal?.adminName}</td>
                                 <td className="text-center">{meal?.adminEmail}</td>
-                                <td  className="text-center cursor-pointer">publish</td>
+                                <td onClick={() => handlePublish(meal)}  className="text-center cursor-pointer">publish</td>
                             </tr>)
                         }
                     </tbody>
