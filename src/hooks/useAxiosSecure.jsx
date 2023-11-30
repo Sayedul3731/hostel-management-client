@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/'
+    baseURL: 'https://hostel-management-server-two.vercel.app/'
 })
 const useAxiosSecure = () => {
     axiosSecure.interceptors.request.use(function (config) {
