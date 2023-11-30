@@ -126,7 +126,7 @@ const Register = () => {
                     </div>
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
                 </form>
-                <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/login"><span className='text-red-500 font-semibold '>Login</span></Link> </p>
+                <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/Login"><span className='text-red-500 font-semibold '>Login</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
                     <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>

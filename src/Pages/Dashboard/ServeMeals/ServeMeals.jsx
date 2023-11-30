@@ -73,7 +73,6 @@ const ServeMeals = () => {
         console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)

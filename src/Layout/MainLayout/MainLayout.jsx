@@ -11,7 +11,7 @@ const MainLayout = () => {
         if (location.pathname == '/') {
             document.title = 'HappyHostel | Home'
         } else {
-            document.title = `HappyHostel ${location.pathname.replace('/', '|')}`
+            document.title = `HappyHostel ${location.pathname.replace('/', '| ')}`
         }
     }, [location.pathname])
     return (

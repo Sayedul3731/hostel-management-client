@@ -14,7 +14,6 @@ const RequestedMeals = () => {
 
     const [currentPage, setCurrentPage] = useState(0);
     const [paginateRequestedMeals, setPaginateRequestedMeals] = useState([])
-
     const totalData = meals.length;
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
@@ -25,7 +24,7 @@ const RequestedMeals = () => {
     useEffect( () => {
         axiosSecure.get(`/requestedMeals/${user?.email}`)
         .then(res => {
-            console.log(res.data);
+            console.log('my requested meals', res.data);
             setMeals(res.data)
         })
     },[axiosSecure, user?.email])
@@ -63,7 +62,7 @@ const RequestedMeals = () => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/requestedMeals/${user?.email}?page=${currentPage}&size=${itemPerPage}`)
         .then(res => {
-            console.log(res.data);
+            console.log('paginate meals',res.data);
             setPaginateRequestedMeals(res.data)
         })
     },[axiosSecure, currentPage, itemPerPage, user.email])

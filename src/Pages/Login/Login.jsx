@@ -87,7 +87,7 @@ const Login = () => {
                     </div>
                     <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
                 </form>
-                <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/register"><span className='text-red-500 font-semibold '>Register</span></Link> </p>
+                <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/Register"><span className='text-red-500 font-semibold '>Register</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
                     <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>

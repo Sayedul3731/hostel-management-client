@@ -30,30 +30,35 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: "/meals",
+        path: "/Meals",
         element: <Meals></Meals>
       },
       {
-        path: 'upcomingMeals',
+        path: '/UpcomingMeals',
         element: <UpcomingUMeals></UpcomingUMeals>
       },
       {
-        path: "/login",
+        path: "/Login",
         element: <Login></Login>
       },
       {
-        path: "/register",
+        path: "/Register",
         element: <Register></Register>
       },
       {
         path: "/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/meals/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
       },
       {
-        path: "/meals/meal/:id",
+        path: "/review/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/meals/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+      },
+      {
+        path: "/reviews/:id",
+        element: <MealDetails></MealDetails>,
+        loader: ({ params }) => fetch(`http://localhost:5000/reviews/review/${params.id}`)
       },
       {
         path: "/checkout/:type",
@@ -63,50 +68,50 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "dashboard",
+    path: "Dashboard",
     element: <PrivetRoutes><Dashboard></Dashboard></PrivetRoutes>,
     children: [
       // Admin Routes 
       {
-        path: "adminProfile",
+        path: "AdminProfile",
         element: <AdminProfile></AdminProfile>
       },
       {
-        path: "manageUsers",
+        path: "ManageUsers",
         element: <ManageUsers></ManageUsers>
       },
       {
-        path: "addMeal",
+        path: "AddMeal",
         element: <AddMeal></AddMeal>
       },
       {
-        path: "allMeals",
+        path: "AllMeals",
         element: <AllMeals></AllMeals>
       },
       {
-        path: "allReviews",
+        path: "AllReviews",
         element: <AllReviews></AllReviews>
       },
       {
-        path: "serveMeals",
+        path: "ServeMeals",
         element: <ServeMeals></ServeMeals>
       },
       {
-        path: "upcomingMeals",
+        path: "UpcomingMeals",
         element: <UpcomingMeals></UpcomingMeals>
       },
 
       // user routes 
       {
-        path: "myProfile",
+        path: "MyProfile",
         element: <MyProfile></MyProfile>
       },
       {
-        path: "requestedMeals",
+        path: "RequestedMeals",
         element: <RequestedMeals></RequestedMeals>
       },
       {
-        path: "myReviews",
+        path: "MyReviews",
         element: <MyReviews></MyReviews>
       }
     ]

@@ -125,7 +125,16 @@ console.log(meal);
         mealId: meal?._id,
         title: meal?.title,
         like: meal?.like,
-        reviews: meal?.reviews
+        reviews: meal?.reviews,
+        time: meal?.time,
+        rating: meal?.rating,
+        price: meal?.price,
+        image: meal?.image,
+        category: meal?.category,
+        adminName: meal?.adminName,
+        adminEmail: meal?.adminEmail,
+        Description: meal?.Description,
+        Ingredients: meal?.Ingredients
 
       }
       axiosSecure.post('/reviews', reviewsInfo)
@@ -184,10 +193,10 @@ console.log(meal);
 
         <div className="mb-5">
           {
-            reviews.map((review, index) => <div key={review._id}>
-             <div className="flex justify-between items-center">
-             <h1 className=""> {index + 1}<span className="text-xl">.</span> {review.review}</h1>
-             <p className="font-thin text-sm">review by {review.userName}</p>
+            reviews.map((item, index) => <div key={item._id}>
+             <div className="flex justify-between items-center w-full">
+             <h1 className="w-5/6"> {index + 1}<span className="text-xl">.</span> <span>{item.review}</span></h1>
+             <p className="font-thin text-gray-400 text-sm w-1/6 ">review by {item.userName}</p>
              </div>
             </div> )
           }

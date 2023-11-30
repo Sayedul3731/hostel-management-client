@@ -16,8 +16,9 @@ const Dashboard = () => {
         console.log(location.pathname);
         if (location.pathname == '/') {
             document.title = 'HappyHostel | Home'
-        } else {
-            document.title = `HappyHostel ${location.pathname.replace('/', '| ')}`
+        }
+        else {
+            document.title = `HappyHostel | Dashboard ${location.pathname.replace('/Dashboard/', '| ')}`
         }
     }, [location.pathname])
 
@@ -29,36 +30,36 @@ const Dashboard = () => {
                     {
                         isAdmin ? <>
                             <li>
-                                <NavLink to="/dashboard/adminProfile"><CgProfile></CgProfile>Admin Profile</NavLink>
+                                <NavLink to="/Dashboard/AdminProfile"><CgProfile></CgProfile>Admin Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/manageUsers"><FaUsers></FaUsers> Manage Users</NavLink>
+                                <NavLink to="/Dashboard/ManageUsers"><FaUsers></FaUsers> Manage Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/addMeal"><GiMeal></GiMeal>Add Meal</NavLink>
+                                <NavLink to="/Dashboard/AddMeal"><GiMeal></GiMeal>Add Meal</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/allMeals"><FaUtensils></FaUtensils> All Meals</NavLink>
+                                <NavLink to="/Dashboard/AllMeals"><FaUtensils></FaUtensils> All Meals</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/allReviews"><MdRateReview /> All Reviews</NavLink>
+                                <NavLink to="/Dashboard/AllReviews"><MdRateReview /> All Reviews</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/serveMeals"><MdFoodBank /> Serve Meals</NavLink>
+                                <NavLink to="/Dashboard/ServeMeals"><MdFoodBank /> Serve Meals</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/upcomingMeals"><BiSolidFoodMenu /> Upcoming Meals</NavLink>
+                                <NavLink to="/Dashboard/UpcomingMeals"><BiSolidFoodMenu /> Upcoming Meals</NavLink>
                             </li>
                         </>
                             : <>
                                 <li>
-                                    <NavLink to="/dashboard/myProfile"><CgProfile></CgProfile>My Profile</NavLink>
+                                    <NavLink to="/Dashboard/MyProfile"><CgProfile></CgProfile>My Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/requestedMeals"><GiMeal></GiMeal>Request Meals</NavLink>
+                                    <NavLink to="/Dashboard/RequestedMeals"><GiMeal></GiMeal>Request Meals</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/myReviews"><MdRateReview /> My Reviews</NavLink>
+                                    <NavLink to="/Dashboard/MyReviews"><MdRateReview /> My Reviews</NavLink>
                                 </li>
                             </>
                     }
