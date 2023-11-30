@@ -48,26 +48,22 @@ const router = createBrowserRouter([
       {
         path: "/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/
-/meals/meal/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
       },
       {
         path: "/review/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/
-/review/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
       },
       {
         path: "/reviews/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/
-/reviews/review/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/reviews/review/${params.id}`)
       },
       {
         path: "/checkout/:type",
         element: <PrivetRoutes><Checkout></Checkout></PrivetRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/
-/packages/${params.type}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/packages/${params.type}`)
       }
     ]
   },

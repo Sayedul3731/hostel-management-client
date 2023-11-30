@@ -6,7 +6,7 @@ const UpcomingUMeals = () => {
     const [upcomingMeals] = useUpcomingMeals();
     console.log(upcomingMeals);
     return (
-        <div>
+        <div className="pt-8">
             <SectionTitle heading='upcoming meals'></SectionTitle>
             <div 
                 className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">

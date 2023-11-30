@@ -68,9 +68,11 @@ const UpcomingMealCard = ({ meal }) => {
         <p className=" my-1"><span className="font-semibold mr-1">Description :</span> {meal?.Description}</p>
 
         <p ><span className="font-semibold">Ingredients:</span> {meal?.Ingredients}</p>
-        <p className="my-1"><span className="font-semibold">Posting Time:</span> {meal?.time} </p>
+        <div className="flex justify-between items-center">
+          <p className="my-1"><span className="font-semibold">Posting Time:</span> {meal?.time} </p>
 
-        <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer text-green-500" /><span>{meal?.like}</span> </p>
+          <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer text-green-500" /><span>{meal?.like}</span> </p>
+        </div>
       </div>
     </div>
   );

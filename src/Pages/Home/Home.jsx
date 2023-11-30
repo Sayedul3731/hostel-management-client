@@ -1,3 +1,4 @@
+import EducationalSlogan from '../../components/EducationalSlogan/EducationalSlogan';
 import Banner from './Banner/Banner';
 import HostelGallery from './HostelGallery/HostelGallery';
 import MealsByCategory from './MealsByCategory/MealsByCategory';
@@ -7,6 +8,7 @@ const Home = () => {
     return (
         <div>
                 <Banner></Banner>
+                <EducationalSlogan></EducationalSlogan>
                 <MealsByCategory></MealsByCategory>
                 <Memberships></Memberships>
                 <HostelGallery></HostelGallery>

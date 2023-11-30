@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from '../../Provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
@@ -14,6 +14,7 @@ const Register = () => {
     const { userCreate, userProfileUpdate, logInWithGoogle } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -32,6 +33,7 @@ const Register = () => {
                         text: "User Created Successfully.",
                         icon: "success"
                     });
+                    navigate('/')
                     userProfileUpdate(data.name, data.photoURL)
                         .then(() => {
                             console.log('profile updated');
@@ -69,6 +71,7 @@ const Register = () => {
                         text: "User Created Successfully.",
                         icon: "success"
                     });
+                    navigate('/')
                     console.log(result.user?.displayName, result.user?.email);
                     const userInfo = {
                         name: result.user?.displayName,

@@ -52,6 +52,7 @@ const Login = () => {
                     text: "User Logged In Successfully.",
                     icon: "success"
                 });
+                navigate('/')
                 console.log(result.user?.displayName, result.user?.email);
                 const userInfo = {
                     name:result.user?.displayName,
