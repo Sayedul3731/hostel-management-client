@@ -1,12 +1,19 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MealCard from './MealCard/MealCard';
 import useMeals from '../../../hooks/useMeals';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const MealsByCategory = () => {
 
+    useEffect(() => {
+        AOS.init({
+            duration: 200
+        })
+    },[])
     const [meals] = useMeals();
     const [allMeals, setAllMeals] = useState([]);
     const [breakfastMeals, setBreakfastMeals] = useState([]);
@@ -34,7 +41,7 @@ const MealsByCategory = () => {
    
     return (
         <div>
-            <SectionTitle heading='Meals By Category'></SectionTitle>
+            <SectionTitle data-aos="fade-up" heading='Meals By Category'></SectionTitle>
             <Tabs>
                 <TabList>
                     <Tab onClick={handleAllMeals}>All Meals</Tab>

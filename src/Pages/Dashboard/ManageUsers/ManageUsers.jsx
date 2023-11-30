@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUsers from "../../../hooks/useUsers";
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const ManageUsers = () => {
@@ -20,6 +22,12 @@ const ManageUsers = () => {
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()]
+
+    useEffect(() => {
+        AOS.init({
+            duration: 2000
+        })
+    }, [])
 
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
@@ -45,14 +53,14 @@ const ManageUsers = () => {
     }
     console.log(searchingUser[0]);
     console.log('current page & item per page', currentPage, itemPerPage);
-    useEffect( () => {
+    useEffect(() => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/users?page=${currentPage}&size=${itemPerPage}`)
-        .then(res => {
-            console.log(res.data);
-            setPaginateUsers(res.data)
-        })
-    },[axiosSecure, currentPage, itemPerPage])
+            .then(res => {
+                console.log(res.data);
+                setPaginateUsers(res.data)
+            })
+    }, [axiosSecure, currentPage, itemPerPage])
     console.log('paginate users', paginateUsers);
 
     const handleCurrentPage = (page) => {
@@ -60,19 +68,19 @@ const ManageUsers = () => {
         setCurrentPage(page)
     }
     console.log(currentPage);
-    const handlePrevPage = () =>{
-        if(currentPage > 0){
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
-    const handleNextPage = () =>{
-        if(currentPage < totalPage - 1){
+    const handleNextPage = () => {
+        if (currentPage < totalPage - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
     console.log('all users', users);
     return (
-        <div className="p-8">
+        <div className="md:p-8">
             <SectionTitle heading='manage users'></SectionTitle>
             <div className="input-group flex justify-end mb-3">
                 <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-500 justify-center items-center">
@@ -84,7 +92,10 @@ const ManageUsers = () => {
                 </form>
 
             </div>
-            <div className="overflow-x-auto md:min-h-screen lg:min-h-[580px]">
+            <div
+                data-aos="zoom-in"
+                data-aos-easing="linear"
+                data-aos-duration="1500" className="overflow-x-auto md:min-h-screen lg:min-h-[580px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -98,17 +109,17 @@ const ManageUsers = () => {
                     </thead>
                     <tbody className="bg-gray-100">
                         {
-                           searchingUser.length > 0 && searchingUser[0] !== 'null' ? searchingUser?.map((user, index) => <tr key={user?._id}>
-                           <th> { user?.email && index + 1}</th>
-                           <td>{user?.name}</td>
-                           <td>{user?.email}</td>
-                           <td className="text-center">
-                               {
-                                   user?.role === 'Admin' ? <button className="bg-green-200 font-semibold px-7 py-1">Admin</button> : user?.email && <button onClick={() => handleMakeAdmin(user)} className="bg-red-200 font-semibold text-sm px-2 py-1">Make Admin</button>
-                               }
-                           </td>
-                           <td className="text-center">{user?.Badge}</td>
-                       </tr>) : paginateUsers?.map((user, index) => <tr key={user?._id}>
+                            searchingUser.length > 0 && searchingUser[0] !== 'null' ? searchingUser?.map((user, index) => <tr key={user?._id}>
+                                <th> {user?.email && index + 1}</th>
+                                <td>{user?.name}</td>
+                                <td>{user?.email}</td>
+                                <td className="text-center">
+                                    {
+                                        user?.role === 'Admin' ? <button className="bg-green-200 font-semibold px-7 py-1">Admin</button> : user?.email && <button onClick={() => handleMakeAdmin(user)} className="bg-red-200 font-semibold text-sm px-2 py-1">Make Admin</button>
+                                    }
+                                </td>
+                                <td className="text-center">{user?.Badge}</td>
+                            </tr>) : paginateUsers?.map((user, index) => <tr key={user?._id}>
                                 <th>{index + 1}</th>
                                 <td>{user?.name}</td>
                                 <td>{user?.email}</td>
@@ -124,14 +135,14 @@ const ManageUsers = () => {
                 </table>
             </div>
             <div className="pagination ">
-               <button onClick={handlePrevPage}>Prev</button>
-               {
-                pages.map((page, index) => <button
-                onClick={() => handleCurrentPage(page )}
-                className={currentPage === page  ? 'selected' : ''}
-                 key={page}>{index + 1}</button> )
-               }
-               <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage}>Prev</button>
+                {
+                    pages.map((page, index) => <button
+                        onClick={() => handleCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : ''}
+                        key={page}>{index + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

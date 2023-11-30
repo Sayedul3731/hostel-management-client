@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./pagination.css"
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const AllMeals = () => {
-    const [meals,refetch] = useMeals();
+    const [meals, refetch] = useMeals();
     const [identifiedMeal, setIdentifiedMeal] = useState({});
     const [currentPage, setCurrentPage] = useState(0);
     const [foods, setFoods] = useState([])
@@ -21,6 +23,11 @@ const AllMeals = () => {
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
+    useEffect(() => {
+        AOS.init({
+            duration: 2000
+        })
+    }, [])
     const dataLoad = (id) => {
         const clickableMeal = meals.filter(meal => meal._id === id)
         setIdentifiedMeal(clickableMeal[0])
@@ -58,56 +65,58 @@ const AllMeals = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/meals/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                   if(res.data){
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "The meal has been deleted",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                      refetch()
-                   }
-                })
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "The meal has been deleted",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            refetch()
+                        }
+                    })
             }
-          });
-     
+        });
+
 
     }
 
-    useEffect( () => {
+    useEffect(() => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/meals?page=${currentPage}&size=${itemPerPage}`)
-        .then(res => {
-            console.log(res.data);
-            setFoods(res.data)
-        })
-    },[axiosSecure, currentPage, itemPerPage])
+            .then(res => {
+                console.log(res.data);
+                setFoods(res.data)
+            })
+    }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
         console.log(page);
         setCurrentPage(page)
     }
     console.log(currentPage);
-    const handlePrevPage = () =>{
-        if(currentPage > 0){
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
-    const handleNextPage = () =>{
-        if(currentPage < totalPage - 1){
+    const handleNextPage = () => {
+        if (currentPage < totalPage - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
     return (
-        <div className="p-8">
+        <div className="md:p-8">
             <SectionTitle heading='all meals'></SectionTitle>
-            <div className="overflow-x-auto min-h-[600px]">
+            <div data-aos="fade-left"
+                data-aos-easing="linear"
+                data-aos-duration="1500" className="overflow-x-auto min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -136,7 +145,7 @@ const AllMeals = () => {
                                 <td className="text-center">{meal?.adminEmail}</td>
                                 <td onClick={() => handleUpdate(meal._id)} className="text-center cursor-pointer">Update</td>
                                 <td onClick={() => handleDelete(meal._id)} className="text-center cursor-pointer">Delete</td>
-                               <Link to={`/meal/${meal._id}`} > <td className="text-center cursor-pointer">View Meal</td></Link>
+                                <Link to={`/meal/${meal._id}`} > <td className="text-center cursor-pointer">View Meal</td></Link>
                             </tr>)
                         }
                     </tbody>
@@ -147,7 +156,7 @@ const AllMeals = () => {
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <form onSubmit={handleSubmit(onSubmit)} className="p-8 mr-2 mt-3 bg-green-300">
+                    <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 mr-2 mt-3 bg-green-300">
                         <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
                             <label htmlFor="" className="absolute -mt-[132px] md:-mt-14 mr-[278px] md:mr-[356px] lg:mr-[860px]">Title:</label>
                             <select value={title} className="w-full md:w-1/2 h-8" {...register("title")}>
@@ -221,14 +230,14 @@ const AllMeals = () => {
             </dialog>
 
             <div className="pagination ">
-               <button onClick={handlePrevPage}>Prev</button>
-               {
-                pages.map((page, index) => <button
-                onClick={() => handleCurrentPage(page )}
-                className={currentPage === page  ? 'selected' : ''}
-                 key={page}>{index + 1}</button> )
-               }
-               <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage}>Prev</button>
+                {
+                    pages.map((page, index) => <button
+                        onClick={() => handleCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : ''}
+                        key={page}>{index + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

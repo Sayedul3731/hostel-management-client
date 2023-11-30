@@ -4,6 +4,8 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ServeMeals = () => {
     const user = useAuth();
@@ -20,6 +22,11 @@ const ServeMeals = () => {
     const pages = [...Array(totalPage).keys()]
 
     console.log(user?.email);
+
+    useEffect(() => {
+        AOS.init()
+    }, [])
+
     useEffect(() => {
         axiosSecure.get(`/requestedMeals`)
             .then(res => {
@@ -84,7 +91,7 @@ const ServeMeals = () => {
         }
     }
     return (
-        <div className="p-8">
+        <div className="md:p-8">
             <SectionTitle heading='serve meals'></SectionTitle>
             <div className="input-group flex justify-end mb-3">
                 <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-500 justify-center items-center">
@@ -96,7 +103,11 @@ const ServeMeals = () => {
                 </form>
 
             </div>
-            <div className="overflow-x-auto lg:min-h-[600px]">
+            <div
+                data-aos="zoom-in"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+                className="overflow-x-auto lg:min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -111,14 +122,14 @@ const ServeMeals = () => {
                     </thead>
                     <tbody className="bg-gray-100">
                         {
-                           searchingUser.length > 0 ?   searchingUser?.map((meal, index) => <tr key={meal?._id}>
-                           <th>{index + 1}</th>
-                           <td>{meal?.title}</td>
-                           <td className="text-center">{meal?.userEmail}</td>
-                           <td className="text-center">{meal?.userName}</td>
-                           <td className="text-center cursor-pointer">{meal?.status}</td>
-                           <td onClick={() => handleServe(meal)} className="text-center cursor-pointer">Serve</td>
-                       </tr>): paginateServeMeals?.map((meal, index) => <tr key={meal?._id}>
+                            searchingUser.length > 0 ? searchingUser?.map((meal, index) => <tr key={meal?._id}>
+                                <th>{index + 1}</th>
+                                <td>{meal?.title}</td>
+                                <td className="text-center">{meal?.userEmail}</td>
+                                <td className="text-center">{meal?.userName}</td>
+                                <td className="text-center cursor-pointer">{meal?.status}</td>
+                                <td onClick={() => handleServe(meal)} className="text-center cursor-pointer">Serve</td>
+                            </tr>) : paginateServeMeals?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>
                                 <td>{meal?.title}</td>
                                 <td className="text-center">{meal?.userEmail}</td>

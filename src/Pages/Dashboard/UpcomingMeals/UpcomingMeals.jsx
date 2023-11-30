@@ -2,7 +2,9 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useUpcomingMeals from "../../../hooks/useUpcomingMeals";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -16,62 +18,70 @@ const UpcomingMeals = () => {
     const totalData = meals.length;
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
-    const pages = [...Array(totalPage).keys()]
+    const pages = [...Array(totalPage).keys()];
+
+    useEffect(() => {
+        AOS.init()
+    }, [])
 
     const handlePublish = (meal) => {
         console.log('meal click', meal);
-        if(meal.like >= 10 ){
+        if (meal.like >= 10) {
             axiosSecure.post('/meals', meal)
-            .then(res => {
-                console.log(res.data);
-                if(res.data){
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "The meal has been saved in meal collection.",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                    axiosSecure.delete(`/upcomingMeals/${meal._id}`)
-                    .then(res => {
-                        console.log(res.data);
-                        refetch()
-                    })
-                }
-                
-            })
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "The meal has been saved in meal collection.",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        axiosSecure.delete(`/upcomingMeals/${meal._id}`)
+                            .then(res => {
+                                console.log(res.data);
+                                refetch()
+                            })
+                    }
+
+                })
         }
     }
-    
-    useEffect( () => {
+
+    useEffect(() => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/upcomingMeals?page=${currentPage}&size=${itemPerPage}`)
-        .then(res => {
-            console.log(res.data);
-            setPaginateUpcomingMeals(res.data)
-        })
-    },[axiosSecure, currentPage, itemPerPage])
+            .then(res => {
+                console.log(res.data);
+                setPaginateUpcomingMeals(res.data)
+            })
+    }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
         console.log(page);
         setCurrentPage(page)
     }
     console.log(currentPage);
-    const handlePrevPage = () =>{
-        if(currentPage > 0){
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
-    const handleNextPage = () =>{
-        if(currentPage < totalPage - 1){
+    const handleNextPage = () => {
+        if (currentPage < totalPage - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
-    
+
     return (
-        <div className="p-8">
+        <div className="md:p-8">
             <SectionTitle heading='upcoming meals'></SectionTitle>
-            <div className="overflow-x-auto lg:min-h-[600px]">
+            <div
+                data-aos="zoom-in"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+                className="overflow-x-auto lg:min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -96,21 +106,21 @@ const UpcomingMeals = () => {
                                 </td>
                                 <td className="text-center">{meal?.adminName}</td>
                                 <td className="text-center">{meal?.adminEmail}</td>
-                                <td onClick={() => handlePublish(meal)}  className="text-center cursor-pointer">publish</td>
+                                <td onClick={() => handlePublish(meal)} className="text-center cursor-pointer">publish</td>
                             </tr>)
                         }
                     </tbody>
                 </table>
             </div>
             <div className="pagination ">
-               <button onClick={handlePrevPage}>Prev</button>
-               {
-                pages.map((page, index) => <button
-                onClick={() => handleCurrentPage(page )}
-                className={currentPage === page  ? 'selected' : ''}
-                 key={page}>{index + 1}</button> )
-               }
-               <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage}>Prev</button>
+                {
+                    pages.map((page, index) => <button
+                        onClick={() => handleCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : ''}
+                        key={page}>{index + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

@@ -3,11 +3,18 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react"
 
 
 const AddMeal = () => {
     const axiosSecure = useAxiosSecure();
     const user = useAuth();
+
+    useEffect(() => {
+        AOS.init()
+    }, [])
     const { register, handleSubmit,
         reset,
         formState: { errors },
@@ -29,7 +36,7 @@ const AddMeal = () => {
 
     }
     const handleUpcomingMeal = async (data) => {
-     
+
         await axiosSecure.post('/upcomingMeals', data)
             .then(res => {
                 console.log(res.data);
@@ -47,7 +54,11 @@ const AddMeal = () => {
     return (
         <div className="p-0 md:p-8">
             <SectionTitle heading="add meal"></SectionTitle>
-            <form onSubmit={handleSubmit(onSubmit)} className="p-8 bg-green-300">
+            <form
+                data-aos="zoom-in"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+                onSubmit={handleSubmit(onSubmit)} className="p-8 bg-green-300">
                 <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
                     <label htmlFor="" className="absolute -mt-[132px] md:-mt-14 mr-[278px] md:mr-[356px] lg:mr-[860px]">Title:</label>
                     <select className="w-full md:w-1/2 h-8" {...register("title")}>

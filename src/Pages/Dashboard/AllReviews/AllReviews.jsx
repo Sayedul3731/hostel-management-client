@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMeals from "../../../hooks/useMeals";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const AllReviews = () => {
@@ -17,7 +19,11 @@ const AllReviews = () => {
     const totalData = meals.length;
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
-    const pages = [...Array(totalPage).keys()]
+    const pages = [...Array(totalPage).keys()];
+   
+            useEffect(() => {
+                    AOS.init()
+                }, [])
 
     useEffect(() => {
         axiosSecure.get(`/reviews`)
@@ -56,35 +62,40 @@ const AllReviews = () => {
             }
         });
     }
-    useEffect( () => {
+    useEffect(() => {
         console.log(currentPage, itemPerPage);
         axiosSecure.get(`/reviews?page=${currentPage}&size=${itemPerPage}`)
-        .then(res => {
-            console.log(res.data);
-            setPaginateReviews(res.data)
-        })
-    },[axiosSecure, currentPage, itemPerPage])
+            .then(res => {
+                console.log(res.data);
+                setPaginateReviews(res.data)
+            })
+    }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
         console.log(page);
         setCurrentPage(page)
     }
     console.log(currentPage);
-    const handlePrevPage = () =>{
-        if(currentPage > 0){
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
-    const handleNextPage = () =>{
-        if(currentPage < totalPage - 1){
+    const handleNextPage = () => {
+        if (currentPage < totalPage - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
 
     return (
-        <div className="p-8">
+        <div className="md:p-8">
             <SectionTitle heading='all reviews'></SectionTitle>
-            <div className="overflow-x-auto lg:min-h-[600px]">
+            <div
+
+                data-aos="zoom-in"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+                className="overflow-x-auto lg:min-h-[600px]">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -113,14 +124,14 @@ const AllReviews = () => {
                 </table>
             </div>
             <div className="pagination ">
-               <button onClick={handlePrevPage}>Prev</button>
-               {
-                pages.map((page, index) => <button
-                onClick={() => handleCurrentPage(page )}
-                className={currentPage === page  ? 'selected' : ''}
-                 key={page}>{index + 1}</button> )
-               }
-               <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage}>Prev</button>
+                {
+                    pages.map((page, index) => <button
+                        onClick={() => handleCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : ''}
+                        key={page}>{index + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

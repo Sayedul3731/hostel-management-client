@@ -11,7 +11,7 @@ import Marquee from "react-fast-marquee";
 const HostelGallery = () => {
     return (
         <div>
-            <SectionTitle heading='Hostel Gallery'></SectionTitle>
+            <div className="pt-12 pb-4"><SectionTitle heading='Hostel Gallery'></SectionTitle></div>
             <div className="mb-10">
                 <img className="w-full" src={gallery1} alt="" />
                 <h4 className="md:text-xl text-center font-medium mt-2">The main building of the hostel</h4>

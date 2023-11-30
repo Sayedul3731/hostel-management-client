@@ -30,36 +30,36 @@ const Dashboard = () => {
                     {
                         isAdmin ? <>
                             <li>
-                                <NavLink to="/Dashboard/AdminProfile"><CgProfile></CgProfile>Admin Profile</NavLink>
+                                <NavLink to="/Dashboard/AdminProfile" className='font-semibold'><CgProfile></CgProfile>Admin Profile</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/ManageUsers"><FaUsers></FaUsers> Manage Users</NavLink>
+                                <NavLink to="/Dashboard/ManageUsers" className="font-semibold"><FaUsers></FaUsers> Manage Users</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AddMeal"><GiMeal></GiMeal>Add Meal</NavLink>
+                                <NavLink to="/Dashboard/AddMeal" className="font-semibold"><GiMeal></GiMeal>Add Meal</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AllMeals"><FaUtensils></FaUtensils> All Meals</NavLink>
+                                <NavLink to="/Dashboard/AllMeals" className="font-semibold"><FaUtensils></FaUtensils> All Meals</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AllReviews"><MdRateReview /> All Reviews</NavLink>
+                                <NavLink to="/Dashboard/AllReviews" className="font-semibold"><MdRateReview /> All Reviews</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/ServeMeals"><MdFoodBank /> Serve Meals</NavLink>
+                                <NavLink to="/Dashboard/ServeMeals" className="font-semibold"><MdFoodBank /> Serve Meals</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/UpcomingMeals"><BiSolidFoodMenu /> Upcoming Meals</NavLink>
+                                <NavLink to="/Dashboard/UpcomingMeals" className="font-semibold"><BiSolidFoodMenu /> Upcoming Meals</NavLink>
                             </li>
                         </>
                             : <>
                                 <li>
-                                    <NavLink to="/Dashboard/MyProfile"><CgProfile></CgProfile>My Profile</NavLink>
+                                    <NavLink to="/Dashboard/MyProfile" className="font-semibold"><CgProfile></CgProfile>My Profile</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/Dashboard/RequestedMeals"><GiMeal></GiMeal>Request Meals</NavLink>
+                                    <NavLink to="/Dashboard/RequestedMeals" className="font-semibold"><GiMeal></GiMeal>Request Meals</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/Dashboard/MyReviews"><MdRateReview /> My Reviews</NavLink>
+                                    <NavLink to="/Dashboard/MyReviews" className="font-semibold"><MdRateReview /> My Reviews</NavLink>
                                 </li>
                             </>
                     }
@@ -68,7 +68,7 @@ const Dashboard = () => {
                 <>
                     <ul className="menu">
                         <li>
-                            <NavLink to="/"><FaHome /> Home</NavLink>
+                            <NavLink to="/" className="font-semibold"><FaHome /> Home</NavLink>
                         </li>
                     </ul>
                 </>

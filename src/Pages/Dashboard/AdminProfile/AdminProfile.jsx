@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const AdminProfile = () => {
     const user = useAuth();
-    const axiosSecure =useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
     const [meals, setMeals] = useState([])
+  
+  useEffect(() => {
+    AOS.init({
+      duration: 2000
+    })
+  }, [])
 
     useEffect(() => {
         axiosSecure.get(`/meals/${user?.email}`)
@@ -16,16 +24,19 @@ const AdminProfile = () => {
             })
     }, [axiosSecure, user.email])
 
-   
+
     return (
         <div>
             <SectionTitle heading="admin profile"></SectionTitle>
-            <div className="card bg-base-100 shadow-xl mx-10">
-                <figure><img src={user?.photoURL} alt="Shoes" /></figure>
-                <div className="card-body">
+            <div data-aos="zoom-in-up" className=" bg-base-100  shadow-md shadow-green-600 hover:shadow-red-600 mx-10">
+                <div className=" flex justify-center min-h-[150px]">
+                    <figure><img className=" object-cover" src={user?.photoURL} alt="Shoes" /></figure>
+                </div>
+                <div data-aos="fade-up"
+     data-aos-anchor-placement="bottom-bottom" className="card-body">
                     <h2 className="card-title">{user?.displayName}</h2>
-                    <p> Email: {user?.email}</p>
-                    <p>Add Meals: {meals.length}</p>
+                    <p> <span className="font-semibold">Email:</span> {user?.email}</p>
+                    <p> <span className="font-semibold">Total Meals Added:</span> {meals.length}</p>
                 </div>
             </div>
         </div>

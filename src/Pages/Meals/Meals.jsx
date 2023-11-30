@@ -3,6 +3,7 @@ import useMeals from "../../hooks/useMeals";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
 
 
 const Meals = () => {
@@ -40,7 +41,7 @@ const Meals = () => {
 
     return (
         <div className="mb-5">
-            <h1 className="text-4xl font-semibold text-center my-8">All Meals</h1>
+            <div className="pt-1"><SectionTitle heading='All meals'></SectionTitle></div>
             <div className="flex flex-col md:flex-row w-full">
                 <div className="w-full md:w-1/2 lg:w-1/3 ">
                     <div className="w-3/4 md:w-5/6 px-4">
@@ -56,13 +57,13 @@ const Meals = () => {
                     </div>
                     <div className="w-3/4 md:w-5/6 px-4 mt-3">
                         <form onSubmit={handleSubmit(handleFilterByPrice)}
-                        className="flex bg-slate-100  justify-evenly">
-                            <select className="bg-slate-100 md:w-1/2 h-8" {...register("price")}>
+                            className="flex bg-slate-100  justify-evenly">
+                            <select className="bg-slate-100 md:w-1/2 -ml-3  h-8" {...register("price")}>
                                 <option value="40-70">40-70</option>
                                 <option value="70-120">71-120</option>
                                 <option value="120-200">121-200</option>
                             </select>
-                            <button className="font-normal" type="submit">filter by price</button>
+                            <button className="font-normal pl-" type="submit">filter by price</button>
                         </form>
                     </div>
                 </div>
