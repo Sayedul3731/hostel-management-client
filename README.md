@@ -11,7 +11,7 @@
 1. I used many technology in this project such as JavaScript as programming language, React.js, Tailwind css, DaisyUI and Material UI as front-end and mongoose, express.js, node.js as backend.
 2. In this project I used some package like `firebase`,`axios`,`react-dom`,`react-router-dom`, `@emotion/react`, `@mui/icons-material` ,`@emotion/styled`,`@stripe/react-stripe-js`, `@tanstack/react-query`,`react-hook-form`,`react-fast-marquee`,`react-icons`,`react-infinite-scroll-component`,`react-tabs`,`sweetalert2`,`swiper` etc.
 
-* My server side deployed in `vercel` and client side deployed in `firebase`
+* The server side deployed in `vercel` and client side deployed in `firebase`
 
 
 
