@@ -1,8 +1,6 @@
 # HappyHostel
 # Live link:  https://hostel-management-9654d.web.app/
 
-## Features & Technologies:
-
 # Features: 
 1. My project name is `HappyHostel` which is a `Hostel Mangement Site`. In the site has `Authentication System`, `Payment Method`, `Admin Pannel` & `User Dashboard` and also `Token` System for security purpose.
 2.  In this site a user can see all hostel facilities like all `Meals`, `Upcoming Meals`, `Memberships` & `Hostel Gallery` without login. If the user logged in so he/she will get another facilities like he can request for a meal, like on a meal, review on a meal & purchase memberships.
