@@ -1,12 +1,11 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import useRooms from "../../hooks/useRooms";
 
 
 const Rooms = () => {
-    // const [rooms, setRooms] = useState([])
     const [rooms] = useRooms();
     console.log(rooms);
-    
     return (
         <div>
             <SectionTitle heading="All rooms"></SectionTitle>
@@ -19,7 +18,9 @@ const Rooms = () => {
                             <h2 className="card-title">Total Seat: {room.total_seat}</h2>
                             <p>{room.description}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-primary">Details</button>
+                                <Link to={`/roomDetails/${room.room_number}`}>
+                                    <button className="btn btn-primary">Details</button>
+                                </Link>
                             </div>
                         </div>
                     </div>)

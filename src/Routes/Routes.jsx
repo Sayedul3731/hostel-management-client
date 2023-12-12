@@ -20,6 +20,7 @@ import Checkout from "../components/Checkout/Checkout";
 import UpcomingUMeals from "../Pages/UpcomingUMeals/UpcomingUMeals";
 import PrivetRoutes from "./PrivetRoutes";
 import Rooms from "../Pages/Rooms/Rooms";
+import RoomDetails from "../Pages/Rooms/RoomDetails";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
       {
         path: '/Rooms',
         element: <Rooms></Rooms>
+      },
+      {
+        path: '/roomDetails/:id',
+        element: <RoomDetails></RoomDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/seats/${params.id}`)
       },
       {
         path: "/Login",
