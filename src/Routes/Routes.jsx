@@ -21,6 +21,7 @@ import UpcomingUMeals from "../Pages/UpcomingUMeals/UpcomingUMeals";
 import PrivetRoutes from "./PrivetRoutes";
 import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
+import UpdateNews from "../Pages/UpdateNews/UpdateNews";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         path: '/roomDetails/:id',
         element: <RoomDetails></RoomDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/seats/${params.id}`)
+      },
+      {
+        path: '/NoticeBoard',
+        element: <UpdateNews></UpdateNews>
       },
       {
         path: "/Login",

@@ -41,10 +41,10 @@ const RoomDetails = () => {
     }
     return (
         <div>
-            <h1 className="text-4xl font-semibold text-center my-10"> <span className="text-green-600">{data.room_number}</span> No. Room Details </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <h1 className="text-2xl md:text-4xl font-semibold text-center my-10"> <span className="text-green-600">{data.room_number}</span> No. Room Details </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 {
-                    data?.seats?.map(seat => <div key={seat._id} className="card bg-base-100 shadow-xl">
+                    data?.seats?.map(seat => <div key={seat._id} className="rounded-md bg-base-100 shadow-xl">
                         <figure><img src={seat.img} alt="Shoes" /></figure>
                         <div className="card-body">
                             <div className="min-h-[100px]">
