@@ -12,14 +12,14 @@ const Rooms = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     rooms?.map(room => <div key={room.room_number} className="card bg-base-100 shadow-xl">
-                        <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                        <figure><img src={room.img} className="h-[250px] w-full" alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">Room No: {room.room_number}</h2>
-                            <h2 className="card-title">Total Seat: {room.total_seat}</h2>
+                            <h2 className="font-semibold"> <span className="text-lg">Total Seat:</span> {room.total_seat}</h2>
                             <p>{room.description}</p>
-                            <div className="card-actions justify-end">
+                            <div>
                                 <Link to={`/roomDetails/${room.room_number}`}>
-                                    <button className="btn btn-primary">Details</button>
+                                    <button className=" w-full py-1 font-semibold bg-red-500 text-white">Details</button>
                                 </Link>
                             </div>
                         </div>
