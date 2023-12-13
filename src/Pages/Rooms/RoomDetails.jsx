@@ -4,6 +4,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useUsers from "../../hooks/useUsers";
 import { useEffect, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
@@ -15,6 +17,11 @@ const RoomDetails = () => {
     const axiosSecure = useAxiosSecure()
     console.log(user);
     const data = useLoaderData();
+    useEffect(() => {
+        AOS.init({
+            duration: 3000
+        })
+    },[])
 
     useEffect(() => {
         const filteredUser = users.filter(eachUser => eachUser?.email === user?.email)
@@ -61,7 +68,9 @@ const RoomDetails = () => {
     return (
         <div>
             <h1 className="text-2xl md:text-4xl font-semibold text-center my-10"> <span className="text-green-600">{data.room_number}</span> No. Room Details </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            <div
+            data-aos="zoom-in"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 {
                     data?.seats?.map(seat => <div key={seat._id} className="rounded-md bg-base-100 shadow-xl">
                         <figure><img src={seat.img} alt="Shoes" /></figure>

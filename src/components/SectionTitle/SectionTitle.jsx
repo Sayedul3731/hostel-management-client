@@ -15,7 +15,7 @@ const SectionTitle = ({ heading }) => {
   }, [])
     return (
         <div data-aos="flip-right" className="flex flex-col justify-center mt-10 mb-10">
-            <h1 className="text-4xl text-center font-semibold uppercase"><span className="shadow-lg shadow-green-600 hover:shadow-red-600 px-3 py-[2px]">{heading}</span></h1>
+            <h1 className="text-3xl md:text-4xl text-center font-semibold uppercase"><span className="shadow-lg shadow-green-600 hover:shadow-red-600 px-3 py-[2px]">{heading}</span></h1>
         </div>
     );
 };

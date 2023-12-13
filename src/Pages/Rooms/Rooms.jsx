@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import useRooms from "../../hooks/useRooms";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
+  
 
 const Rooms = () => {
     const [rooms] = useRooms();
-    console.log(rooms);
+    useEffect(() => {
+        AOS.init({
+            duration: 3000
+        })
+    },[])
+
     return (
         <div>
             <SectionTitle heading="All rooms"></SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 {
-                    rooms?.map(room => <div key={room.room_number} className="card bg-base-100 shadow-xl">
+                    rooms?.map(room => <div
+                    data-aos="flip-left"
+                    key={room.room_number} className="card bg-base-100 shadow-xl">
                         <figure><img src={room.img} className="h-[250px] w-full" alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">Room No: {room.room_number}</h2>
