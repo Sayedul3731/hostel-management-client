@@ -21,7 +21,7 @@ import UpcomingUMeals from "../Pages/UpcomingUMeals/UpcomingUMeals";
 import PrivetRoutes from "./PrivetRoutes";
 import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
-import UpdateNews from "../Pages/UpdateNews/UpdateNews";
+import NoticeBoard from "../Pages/NoticeBoard/NoticeBoard";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/NoticeBoard',
-        element: <UpdateNews></UpdateNews>
+        element: <NoticeBoard></NoticeBoard>
       },
       {
         path: "/Login",

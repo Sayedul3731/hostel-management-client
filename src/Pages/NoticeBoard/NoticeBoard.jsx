@@ -1,11 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-// import Marquee from "react-fast-marquee";
+import Marquee from "react-fast-marquee";
 
-const UpdateNews = () => {
+const NoticeBoard = () => {
     return (
         <div >
             <SectionTitle heading="Notice Board"></SectionTitle>
+            <div className="pt-3 mb-5">
+                <Marquee speed={70} >
+                    <p className="mr-5 font-semibold">"Meeting tomorrow, 7 PM. Please attend."</p>
+                    <p className="mr-5 font-semibold">"Maintenance next week. Tidy rooms, secure belongings."</p>
+                    <p className="mr-5 font-semibold">"Movie night this Friday, 8 PM. Bring snacks!"</p>
+                    <p className="mr-5 font-semibold">"Fee deadline soon. Clear dues by week's end."</p>
+                    <p className="mr-5 font-semibold">"Update emergency contact at front desk."</p>
+                    <p className="mr-5 font-semibold">"Guests overnight? Notify administration beforehand. Thank you."</p>
+                    <p className="mr-5 font-semibold">"Lost keys found. Claim at front desk."</p>
+                    <p className="mr-5 font-semibold">"Internet interruption on Saturday, 10 AM to 12 PM."</p>
+                    <p className="mr-5 font-semibold">"Community clean-up on Sunday, 9 AM. Join us!"</p>
+                    <p className="mr-5 font-semibold">"Share feedback in box near entrance. Thank you!"</p>
+                </Marquee>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 <div className="card bg-base-100 shadow-xl">
                     <div className="card-body">
@@ -66,4 +80,4 @@ const UpdateNews = () => {
     );
 };
 
-export default UpdateNews;
+export default NoticeBoard;
