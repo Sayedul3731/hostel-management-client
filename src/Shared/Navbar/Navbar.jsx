@@ -93,7 +93,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-red-500 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#6C0A0F] rounded-box w-52"
           >
             {navLinks}
           </ul>
@@ -110,7 +110,7 @@ const Navbar = () => {
           <label tabIndex={0}>{
             user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
           }</label>
-          <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-red-500 rounded-box w-52">
+          <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-[#6C0A0F] rounded-box w-52">
             <li>{user?.displayName}</li>
             <Link to={isAdmin ? "/dashboard/adminProfile" : "/dashboard/myProfile"}><li className="my-2">Dashboard</li></Link>
             <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>

@@ -30,7 +30,7 @@ const Rooms = () => {
                             <p>{room.description}</p>
                             <div>
                                 <Link to={`/roomDetails/${room.room_number}`}>
-                                    <button className=" w-full py-1 font-semibold bg-red-500 text-white">Details</button>
+                                    <button className=" w-full py-1 font-semibold bg-[#00F531] text-white">Details</button>
                                 </Link>
                             </div>
                         </div>

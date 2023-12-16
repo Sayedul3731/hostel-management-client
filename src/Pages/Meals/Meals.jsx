@@ -44,7 +44,7 @@ const Meals = () => {
             <div className="pt-1"><SectionTitle heading='All meals'></SectionTitle></div>
             <div className="flex flex-col md:flex-row w-full">
                 <div className="w-full md:w-1/2 lg:w-1/3 ">
-                    <div className="w-3/4 md:w-5/6 px-4">
+                    <div className="w-3/4 md:w-5/6">
                         <form onSubmit={handleSubmit(handleFilterByCategory)} className="flex bg-slate-100  justify-evenly">
 
                             <select className="bg-slate-100 md:w-1/2 h-8" {...register("category")}>
@@ -55,7 +55,7 @@ const Meals = () => {
                             <button className="font-normal" type="submit">filter by category</button>
                         </form>
                     </div>
-                    <div className="w-3/4 md:w-5/6 px-4 mt-3">
+                    <div className="w-3/4 md:w-5/6 mt-3">
                         <form onSubmit={handleSubmit(handleFilterByPrice)}
                             className="flex bg-slate-100  justify-evenly">
                             <select className="bg-slate-100 md:w-1/2 -ml-3  h-8" {...register("price")}>
@@ -67,10 +67,10 @@ const Meals = () => {
                         </form>
                     </div>
                 </div>
-                <div className="input-group flex w-3/4 px-4 md:w-1/2 lg:w-2/3 md:justify-end lg:justify-end md:mt-[36px]  mt-5 md:mt-0">
-                    <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-500 justify-center items-center">
+                <div className="input-group flex w-3/4 md:w-1/2 lg:w-2/3 md:justify-end lg:justify-end md:mt-[36px]  mt-5 md:mt-0">
+                    <form onSubmit={handleSubmit(onSubmit)} className="flex h-[40px] mb-2 justify-center items-center">
                         <input className='w-full h-full my-3 px-3 py-3' placeholder='Search by title...' {...register('text')} />
-                        <button type="submit" className="bg-white text-black  px-2">
+                        <button type="submit" className="bg-white text-black h-full px-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </button>

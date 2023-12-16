@@ -86,7 +86,7 @@ const Login = () => {
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
-                    <input className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2' type="submit" />
+                    <input className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2 hover:bg-[#00F531] hover:border-white' type="submit" />
                 </form>
                 <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/Register"><span className='text-[#00F531] font-semibold '>Register</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className='text-[#00F531] cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
