@@ -164,9 +164,9 @@ console.log(meal);
 
   return (
 
-    <div className="p-4">
+    <div className="p-4 max-w-7xl mx-auto">
       <Link to="/meals">
-        <button className="my-5 px-5  bg-red-500 py-2 text-white font-semibold rounded-sm">SEE All</button>
+        <button className="my-5 px-5  bg-[#00F531] py-2 text-white font-semibold rounded-sm">SEE All</button>
       </Link>
       <div className=" bg-base-100 rounded shadow-sm p-4">
         <div className="">
@@ -186,16 +186,16 @@ console.log(meal);
             <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
           </div>
           <div>
-            <button onClick={handleMealRequest} className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Meal Request</button>
+            <button onClick={handleMealRequest} className="w-full bg-[#00F531] py-2 text-white font-semibold rounded-sm">Meal Request</button>
           </div>
         </div>
       </div>
       {/* reviews section here  */}
       <div className="p-4">
-        <h1 className="text-3xl font-semibold text-center mt-10 mb-5">Reviews Section
+        <h1 className="text-3xl font-semibold text-center mt-10 mb-5 text-white">Reviews Section
         </h1>
 
-        <div className="mb-5">
+        <div className="mb-5 text-white">
           {
             reviews.map((item, index) => <div key={item._id}>
              <div className="flex justify-between items-center w-full">
@@ -213,7 +213,7 @@ console.log(meal);
               render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
             />
           </div>
-          <button type="submit" className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Add Review</button>
+          <button type="submit" className="w-full bg-[#00F531] py-2 text-white font-semibold rounded-sm">Add Review</button>
         </form>
 
       </div>
