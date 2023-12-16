@@ -13,7 +13,7 @@ const Memberships = () => {
             <div className="pt-10">
                 <SectionTitle heading='memberships'></SectionTitle>
             </div>
-            <p className="text-center">
+            <p className="text-center text-white">
                 We provide quality services to our students. Below are three types of service <br /> packages. Purchase any of the following packages to avail our maximum benefits.
             </p>
             <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">

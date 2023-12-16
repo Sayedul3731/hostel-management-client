@@ -11,7 +11,7 @@ const Banner = () => {
     })
   }, [])
   return (
-    <div className="w-full h-[500px] flex justify-center items-center bg-gradient-to-r from-green-500 to-green-500"
+    <div className="w-full h-[500px] flex justify-center items-center"
     >
       <div data-aos="zoom-in" className="text-center text-white"
       >

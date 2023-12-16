@@ -40,7 +40,7 @@ const Meals = () => {
     }
 
     return (
-        <div className="mb-5">
+        <div className="mb-5 max-w-7xl mx-auto">
             <div className="pt-1"><SectionTitle heading='All meals'></SectionTitle></div>
             <div className="flex flex-col md:flex-row w-full">
                 <div className="w-full md:w-1/2 lg:w-1/3 ">
@@ -80,8 +80,8 @@ const Meals = () => {
             <InfiniteScroll dataLength={meals.length}
                 loader={<h4>Loading...</h4>}
                 endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
+                    <p style={{ textAlign: 'center' , marginTop: '20px' }}>
+                        <b className="text-white">Yay! You have seen it all</b>
                     </p>
                 }
 

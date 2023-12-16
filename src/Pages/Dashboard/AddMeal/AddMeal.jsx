@@ -58,7 +58,7 @@ const AddMeal = () => {
                 data-aos="zoom-in"
                 data-aos-easing="linear"
                 data-aos-duration="1500"
-                onSubmit={handleSubmit(onSubmit)} className="p-8 bg-green-300">
+                onSubmit={handleSubmit(onSubmit)} className="p-8 bg-[#6C0A0F]">
                 <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
                     <label htmlFor="" className="absolute -mt-[132px] md:-mt-14 mr-[278px] md:mr-[356px] lg:mr-[860px]">Title:</label>
                     <select className="w-full md:w-1/2 h-8" {...register("title")}>
@@ -118,10 +118,10 @@ const AddMeal = () => {
                         <input value={user?.email} className='w-full my-4 px-3 py-1' placeholder='Admin Email' {...register('adminEmail', { required: true })} />
                     </p>
                 </div>
-                <button type="submit" className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
+                <button type="submit" className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2'>
                     Add Meal
                 </button>
-                <button onClick={handleSubmit(handleUpcomingMeal)} className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2'>
+                <button onClick={handleSubmit(handleUpcomingMeal)} className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2'>
                     Upcoming Meal
                 </button>
             </form>

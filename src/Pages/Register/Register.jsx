@@ -91,8 +91,8 @@ const Register = () => {
 
 
     return (
-        <div className='min-h-[550px] lg:min-h-[600px] w-full mx-auto flex justify-center items-center bg-red-100'>
-            <div className='border w-5/6 lg:w-1/2 bg-green-400 p-8 rounded-md'>
+        <div className='min-h-[550px] lg:min-h-[600px] max-w-7xl mx-auto w-full mx-auto flex justify-center items-center '>
+            <div className=' w-5/6 lg:w-1/2 bg-[#6C0A0F] p-8 rounded-md'>
                 <h1 className='text-2xl font-semibold text-white mb-8'>Please Register!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
@@ -127,10 +127,10 @@ const Register = () => {
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
-                    <input className='text-center font-semibold text-white w-full mt-5 bg-red-500 py-2' type="submit" />
+                    <input className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2' type="submit" />
                 </form>
-                <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/Login"><span className='text-red-500 font-semibold '>Login</span></Link> </p>
-                <div onClick={handleLogInWithGoogle} className='text-red-500 cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
+                <p className='mt-6 text-white text-center'>Already Have An Account? Please <Link to="/Login"><span className='text-[#00F531] font-semibold '>Login</span></Link> </p>
+                <div onClick={handleLogInWithGoogle} className='text-[#00F531] cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
                     <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>
                 </div>

@@ -120,7 +120,7 @@ const AllMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-green-500 text-black">
+                        <tr className="bg-[#6C0A0F] text-white">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>

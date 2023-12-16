@@ -69,7 +69,7 @@ const Navbar = () => {
   console.log(user);
 
   return (
-    <div className="navbar bg-gradient-to-r from-green-500 to-green-500 text-white">
+    <div className="navbar max-w-7xl mx-auto text-white">
       <div className="navbar-start">
         <div>
           <img className="w-16 h-12 hidden lg:flex" src="logoo.png" alt="" />

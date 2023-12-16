@@ -43,7 +43,7 @@ const MealsByCategory = () => {
         <div className='pt-4'>
             <SectionTitle data-aos="fade-up" heading='Meals By Category'></SectionTitle>
             <Tabs>
-                <TabList className="bg-green-100">
+                <TabList className="text-white">
                     <Tab onClick={handleAllMeals}>All Meals</Tab>
                     <Tab onClick={handleBreakfastMeals}>Breakfast</Tab>
                     <Tab onClick={handleLunchMeals}>Lunch</Tab>

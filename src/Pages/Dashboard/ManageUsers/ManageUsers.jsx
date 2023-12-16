@@ -82,10 +82,10 @@ const ManageUsers = () => {
     return (
         <div className="md:p-8">
             <SectionTitle heading='manage users'></SectionTitle>
-            <div className="input-group flex justify-end mb-3">
-                <form onSubmit={handleSubmit(onSubmit)} className="flex border h-[40px] border-green-500 justify-center items-center">
+            <div data-aos="fade-down" className="input-group flex justify-start mb-3">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex h-[40px] justify-center items-center">
                     <input className='w-full h-full my-3 px-3 py-3' placeholder='Search...' {...register('text')} />
-                    <button type="submit" className="bg-white text-black  px-2">
+                    <button type="submit" className="bg-white h-full text-black  px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
@@ -99,7 +99,7 @@ const ManageUsers = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-green-500 text-black">
+                        <tr className="bg-[#6C0A0F] text-white">
                             <th>SL.</th>
                             <th>Name</th>
                             <th>Email</th>
