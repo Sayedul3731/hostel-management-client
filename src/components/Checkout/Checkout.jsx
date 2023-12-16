@@ -11,13 +11,13 @@ const Checkout = () => {
     const badge = packageData.title;
     const price = packageData.price;
     return (
-        <div className="px-12">
+        <div className="px-12 max-w-7xl mx-auto text-white min-h-screen">
             <SectionTitle heading="checkout"></SectionTitle>
             <p className="mb-2"> <span className="font-semibold">Package:</span> {packageData.title}</p>
             <p className="mb-10"> <span className="font-semibold">Details:</span> {packageData.details}</p>
             <h1 className="text-xl font-semibold mb-5">Payment Here:</h1>
             <div className="flex justify-center">
-                <div className="w-1/2 mb-5 border border-green-400 p-5">
+                <div className="w-1/2 mb-5 border border-green-400 bg-white p-5">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm badge={badge} price={price}></CheckoutForm>
                     </Elements>
