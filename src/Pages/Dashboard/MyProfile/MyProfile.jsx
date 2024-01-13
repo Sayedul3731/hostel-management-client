@@ -6,6 +6,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import useUsers from "../../../hooks/useUsers";
 
 
 const MyProfile = () => {
@@ -15,7 +16,8 @@ const MyProfile = () => {
     const axiosSecure = useAxiosSecure();
     const [identifiedUser, setIdentifiedUser] = useState({});
     const { register, handleSubmit, reset } = useForm();
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState({});
+    const [, refetch] = useUsers();
 
     useEffect(() => {
         axiosPublic.get(`/users/${user?.email}`)
@@ -24,26 +26,48 @@ const MyProfile = () => {
             })
     }, [axiosPublic, user.email])
 
+    useEffect(() => {
+        axiosSecure.get(`/userProfiles/${user?.email}`)
+            .then(res => {
+                console.log('user biodata', res.data);
+                setUserData(res.data)
+            })
+    }, [axiosSecure, user?.email])
+
+
     console.log(user);
     const onSubmit = async (data) => {
         console.log(data);
-        await axiosSecure.post(`/userProfiles`, data)
-            .then(res => {
-                console.log(res.data);
-                if (res.data) {
-                    Swal.fire({
-                        title: "Success!",
-                        text: "Your Address Added Successfully.",
-                        icon: "success"
-                    });
-                    reset();
-                    axiosSecure.get(`/userProfiles/${data?.email}`)
-                        .then(res => {
-                            console.log('user biodata', res.data);
-                            setUserData(res.data)
-                        })
-                }
-            })
+        console.log('userData Email', userData?.email);
+        if (userData?.email) {
+            await axiosSecure.patch(`/userProfiles/${userData?.email}`, data)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Your Address Updated Successfully.",
+                            icon: "success"
+                        });
+                        refetch()
+                        reset();
+                    }
+                })
+        } else {
+            await axiosSecure.post(`/userProfiles`, data)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Your Address Added Successfully.",
+                            icon: "success"
+                        });
+                        refetch()
+                        reset();
+                    }
+                })
+        }
     }
     console.log(userData);
 
