@@ -1,18 +1,18 @@
 import { GrLike } from "react-icons/gr";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import useMeals from "../../../../hooks/useMeals";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm, Controller } from "react-hook-form";
 import { useEffect, useState } from "react"
+import useUpcomingMeals from "../../../../hooks/useUpcomingMeals";
 
 
 
 const MealDetails = () => {
   const { handleSubmit, control } = useForm();
   const axiosSecure = useAxiosSecure();
-  const [, refetch] = useMeals();
+  const [, likeRefetch] = useUpcomingMeals();
   const user = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,30 +21,28 @@ const MealDetails = () => {
   console.log('meal time', meal.time);
   const date = new Date(meal?.time);
   const localDate = date.toLocaleDateString();
-  console.log('now the time is',localDate);
-
-console.log(meal);
+  console.log('now the time is', localDate);
 
 
   useEffect(() => {
-    refetch()
     axiosSecure.get(`/reviews/${meal?._id}`)
       .then(res => {
         console.log(res.data);
         setReviews(res.data)
       })
-  }, [axiosSecure, meal._id,refetch])
+  }, [axiosSecure, meal._id])
 
   const handleLike = (id) => {
     console.log('click on', id);
     if (user?.email) {
-      axiosSecure.patch(`/meals/${id}`, {lk : 1})
+      axiosSecure.patch(`/meals/${id}`, { lk: 1 })
         .then(res => {
           console.log(res.data);
-          refetch();
+          likeRefetch();
         })
     }
   }
+
   const handleMealRequest = () => {
     if (!user?.email) {
       Swal.fire({
@@ -58,7 +56,7 @@ console.log(meal);
       }).then((result) => {
         if (result.isConfirmed) {
           console.log(location.pathname);
-          navigate('/login' )
+          navigate('/login')
         }
       });
     } else if (user?.email) {
@@ -82,7 +80,7 @@ console.log(meal);
               adminName: meal?.adminName,
               adminEmail: meal?.adminEmail,
               Description: meal?.Description,
-              Ingredients : meal?.Ingredients
+              Ingredients: meal?.Ingredients
 
             }
             axiosSecure.post('/requestedMeals', newInfo)
@@ -96,7 +94,6 @@ console.log(meal);
                     showConfirmButton: false,
                     timer: 1500
                   });
-                  refetch()
                 }
               })
           } else {
@@ -113,14 +110,14 @@ console.log(meal);
   }
   const onSubmit = (data) => {
 
-    if(!user?.email){
+    if (!user?.email) {
       Swal.fire({
         title: "Oh sorry!",
         text: "You are not logged in!",
         icon: "error"
       });
     }
-     else if (user?.email) {
+    else if (user?.email) {
       console.log(user);
       const reviewsInfo = {
         review: data.reviews,
@@ -144,7 +141,6 @@ console.log(meal);
       axiosSecure.post('/reviews', reviewsInfo)
         .then(res => {
           if (res.data) {
-            refetch()
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -152,10 +148,9 @@ console.log(meal);
               showConfirmButton: false,
               timer: 1500
             });
-            axiosSecure.patch(`/meals/${meal?._id}`, {rev: 1})
+            axiosSecure.patch(`/meals/${meal?._id}`, { rev: 1 })
               .then(res => {
                 console.log(res.data);
-                refetch()
               })
           }
         })
@@ -198,11 +193,11 @@ console.log(meal);
         <div className="mb-5 text-white">
           {
             reviews.map((item, index) => <div key={item._id}>
-             <div className="flex justify-between items-center w-full">
-             <h1 className="w-5/6"> {index + 1}<span className="text-xl">.</span> <span>{item.review}</span></h1>
-             <p className="font-thin text-gray-400 text-sm w-1/6 ">review by {item.userName}</p>
-             </div>
-            </div> )
+              <div className="flex justify-between items-center w-full">
+                <h1 className="w-5/6"> {index + 1}<span className="text-xl">.</span> <span>{item.review}</span></h1>
+                <p className="font-thin text-gray-400 text-sm w-1/6 ">review by {item.userName}</p>
+              </div>
+            </div>)
           }
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>

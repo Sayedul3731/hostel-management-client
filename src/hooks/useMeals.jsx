@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 
 const useMeals = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: meals = [],refetch } = useQuery({
+    const { data: meals = [], refetch } = useQuery({
         queryKey: ['meals'],
         queryFn: async () => {
             const res = await axiosPublic.get('/meals')

@@ -31,38 +31,46 @@ const RoomDetails = () => {
 
     const handleBooking = (seat) => {
         console.log(seat);
-        const newBookingInfo = {
-            room_number: data?.room_number,
-            seat_no: seat?.seat_no,
-            studentsEmail: user?.email
-        }
-        if (currentUser.Badge !== 'Bronze') {
-            axiosSecure.post(`/bookedSeats`, newBookingInfo)
-                .then(res => {
-                    console.log('booking successfully', res.data)
-                    if (res?.data) {
-                        Swal.fire({
-                            title: "Good job!",
-                            text: "You Booked the room!",
-                            icon: "success"
-                        });
-                        const updateInfo = {
-                            students_name: user?.displayName,
-                            students_email: user?.email,
-                            seat_no: seat?.seat_no
-                        }
-                        axiosSecure.patch(`/seats/${data?.room_number}`, updateInfo)
-                            .then(res => {
-                                console.log(res.data);
-                            })
-                    }
-                })
-        }else{
+        if(!user){
             Swal.fire({
-                title: "Oh Sorry!",
-                text: "You aren't purchase any package!",
+                title: "Oh!",
+                text: "You are not logged in! Please login first.",
                 icon: "error"
             });
+        }else{
+            const newBookingInfo = {
+                room_number: data?.room_number,
+                seat_no: seat?.seat_no,
+                studentsEmail: user?.email
+            }
+            if (currentUser.Badge !== 'Bronze') {
+                axiosSecure.post(`/bookedSeats`, newBookingInfo)
+                    .then(res => {
+                        console.log('booking successfully', res.data)
+                        if (res?.data) {
+                            Swal.fire({
+                                title: "Good job!",
+                                text: "You Booked the room!",
+                                icon: "success"
+                            });
+                            const updateInfo = {
+                                students_name: user?.displayName,
+                                students_email: user?.email,
+                                seat_no: seat?.seat_no
+                            }
+                            axiosSecure.patch(`/seats/${data?.room_number}`, updateInfo)
+                                .then(res => {
+                                    console.log(res.data);
+                                })
+                        }
+                    })
+            }else{
+                Swal.fire({
+                    title: "Oh Sorry!",
+                    text: "You aren't purchase any package! Please purchase any package first...",
+                    icon: "error"
+                });
+            }
         }
     }
     return (

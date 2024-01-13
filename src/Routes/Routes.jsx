@@ -22,6 +22,7 @@ import PrivetRoutes from "./PrivetRoutes";
 import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
 import NoticeBoard from "../Pages/NoticeBoard/NoticeBoard";
+import FAQ from "../Pages/FAQ/FAQ";
 
 const router = createBrowserRouter([
   {
@@ -47,11 +48,15 @@ const router = createBrowserRouter([
       {
         path: '/roomDetails/:id',
         element: <RoomDetails></RoomDetails>,
-        loader: ({params}) => fetch(`https://hostel-management-server-two.vercel.app/seats/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/seats/${params.id}`)
       },
       {
         path: '/NoticeBoard',
         element: <NoticeBoard></NoticeBoard>
+      },
+      {
+        path: '/FAQ',
+        element: <FAQ></FAQ>
       },
       {
         path: "/Login",
@@ -64,22 +69,22 @@ const router = createBrowserRouter([
       {
         path: "/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/meals/meal/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
       },
       {
         path: "/review/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/review/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
       },
       {
         path: "/reviews/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/reviews/review/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/reviews/review/${params.id}`)
       },
       {
         path: "/checkout/:type",
         element: <PrivetRoutes><Checkout></Checkout></PrivetRoutes>,
-        loader: ({ params }) => fetch(`https://hostel-management-server-two.vercel.app/packages/${params.type}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/packages/${params.type}`)
       }
     ]
   },

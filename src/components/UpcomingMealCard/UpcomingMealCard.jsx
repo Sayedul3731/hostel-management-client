@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { GrLike } from "react-icons/gr";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useMeals from "../../hooks/useMeals";
 import useAuth from "../../hooks/useAuth";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react"
 import Swal from 'sweetalert2'
+import useUpcomingMeals from "../../hooks/useUpcomingMeals";
 
 const UpcomingMealCard = ({ meal }) => {
   useEffect(() => {
@@ -15,9 +15,11 @@ const UpcomingMealCard = ({ meal }) => {
     })
   }, [])
   const axiosSecure = useAxiosSecure();
-  const [, refetch] = useMeals();
+  const [, refetch] = useUpcomingMeals();
   const user = useAuth();
 
+  const date = new Date(meal?.time);
+  const localDate = date.toLocaleDateString();
 
   const handleLike = (id) => {
     console.log('click on', id);
@@ -53,6 +55,7 @@ const UpcomingMealCard = ({ meal }) => {
 
     }
   }
+
   return (
     <div data-aos="zoom-in"
       data-aos-easing="linear"
@@ -69,7 +72,7 @@ const UpcomingMealCard = ({ meal }) => {
 
         <p ><span className="font-semibold">Ingredients:</span> {meal?.Ingredients}</p>
         <div className="flex justify-between items-center">
-          <p className="my-1"><span className="font-semibold">Posting Time:</span> {meal?.time} </p>
+          <p className="my-1"><span className="font-semibold">Posting Time:</span> {localDate} </p>
 
           <p className="text-xl flex gap-2"><GrLike onClick={() => handleLike(meal._id)} className="cursor-pointer text-green-500" /><span>{meal?.like}</span> </p>
         </div>

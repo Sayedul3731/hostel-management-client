@@ -39,6 +39,11 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/FAQ">
+          FAQ
+        </NavLink>
+      </li>
+      <li>
         <div className="mr-4">
           <NotificationsIcon></NotificationsIcon>
         </div>
