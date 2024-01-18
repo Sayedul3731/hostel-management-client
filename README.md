@@ -1,4 +1,4 @@
-# HappyHostel
+## HappyHostel
 ## Live link: https://hostel-management-9654d.web.app/
 
 # Features: 
