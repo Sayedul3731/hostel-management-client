@@ -1,34 +1,74 @@
-/* eslint-disable react/no-unescaped-entities */
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useRef } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+// import 'swiper/css/navigation';
+
+import './Banner.css';
+
+import gallery9 from "../../../assets/gallery9.jpg"
+import gallery10 from "../../../assets/gallery10.jpg"
+import gallery11 from "../../../assets/gallery11.avif"
+import gallery12 from "../../../assets/gallery12.avif"
+import gallery13 from "../../../assets/gallery13.avif"
+
+// import required modules
+import { Autoplay, Navigation } from 'swiper/modules';
 
 const Banner = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 2000
-    })
-  }, [])
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty('--progress', 1 - progress);
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  };
   return (
-    <div className="w-full h-[500px] flex justify-center items-center"
-    >
-      <div data-aos="zoom-in" className="text-center  "
+    <>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
+        navigation={true}
+        modules={[Autoplay, Navigation]}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
+        className="mySwiper"
+        style={{
+          marginTop: "40px"
+        }}
       >
-        <h1 data-aos="zoom in" className="text-5xl my-5">Welcome to Happy Hostel</h1>
-        <p className="text-lg mb-5 px-5">"Your Ultimate Hub for Hassle-Free Stay! Discover seamless hostel management, secure bookings, and a home away from home. Unlock a world of convenience, safety, and community. Book your spot now and experience modern living in the heart of Brahmanbaria. Your journey begins here!"</p>
-        <div className="form-control ">
-          <div className="input-group flex justify-center">
-            <input type="text" placeholder="Search…" className="text-black px-2" />
-            <button className="bg-white text-black py-1 px-2">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
-          </div>
+        <SwiperSlide>
+          <img src={gallery12} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={gallery11} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={gallery13} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={gallery9} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={gallery10} alt="" />
+        </SwiperSlide>
+        <div className="autoplay-progress" slot="container-end">
+          <svg viewBox="0 0 48 48" ref={progressCircle}>
+            <circle cx="24" cy="24" r="20"></circle>
+          </svg>
+          <span ref={progressContent}></span>
         </div>
-      </div>
-    </div>
+      </Swiper>
+    </>
   );
-};
+}
 
 export default Banner;
