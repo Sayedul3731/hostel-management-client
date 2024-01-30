@@ -26,7 +26,7 @@ const Banner = () => {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
   return (
-    <>
+    <div className='max-w-7xl mx-auto'>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -42,7 +42,8 @@ const Banner = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
         style={{
-          marginTop: "40px"
+          marginTop: "40px",
+          marginBottom: "0px"
         }}
       >
         <SwiperSlide>
@@ -67,7 +68,7 @@ const Banner = () => {
           <span ref={progressContent}></span>
         </div>
       </Swiper>
-    </>
+    </div>
   );
 }
 

@@ -6,11 +6,11 @@ import Memberships from './Memberships/Memberships';
 
 const Home = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
+        <div>
                 <Banner></Banner>
                 <EducationalSlogan></EducationalSlogan>
-                <MealsByCategory></MealsByCategory>
                 <Memberships></Memberships>
+                <MealsByCategory></MealsByCategory>
                 <HostelGallery></HostelGallery>
         </div>
     );
