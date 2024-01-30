@@ -8,7 +8,11 @@ export default {
     fontFamily: {
       'font-family': "'Libre Franklin', sans-serif"
     },
-    extend: {},
+    extend: {
+      colors: {
+        "primary-300" : "#ff9008"
+      }
+    },
   },
   plugins: [require("daisyui")],
 }
