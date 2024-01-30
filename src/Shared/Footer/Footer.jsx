@@ -3,7 +3,7 @@
 const Footer = () => {
     return (
         <div className="bg-[#491c16]">
-            <footer className="footer p-10 max-w-7xl mx-auto text-white font-semibold">
+            <footer className="footer p-10 max-w-7xl mx-auto   font-semibold">
                 <nav>
                     <header className="footer-title">Services</header>
                     <a className="link link-hover">Foods</a>
@@ -24,7 +24,7 @@ const Footer = () => {
                     <a className="link link-hover">Cookie policy</a>
                 </nav>
             </footer>
-            <footer className="footer px-10 py-4 border-t   max-w-7xl mx-auto text-white border-base-300">
+            <footer className="footer px-10 py-4 border-t   max-w-7xl mx-auto   border-base-300">
                 <aside className="items-center grid-flow-col">
                    <img className="w-24" src="/logoo.png" alt="" />
                     <p ><span className="font-semibold">HappyHostel</span> <br />Providing reliable service since 1992</p>

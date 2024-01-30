@@ -131,7 +131,7 @@ const MyReviews = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-[#6C0A0F] text-white">
+                        <tr className="bg-[#6C0A0F]  ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>
@@ -181,7 +181,7 @@ const MyReviews = () => {
                                 render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
                             />
                         </div>
-                        <button type="submit" className="w-full bg-red-500 py-2 text-white font-semibold rounded-sm">Update Review</button>
+                        <button type="submit" className="w-full bg-red-500 py-2   font-semibold rounded-sm">Update Review</button>
                     </form>
                     <div className="modal-action">
                         <form method="dialog">

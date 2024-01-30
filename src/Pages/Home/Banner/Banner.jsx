@@ -13,7 +13,7 @@ const Banner = () => {
   return (
     <div className="w-full h-[500px] flex justify-center items-center"
     >
-      <div data-aos="zoom-in" className="text-center text-white"
+      <div data-aos="zoom-in" className="text-center  "
       >
         <h1 data-aos="zoom in" className="text-5xl my-5">Welcome to Happy Hostel</h1>
         <p className="text-lg mb-5 px-5">"Your Ultimate Hub for Hassle-Free Stay! Discover seamless hostel management, secure bookings, and a home away from home. Unlock a world of convenience, safety, and community. Book your spot now and experience modern living in the heart of Brahmanbaria. Your journey begins here!"</p>

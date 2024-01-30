@@ -14,7 +14,7 @@ const SectionTitle = ({ heading }) => {
     })
   }, [])
     return (
-        <div data-aos="flip-right" className="flex flex-col justify-center mt-10 mb-10 text-white">
+        <div data-aos="flip-right" className="flex flex-col justify-center mt-10 mb-10  ">
             <h1 className="text-3xl md:text-4xl text-center font-semibold uppercase"><span className=" px-3 py-[2px]">{heading}</span></h1>
         </div>
     );

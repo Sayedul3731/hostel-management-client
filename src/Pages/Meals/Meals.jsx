@@ -81,7 +81,7 @@ const Meals = () => {
                 loader={<h4>Loading...</h4>}
                 endMessage={
                     <p style={{ textAlign: 'center' , marginTop: '20px' }}>
-                        <b className="text-white">Yay! You have seen it all</b>
+                        <b className=" ">Yay! You have seen it all</b>
                     </p>
                 }
 

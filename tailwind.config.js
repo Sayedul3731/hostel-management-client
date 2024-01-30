@@ -10,6 +10,7 @@ export default {
     },
     extend: {
       colors: {
+        "primary-100" : "#ed7e92",
         "primary-300" : "#ff9008"
       }
     },

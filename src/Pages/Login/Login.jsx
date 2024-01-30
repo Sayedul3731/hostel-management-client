@@ -73,7 +73,7 @@ const Login = () => {
     return (
         <div className='min-h-[450px] md:min-h-[500px] max-w-7xl mx-auto lg:min-h-[600px] w-full mx-auto flex justify-center items-center'>
             <div className=' w-5/6  lg:w-1/2 bg-[#6C0A0F] p-8 rounded-md'>
-                <h1 className='text-2xl font-semibold text-white mb-8'>Please Login!</h1>
+                <h1 className='text-2xl font-semibold   mb-8'>Please Login!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
                         <input className='w-full my-3 px-3 py-1' placeholder='Your Email' {...register('email', { required: true })} />
@@ -86,9 +86,9 @@ const Login = () => {
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
-                    <input className='text-center font-semibold text-white w-full mt-5 btn btn-outline py-2 hover:bg-[#00F531] hover:border-white' type="submit" />
+                    <input className='text-center font-semibold   w-full mt-5 btn btn-outline py-2 hover:bg-[#00F531] hover:border-white' type="submit" />
                 </form>
-                <p className='mt-6 text-white text-center'>Don't Have An Account? Please <Link to="/Register"><span className='text-[#00F531] font-semibold '>Register</span></Link> </p>
+                <p className='mt-6   text-center'>Don't Have An Account? Please <Link to="/Register"><span className='text-[#00F531] font-semibold '>Register</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className='text-[#00F531] cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
                     <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>

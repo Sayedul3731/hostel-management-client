@@ -96,7 +96,7 @@ const CheckoutForm = ({ badge, price }) => {
                     },
                 }}
             />
-            <button className="px-7 py-1 font-semibold rounded-sm shadow-sm hover:shadow-red-500 bg-green-500 text-white my-4" type="submit" disabled={!stripe || !clientSecret} >
+            <button className="px-7 py-1 font-semibold rounded-sm shadow-sm hover:shadow-red-500 bg-green-500   my-4" type="submit" disabled={!stripe || !clientSecret} >
                 Pay
             </button>
             <p className="text-red-500 ">{error}</p>

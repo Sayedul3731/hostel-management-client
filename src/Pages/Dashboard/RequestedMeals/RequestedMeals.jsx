@@ -89,7 +89,7 @@ const RequestedMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-[#6C0A0F] text-white">
+                        <tr className="bg-[#6C0A0F]  ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>

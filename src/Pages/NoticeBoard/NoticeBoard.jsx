@@ -14,7 +14,7 @@ const NoticeBoard = () => {
     return (
         <div className="max-w-7xl mx-auto">
             <SectionTitle heading="Notice Board"></SectionTitle>
-            <div className="pt-3 mb-5 text-white">
+            <div className="pt-3 mb-5  ">
                 <Marquee speed={70} >
                     <p className="mr-5 font-semibold">"Meeting tomorrow, 7 PM. Please attend."</p>
                     <p className="mr-5 font-semibold">"Maintenance next week. Tidy rooms, secure belongings."</p>
