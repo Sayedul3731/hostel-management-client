@@ -15,7 +15,7 @@ const Rooms = () => {
     },[])
 
     return (
-        <div className="max-w-7xl mx-auto">
+        <div className=" bg-primary-500 py-5 lg:px-20">
             <SectionTitle heading="All rooms"></SectionTitle>
             <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">

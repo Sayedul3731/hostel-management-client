@@ -6,11 +6,14 @@ import gallery4 from "../../../assets/gallery4.png"
 import gallery5 from "../../../assets/gallery5.jpg"
 import gallery6 from "../../../assets/gallery6.jpg"
 import gallery7 from "../../../assets/gallery7.jpg"
+import gallery14 from "../../../assets/gallery14.avif"
+import gallery15 from "../../../assets/gallery15.avif"
+import gallery16 from "../../../assets/gallery16.avif"
 import Marquee from "react-fast-marquee";
 
 const HostelGallery = () => {
     return (
-        <div>
+        <div className="bg-secondary-100">
             <div className="pt-12 pb-4"><SectionTitle heading='Hostel Gallery'></SectionTitle></div>
             <div className="mb-10">
                 <img className="w-full" src={gallery1} alt="" />
@@ -36,8 +39,17 @@ const HostelGallery = () => {
                     <div className="h-[200px] w-[250px] mr-2">
                         <img className="h-full" src={gallery7} alt="" />
                     </div>
+                    <div className="h-[200px] w-[250px] mr-2">
+                        <img className="h-full" src={gallery14} alt="" />
+                    </div>
+                    <div className="h-[200px] w-[250px] mr-2">
+                        <img className="h-full" src={gallery15} alt="" />
+                    </div>
+                    <div className="h-[200px] w-[250px] mr-2">
+                        <img className="h-full" src={gallery16} alt="" />
+                    </div>
                 </Marquee>
-                <h4 className="md:text-xl text-center font-medium mt-2 mb-10  ">Other Hostel Facilities</h4>
+                <h4 className="md:text-xl text-center font-medium mt-2  ">Other Hostel Facilities</h4>
             </div>
         </div>
     );

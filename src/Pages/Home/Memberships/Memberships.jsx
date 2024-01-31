@@ -8,7 +8,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Memberships = () => {
     return (
-        <div className="bg-primary-100 mt-10 py-10 min-h-screen">
+        <div className="bg-primary-100 py-10 min-h-screen">
             <div className="max-w-7xl mx-auto px-1">
                 <div>
                     <SectionTitle heading='memberships'></SectionTitle>

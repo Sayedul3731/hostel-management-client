@@ -40,47 +40,50 @@ const CategoriesMeals = () => {
         setDinnerMeals(dinnerMeals);
     }
     return (
-        <div className='lg:px-20 lg:my-20'>
-            <SectionTitle heading="meals by category"></SectionTitle>
-            <Tabs>
-                <TabList className=" ">
-                    <Tab onClick={handleAllMeals}>All Meals</Tab>
-                    <Tab onClick={handleBreakfastMeals}>Breakfast</Tab>
-                    <Tab onClick={handleLunchMeals}>Lunch</Tab>
-                    <Tab onClick={handleDinnerMeals}>Dinner</Tab>
-                </TabList>
+        <div className='bg-primary-500'>
+            <div className='lg:px-20 lg:py-10'>
+                <SectionTitle heading="meals by category"></SectionTitle>
+                <Tabs>
+                    <TabList className=" ">
+                        <Tab onClick={handleAllMeals}>All Meals</Tab>
+                        <Tab onClick={handleBreakfastMeals}>Breakfast</Tab>
+                        <Tab onClick={handleLunchMeals}>Lunch</Tab>
+                        <Tab onClick={handleDinnerMeals}>Dinner</Tab>
+                    </TabList>
 
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            allMeals.length > 0 ? allMeals?.map(meal => <MealCard key={meal._id} meal={meal} />) : meals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            breakfastMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            lunchMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            dinnerMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
+                    <TabPanel>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                allMeals.length > 0 ? allMeals?.map(meal => <MealCard key={meal._id} meal={meal} />) : meals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                            }
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                breakfastMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                            }
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                lunchMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                            }
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                            {
+                                dinnerMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
+                            }
+                        </div>
+                    </TabPanel>
 
-            </Tabs>
+                </Tabs>
+            </div>
         </div>
+
     );
 };
 
