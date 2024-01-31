@@ -17,7 +17,7 @@ const MealCard = ({ meal }) => {
         </div>
         <Link to={`/meal/${_id}`}>
           <div className="card-actions border justify-end">
-            <button className="w-full bg-primary-300 py-2   font-semibold rounded-sm">Details</button>
+            <button className="w-full bg-primary-300 py-2 text-white  font-semibold rounded-sm">Details</button>
           </div>
         </Link>
       </div>

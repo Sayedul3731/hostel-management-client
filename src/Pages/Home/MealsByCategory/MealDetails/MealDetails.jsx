@@ -181,7 +181,7 @@ const MealDetails = () => {
             <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
           </div>
           <div>
-            <button onClick={handleMealRequest} className="w-full bg-primary-300 py-2   font-semibold rounded-sm">Meal Request</button>
+            <button onClick={handleMealRequest} className="w-full text-white bg-primary-300 py-2   font-semibold rounded-sm">Meal Request</button>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@ const MealDetails = () => {
               render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
             />
           </div>
-          <button type="submit" className="w-full bg-primary-300 py-2   font-semibold rounded-sm">Add Review</button>
+          <button type="submit" className="w-full bg-primary-300 py-2 text-white  font-semibold rounded-sm">Add Review</button>
         </form>
 
       </div>

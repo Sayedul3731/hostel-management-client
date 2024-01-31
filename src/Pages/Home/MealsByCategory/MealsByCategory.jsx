@@ -1,85 +1,26 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+/* eslint-disable react/no-unescaped-entities */
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import { useState, useEffect } from 'react';
-import MealCard from './MealCard/MealCard';
-import useMeals from '../../../hooks/useMeals';
-import AOS from 'aos';
-import 'aos/dist/aos.css'; 
+import image1 from "../../../assets/meat2.jpg"
+import { FaArrowRight } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 
 const MealsByCategory = () => {
-
-    useEffect(() => {
-        AOS.init({
-            duration: 200
-        })
-    },[])
-    const [meals] = useMeals();
-    const [allMeals, setAllMeals] = useState([]);
-    const [breakfastMeals, setBreakfastMeals] = useState([]);
-    const [lunchMeals, setLunchMeals] = useState([]);
-    const [dinnerMeals, setDinnerMeals] = useState([]);
-    console.log(meals);
-
-
-
-    const handleAllMeals = () => {
-        setAllMeals(meals)
-    }
-    const handleBreakfastMeals = () => {
-        const breakfastMeals = meals.filter(meal => meal.title.toLowerCase() === 'breakfast')
-        setBreakfastMeals(breakfastMeals);
-    }
-    const handleLunchMeals = () => {
-        const lunchMeals = meals.filter(meal => meal.title.toLowerCase() === 'lunch')
-        setLunchMeals(lunchMeals);
-    }
-    const handleDinnerMeals = () => {
-        const dinnerMeals = meals.filter(meal => meal.title.toLowerCase() === 'dinner')
-        setDinnerMeals(dinnerMeals);
-    }
-   
     return (
-        <div className='pt-4'>
+        <div className='pt-4 bg-primary-500'>
             <SectionTitle data-aos="fade-up" heading='Meals By Category'></SectionTitle>
-            <Tabs>
-                <TabList className=" ">
-                    <Tab onClick={handleAllMeals}>All Meals</Tab>
-                    <Tab onClick={handleBreakfastMeals}>Breakfast</Tab>
-                    <Tab onClick={handleLunchMeals}>Lunch</Tab>
-                    <Tab onClick={handleDinnerMeals}>Dinner</Tab>
-                </TabList>
-
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            allMeals.length > 0 ? allMeals?.map(meal => <MealCard key={meal._id} meal={meal} />) : meals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            breakfastMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            lunchMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-                <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                        {
-                            dinnerMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
-                        }
-                    </div>
-                </TabPanel>
-
-            </Tabs>
+            <div className='flex justify-between items-start flex-col-reverse md:flex-col-reverse lg:flex-row px-2 lg:px-20 pt-10'>
+                <div className='flex flex-col justify-center items-center lg:w-1/3'>
+                    <p className='px-3 text-justify md:px-10 lg:pt-20'>
+                        Our hostel food is very standard as well as delicious. If you want to eat good food everyday so our hostel food is enough for you. There are 3 categories food in this hostel. They are Breakfast, Launch, Dinner. The every food item is very delicious of every categories food. If you want to see our categories food pleas click on the 'See more' button.
+                    </p>
+                    <NavLink to="/categoriesMeals">
+                        <button type="button" className='mt-10 bg-primary-300 px-5 py-2 font-semibold text-white flex justify-center items-center gap-1'>See more <FaArrowRight></FaArrowRight> </button>
+                    </NavLink>
+                </div>
+                <div className='lg:w-2/3 flex justify-center lg:justify-end mb-5 md:mb-10 '>
+                    <img src={image1} alt="" className='w-5/6' />
+                </div>
+            </div>
         </div>
     );
 };

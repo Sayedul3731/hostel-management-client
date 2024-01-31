@@ -14,43 +14,48 @@ const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/" >
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-4 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/" >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/Meals">
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/Meals">
           Meals
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/UpcomingMeals">
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/categoriesMeals">
+          Categories Meals
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/UpcomingMeals">
           Upcoming Meals
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/Rooms">
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/Rooms">
           Rooms
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/NoticeBoard">
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/NoticeBoard">
           Notice Board
         </NavLink>
       </li>
       <li>
-        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/FAQ">
+        <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/FAQ">
           FAQ
         </NavLink>
       </li>
       <li>
-        <div className="mr-4">
+        <div>
           <NotificationsIcon></NotificationsIcon>
         </div>
       </li>
       {
         user ? ' ' : <li>
-          <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-xl md:font-medium mr-4 underline" : "lg:text-xl md:font-medium mr-4"} to="/Login">
+          <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/Login">
             Join Us
           </NavLink>
         </li>
@@ -116,7 +121,7 @@ const Navbar = () => {
             <label tabIndex={0}>{
               user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
             }</label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-[#6C0A0F] rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-primary-300 text-white rounded-box w-52">
               <li>{user?.displayName}</li>
               <Link to={isAdmin ? "/dashboard/adminProfile" : "/dashboard/myProfile"}><li className="my-2">Dashboard</li></Link>
               <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>

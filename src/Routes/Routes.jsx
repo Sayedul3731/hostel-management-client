@@ -23,6 +23,7 @@ import Rooms from "../Pages/Rooms/Rooms";
 import RoomDetails from "../Pages/Rooms/RoomDetails";
 import NoticeBoard from "../Pages/NoticeBoard/NoticeBoard";
 import FAQ from "../Pages/FAQ/FAQ";
+import CategoriesMeals from "../Pages/CategoriesMeals/CategoriesMeals";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/Meals",
         element: <Meals></Meals>
+      },
+      {
+        path: "/categoriesMeals",
+        element: <CategoriesMeals></CategoriesMeals>
       },
       {
         path: '/UpcomingMeals',

@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <div className="bg-[#491c16]">
+        <div className="bg-primary-100 text-[#261613]">
             <footer className="footer p-10 max-w-7xl mx-auto   font-semibold">
                 <nav>
                     <header className="footer-title">Services</header>

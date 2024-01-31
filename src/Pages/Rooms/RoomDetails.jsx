@@ -93,7 +93,7 @@ const RoomDetails = () => {
                             </div>
                             <div>
                                 {
-                                    seat.status === 'occupied' ? <button className="bg-primary-300 px-3 py-2   font-semibold rounded-sm w-full btn" disabled>Booking Now</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
+                                    seat.status === 'occupied' ? <button className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn" disabled>Booking Now</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
                                 }
                             </div>
                         </div>
