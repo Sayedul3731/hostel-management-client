@@ -43,7 +43,7 @@ const Meals = () => {
         <div className=" pb-2 lg:px-20 bg-primary-500 ">
             <div className="pt-1"><SectionTitle heading='All meals'></SectionTitle></div>
             <div className="flex flex-col md:flex-row w-full">
-                <div className="w-full md:w-1/2 lg:w-1/3 pl-4">
+                <div className="w-full md:w-1/2 lg:w-1/3 ">
                     <div className="w-3/4 md:w-5/6 ">
                         <form onSubmit={handleSubmit(handleFilterByCategory)} className="flex bg-slate-100  justify-evenly">
 

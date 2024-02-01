@@ -72,7 +72,7 @@ const Login = () => {
 
     return (
         <div className='min-h-[450px] md:min-h-[500px] max-w-7xl mx-auto lg:min-h-[600px] w-full mx-auto flex justify-center items-center'>
-            <div className=' w-5/6  lg:w-1/2 bg-[#6C0A0F] p-8 rounded-md'>
+            <div className=' w-5/6  lg:w-1/2 bg-secondary-300 p-8 rounded-md'>
                 <h1 className='text-2xl font-semibold   mb-8'>Please Login!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
@@ -86,10 +86,10 @@ const Login = () => {
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
-                    <input className='text-center font-semibold   w-full mt-5 btn btn-outline py-2 hover:bg-[#00F531] hover:border-white' type="submit" />
+                    <input className='text-center font-semibold   w-full mt-5 btn btn-outline py-2 hover:bg-primary-100 hover:border-white' type="submit" />
                 </form>
-                <p className='mt-6   text-center'>Don't Have An Account? Please <Link to="/Register"><span className='text-[#00F531] font-semibold '>Register</span></Link> </p>
-                <div onClick={handleLogInWithGoogle} className='text-[#00F531] cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
+                <p className='mt-6   text-center'>Don't Have An Account? Please <Link to="/Register"><span className='font-semibold '>Register</span></Link> </p>
+                <div onClick={handleLogInWithGoogle} className=' cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>
                     <span className='text-2xl'><FcGoogle></FcGoogle></span>
                     <p>Sign In With Google</p>
                 </div>

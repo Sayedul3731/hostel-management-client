@@ -3,8 +3,14 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import image1 from "../../../assets/meat2.jpg"
 import { FaArrowRight } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const MealsByCategory = () => {
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+    
     return (
         <div className='pt-4 bg-primary-500'>
             <SectionTitle data-aos="fade-up" heading='Meals By Category'></SectionTitle>

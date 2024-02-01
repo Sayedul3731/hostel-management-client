@@ -10,6 +10,11 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 
 const CategoriesMeals = () => {
+
+    useEffect(()=>{
+        window.scroll(0,0)
+      },[])
+      
     useEffect(() => {
         AOS.init({
             duration: 200

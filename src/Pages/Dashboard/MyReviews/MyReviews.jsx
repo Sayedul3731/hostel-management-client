@@ -131,7 +131,7 @@ const MyReviews = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-[#6C0A0F]  ">
+                        <tr className="bg-primary-100 ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>

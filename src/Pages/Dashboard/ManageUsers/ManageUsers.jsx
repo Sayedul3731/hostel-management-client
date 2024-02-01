@@ -80,7 +80,7 @@ const ManageUsers = () => {
     }
     console.log('all users', users);
     return (
-        <div className="md:p-8">
+        <div className="">
             <SectionTitle heading='manage users'></SectionTitle>
             <div data-aos="fade-down" className="input-group flex justify-start mb-3">
                 <form onSubmit={handleSubmit(onSubmit)} className="flex h-[40px] justify-center items-center">
@@ -99,7 +99,7 @@ const ManageUsers = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-[#6C0A0F]  ">
+                        <tr className="bg-primary-100">
                             <th>SL.</th>
                             <th>Name</th>
                             <th>Email</th>

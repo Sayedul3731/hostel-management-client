@@ -55,7 +55,7 @@ const Navbar = () => {
       </li>
       {
         user ? ' ' : <li>
-          <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mr-6 underline" : "lg:text-md lg:font-medium md:font-medium mr-6"} to="/Login">
+          <NavLink className={({ isActive, isPending }) => isPending ? "pending" : isActive ? "lg:text-md lg:font-medium md:font-medium mx-2 underline" : "lg:text-md lg:font-medium md:font-medium mx-2"} to="/Login">
             Join Us
           </NavLink>
         </li>
@@ -104,7 +104,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#6C0A0F] rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary-300 text-white rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -119,7 +119,7 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             <label tabIndex={0}>{
-              user ? <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" /> : ''
+              user ? <img className="w-[50px] h-[50px] rounded-full cursor-pointer" src={user?.photoURL} alt="" /> : ''
             }</label>
             <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-primary-300 text-white rounded-box w-52">
               <li>{user?.displayName}</li>

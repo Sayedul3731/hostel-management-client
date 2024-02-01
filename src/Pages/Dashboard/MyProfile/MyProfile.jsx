@@ -100,14 +100,14 @@ const MyProfile = () => {
                 <p className="flex"><h5 className="font-semibold  md:w-[180px] ">University ID Number </h5> <span className="font-semibold md:mr-3">:</span> {userData.idNumber}</p>
             </div>
             <div className="my-5 px-10 mb-10 flex justify-center">
-                <button onClick={() => document.getElementById('update_modal').showModal()} type="submit" className="px-10 bg-[#00F531] py-2   font-semibold rounded-sm">Edit</button>
+                <button onClick={() => document.getElementById('update_modal').showModal()} type="submit" className="px-10 bg-primary-100 tew py-2 text-white  font-semibold rounded-sm">Edit</button>
             </div>
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="update_modal" className="modal modal-bottom bg-[#281617] sm:modal-middle">
-                <div className="modal-box bg-[#6C0A0F] ">
+                <div className="modal-box bg-secondary-300 ">
                     <h1 className="text-4xl font-semibold text-center my-5  ">About Me</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 mr-2 mt-3 bg-[#6C0A0F]">
+                    <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 mr-2 mt-3 bg-primary-100">
                         <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
 
                             <p className="w-full md:w-1/2">
@@ -157,7 +157,7 @@ const MyProfile = () => {
                                 <input className='w-full my-4 px-3 py-1' placeholder='University ID Number' {...register('idNumber', { required: true })} />
                             </p>
                         </div>
-                        <button type="submit" className='text-center modal-backdrop font-semibold   w-full mt-5 btn btn-outline py-2 hover:bg-[#00F531] hover:border-white'>
+                        <button type="submit" className='text-center modal-backdrop font-semibold text-black hover:text-black  w-full mt-5 btn btn-outline py-2 hover:bg-secondary-300 hover:border-white'>
                             Submit
                         </button>
                     </form>

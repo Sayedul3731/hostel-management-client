@@ -13,6 +13,10 @@ const Rooms = () => {
             duration: 3000
         })
     },[])
+    
+    useEffect(()=>{
+        window.scroll(0,0)
+      },[])
 
     return (
         <div className=" bg-primary-500 py-5 lg:px-20">

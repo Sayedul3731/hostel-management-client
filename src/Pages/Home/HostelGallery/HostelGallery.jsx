@@ -10,14 +10,26 @@ import gallery14 from "../../../assets/gallery14.avif"
 import gallery15 from "../../../assets/gallery15.avif"
 import gallery16 from "../../../assets/gallery16.avif"
 import Marquee from "react-fast-marquee";
+import { NavLink } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa";
 
 const HostelGallery = () => {
     return (
         <div className="bg-secondary-100">
             <div className="pt-12 pb-4"><SectionTitle heading='Hostel Gallery'></SectionTitle></div>
-            <div className="mb-10">
-                <img className="w-full" src={gallery1} alt="" />
-                <h4 className="md:text-xl text-center font-medium mt-2  ">The main building of the hostel</h4>
+            <div className="flex justify-between items-start flex-col-reverse md:flex-col-reverse lg:flex-row px-2 lg:px-20 pt-10">
+                <div className="lg:w-2/3 flex justify-center lg:justify-end mb-5 md:mb-10 ">
+                    <div>
+                        <img className="w-full" src={gallery1} alt="" />
+                        <h4 className="md:text-xl text-center font-medium mt-2  ">The main building of the hostel</h4>
+                    </div>
+                </div>
+                <div className="flex flex-col justify-center items-center  lg:w-1/3">
+                    <p className="px-3 text-justify md:px-10 lg:pt-10">Welcome to our Hostel Management Website! Experience seamless hostel living with our user-friendly platform. Manage your bookings effortlessly, explore room availability, and stay up-to-date with hostel events and announcements. Enjoy the convenience of secure online payments and quick communication with hostel staff. From room preferences to facility requests, our website ensures a hassle-free hostel experience. Dive into a community-driven environment, connect with fellow residents through forums, and make the most of your hostel journey. Discover the ease of hostel life with our comprehensive features. Your comfort and convenience are our priorities. Welcome to a new era of hostel living—simple, interactive, and tailored just for you!</p>
+                    <NavLink to="/rooms">
+                        <button type="button" className='mt-10 bg-primary-300 px-5 py-2 font-semibold text-white flex justify-center items-center gap-1'>See more <FaArrowRight></FaArrowRight> </button>
+                    </NavLink>
+                </div>
             </div>
             <div>
                 <Marquee>

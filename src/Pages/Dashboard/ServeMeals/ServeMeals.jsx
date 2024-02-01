@@ -111,7 +111,7 @@ const ServeMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-[#6C0A0F]  ">
+                        <tr className="bg-primary-100  ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th className="text-center">Email</th>
@@ -134,7 +134,7 @@ const ServeMeals = () => {
                                 <td>{meal?.title}</td>
                                 <td className="text-center">{meal?.userEmail}</td>
                                 <td className="text-center">{meal?.userName}</td>
-                                <td className="text-center cursor-pointer">{meal?.status}</td>
+                                <td className={`${meal?.status === "pending" ? "text-center cursor-pointer text-red-600" : "text-center cursor-pointer text-green-500"}`}>{meal?.status}</td>
                                 <td onClick={() => handleServe(meal)} className="text-center cursor-pointer">Serve</td>
                             </tr>)
                         }
