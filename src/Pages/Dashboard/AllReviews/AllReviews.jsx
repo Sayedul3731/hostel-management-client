@@ -20,15 +20,14 @@ const AllReviews = () => {
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()];
-   
-            useEffect(() => {
-                    AOS.init()
-                }, [])
+
+    useEffect(() => {
+        AOS.init()
+    }, [])
 
     useEffect(() => {
         axiosSecure.get(`/reviews`)
             .then(res => {
-                console.log(res.data);
                 setMeals(res.data)
             })
     }, [axiosSecure])
@@ -46,7 +45,6 @@ const AllReviews = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/reviews/${id}`)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data) {
                             refetch()
                             Swal.fire({
@@ -63,19 +61,15 @@ const AllReviews = () => {
         });
     }
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/reviews?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setPaginateReviews(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)

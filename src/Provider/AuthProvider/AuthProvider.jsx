@@ -16,19 +16,17 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            console.log('current user track', currentUser);
-            if(currentUser){
+            if (currentUser) {
                 const userInfo = {
                     email: currentUser?.email
                 }
                 axiosPublic.post('/jwt', userInfo)
-                .then(res => {
-                    console.log('token', res.data);
-                    if(res.data.token){
-                        localStorage.setItem('access-token', res.data.token)
-                    }
-                })
-            }else{
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                        }
+                    })
+            } else {
                 localStorage.removeItem('access-token')
             }
             setLoading(false)
@@ -52,7 +50,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     }
-    const logOut = ( ) => {
+    const logOut = () => {
         setLoading(true);
         return signOut(auth)
     }

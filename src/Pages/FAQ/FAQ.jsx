@@ -5,7 +5,7 @@
 
 const FAQ = () => {
     return (
-        <div className="bg-primary-500">
+        <div className="bg-secondary-100 text-white">
             <div className="min-h-[600px] max-w-7xl mx-auto p-5">
                 <div className="collapse collapse-plus bg-base-200">
                     <input type="radio" name="my-accordion-3" checked="checked" />

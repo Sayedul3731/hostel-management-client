@@ -22,12 +22,9 @@ const MyReviews = () => {
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()]
-
-    console.log(user?.email);
     useEffect(() => {
         axiosSecure.get(`/reviews/${user?.email}`)
             .then(res => {
-                console.log(res.data);
                 setMeals(res.data)
             })
     }, [axiosSecure, user?.email])
@@ -45,7 +42,6 @@ const MyReviews = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/reviews/${id}`)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data) {
                             Swal.fire({
                                 position: "top-end",
@@ -62,32 +58,27 @@ const MyReviews = () => {
 
     React.useEffect(() => {
         setValue('reviews', userReview.review);
-      }, [setValue, userReview]);
+    }, [setValue, userReview]);
 
     const handleUpdate = (meal) => {
         // const newInfo = {
         //     review: meal?.review
         // }
-        console.log('meal id', meal?._id);
         setUpdateMeal(meal)
         document.getElementById('update_modal').showModal()
 
         axiosSecure.get(`/reviews/review/${meal?._id}`)
             .then(res => {
-                console.log('get result', res.data.review);
                 setUserReview(res.data)
             });
     }
 
     const onSubmit = async (data) => {
-        console.log(data);
-        console.log('update Meal', updateMeal);
         const newReview = {
             review: data.reviews
         }
         await axiosSecure.patch(`/reviews/review/${updateMeal?._id}`, newReview)
             .then(res => {
-                console.log(res.data);
                 if (res.data) {
                     Swal.fire({
                         title: "Success!",
@@ -100,19 +91,15 @@ const MyReviews = () => {
 
 
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/reviews/${user?.email}?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setPaginateReviewsMeals(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage, user.email])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
@@ -123,7 +110,6 @@ const MyReviews = () => {
             setCurrentPage(currentPage + 1)
         }
     }
-    console.log('review...-...', userReview.review);
     return (
         <div className="md:p-8">
             <SectionTitle heading='my reviews'></SectionTitle>
@@ -131,7 +117,7 @@ const MyReviews = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100 ">
+                        <tr className="bg-primary-100 text-white ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>

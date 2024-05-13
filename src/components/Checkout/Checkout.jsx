@@ -7,7 +7,6 @@ import { useLoaderData } from "react-router-dom";
 const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_key);
 const Checkout = () => {
     const packageData = useLoaderData();
-    console.log('package', packageData);
     const badge = packageData.title;
     const price = packageData.price;
     return (

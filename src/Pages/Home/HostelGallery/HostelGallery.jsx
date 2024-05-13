@@ -15,7 +15,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HostelGallery = () => {
     return (
-        <div className="bg-secondary-100">
+        <div className="bg-secondary-100 text-black">
             <div className="pt-12 pb-4"><SectionTitle heading='Hostel Gallery'></SectionTitle></div>
             <div className="flex justify-between items-start flex-col-reverse md:flex-col-reverse lg:flex-row px-2 lg:px-20 pt-10">
                 <div className="lg:w-2/3 flex justify-center lg:justify-end mb-5 md:mb-10 ">

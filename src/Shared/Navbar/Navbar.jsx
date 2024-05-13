@@ -76,10 +76,9 @@ const Navbar = () => {
       })
       .catch()
   }
-  console.log(user);
 
   return (
-    <div className="bg-primary-100 sticky top-0 z-30 py-5">
+    <div className="bg-primary-300 sticky -top-1 z-30 py-2 text-white">
       <div className="navbar max-w-7xl mx-auto">
         <div className="navbar-start">
           <div>
@@ -104,7 +103,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-primary-300 text-white rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black text-white rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -121,7 +120,7 @@ const Navbar = () => {
             <label tabIndex={0}>{
               user ? <img className="w-[50px] h-[50px] rounded-full cursor-pointer" src={user?.photoURL} alt="" /> : ''
             }</label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-primary-300 text-white rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 shadow bg-black text-white rounded-box w-52">
               <li>{user?.displayName}</li>
               <Link to={isAdmin ? "/dashboard/adminProfile" : "/dashboard/myProfile"}><li className="my-2">Dashboard</li></Link>
               <li onClick={handleLogOut} className="cursor-pointer">LogOut</li>

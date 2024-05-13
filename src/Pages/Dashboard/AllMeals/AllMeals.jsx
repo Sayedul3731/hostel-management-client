@@ -40,10 +40,8 @@ const AllMeals = () => {
     };
 
     const onSubmit = async (data) => {
-        console.log(data);
         await axiosSecure.patch(`/meals/${_id}`, data)
             .then(res => {
-                console.log(res.data);
                 if (res.data) {
                     Swal.fire({
                         title: "Success!",
@@ -69,7 +67,6 @@ const AllMeals = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/meals/${id}`)
                     .then(res => {
-                        console.log(res.data);
                         if (res.data) {
                             Swal.fire({
                                 position: "top-end",
@@ -88,19 +85,15 @@ const AllMeals = () => {
     }
 
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/meals?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setFoods(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)

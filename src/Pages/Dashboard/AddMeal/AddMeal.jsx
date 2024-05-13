@@ -20,10 +20,8 @@ const AddMeal = () => {
         formState: { errors },
     } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
         await axiosSecure.post('/meals', data)
             .then(res => {
-                console.log(res.data);
                 if (res.data) {
                     Swal.fire({
                         title: "Success!",
@@ -39,7 +37,6 @@ const AddMeal = () => {
 
         await axiosSecure.post('/upcomingMeals', data)
             .then(res => {
-                console.log(res.data);
                 if (res.data) {
                     Swal.fire({
                         title: "Success!",

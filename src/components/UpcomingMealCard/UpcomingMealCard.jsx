@@ -22,13 +22,10 @@ const UpcomingMealCard = ({ meal }) => {
   const localDate = date.toLocaleDateString();
 
   const handleLike = (id) => {
-    console.log('click on', id);
     if (user?.email) {
       axiosSecure.get(`/likes/${id}`)
         .then(res => {
-          console.log('user liked info', res.data);
           if (res.data.userEmail === `${user.email}`) {
-            console.log('already you like this food');
             Swal.fire({
               title: "Sorry!",
               text: "Already you like this Meal!",
@@ -37,7 +34,6 @@ const UpcomingMealCard = ({ meal }) => {
           } else {
             axiosSecure.patch(`/upcomingMeals/${id}`)
               .then(res => {
-                console.log(res.data);
                 if (res.data) {
                   const userInfo = {
                     userEmail: user?.email,
@@ -45,8 +41,10 @@ const UpcomingMealCard = ({ meal }) => {
                   }
                   axiosSecure.post('/likes', userInfo)
                     .then(res => {
-                      console.log('liked user post result', res.data);
-                      refetch();
+                      if (res) {
+
+                        refetch();
+                      }
                     })
                 }
               })
@@ -60,7 +58,7 @@ const UpcomingMealCard = ({ meal }) => {
     <div data-aos="zoom-in"
       data-aos-easing="linear"
       data-aos-duration="1500"
-      className=" bg-base-100 rounded shadow-md p-4">
+      className=" bg-base-100 rounded shadow-md p-4 text-white">
 
       <div className="">
         <figure className="h-[500px]"><img className="h-full w-full object-cover  rounded" src={meal?.image} alt="food image" /></figure>

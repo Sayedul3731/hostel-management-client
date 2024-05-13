@@ -10,7 +10,7 @@ const RequestedMeals = () => {
     const user = useAuth();
     const axiosSecure = useAxiosSecure();
     const [meals, setMeals] = useState([]);
-    const [,refetch] = useMeals();
+    const [, refetch] = useMeals();
 
     const [currentPage, setCurrentPage] = useState(0);
     const [paginateRequestedMeals, setPaginateRequestedMeals] = useState([])
@@ -19,15 +19,12 @@ const RequestedMeals = () => {
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()]
 
-    console.log(user);
-
-    useEffect( () => {
+    useEffect(() => {
         axiosSecure.get(`/requestedMeals/${user?.email}`)
-        .then(res => {
-            console.log('my requested meals', res.data);
-            setMeals(res.data)
-        })
-    },[axiosSecure, user?.email])
+            .then(res => {
+                setMeals(res.data)
+            })
+    }, [axiosSecure, user?.email])
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -37,48 +34,43 @@ const RequestedMeals = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, cancel it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/requestedMeals/${id}`)
-                .then(res => {
-                    console.log(res.data);
-                   if(res.data){
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "The meal has been deleted",
-                        showConfirmButton: false,
-                        timer: 1500
-                      });
-                      refetch()
-                   }
-                })
+                    .then(res => {
+                        if (res.data) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "The meal has been deleted",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            refetch()
+                        }
+                    })
             }
-          });
-     
+        });
+
 
     }
-    useEffect( () => {
-        console.log(currentPage, itemPerPage);
+    useEffect(() => {
         axiosSecure.get(`/requestedMeals/${user?.email}?page=${currentPage}&size=${itemPerPage}`)
-        .then(res => {
-            console.log('paginate meals',res.data);
-            setPaginateRequestedMeals(res.data)
-        })
-    },[axiosSecure, currentPage, itemPerPage, user.email])
+            .then(res => {
+                setPaginateRequestedMeals(res.data)
+            })
+    }, [axiosSecure, currentPage, itemPerPage, user.email])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
-    const handlePrevPage = () =>{
-        if(currentPage > 0){
+    const handlePrevPage = () => {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
     }
-    const handleNextPage = () =>{
-        if(currentPage < totalPage - 1){
+    const handleNextPage = () => {
+        if (currentPage < totalPage - 1) {
             setCurrentPage(currentPage + 1)
         }
     }
@@ -89,7 +81,7 @@ const RequestedMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100 ">
+                        <tr className="bg-primary-100 text-white">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>
@@ -114,14 +106,14 @@ const RequestedMeals = () => {
                 </table>
             </div>
             <div className="pagination ">
-               <button onClick={handlePrevPage}>Prev</button>
-               {
-                pages.map((page, index) => <button
-                onClick={() => handleCurrentPage(page )}
-                className={currentPage === page  ? 'selected' : ''}
-                 key={page}>{index + 1}</button> )
-               }
-               <button onClick={handleNextPage}>Next</button>
+                <button onClick={handlePrevPage}>Prev</button>
+                {
+                    pages.map((page, index) => <button
+                        onClick={() => handleCurrentPage(page)}
+                        className={currentPage === page ? 'selected' : ''}
+                        key={page}>{index + 1}</button>)
+                }
+                <button onClick={handleNextPage}>Next</button>
             </div>
         </div>
     );

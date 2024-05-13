@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <div className="bg-primary-100 text-[#261613]">
+        <div className="bg-primary-100 text-white">
             <footer className="footer p-10 max-w-7xl mx-auto   font-semibold">
                 <nav>
                     <header className="footer-title">Services</header>
@@ -26,7 +26,7 @@ const Footer = () => {
             </footer>
             <footer className="footer px-10 py-4 border-t   max-w-7xl mx-auto   border-base-300">
                 <aside className="items-center grid-flow-col">
-                   <img className="w-24" src="/logoo.png" alt="" />
+                    <img className="w-24" src="/logoo.png" alt="" />
                     <p ><span className="font-semibold">HappyHostel</span> <br />Providing reliable service since 1992</p>
                 </aside>
                 <nav className="md:place-self-center md:justify-self-end">

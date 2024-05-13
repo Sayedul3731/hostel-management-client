@@ -13,31 +13,27 @@ const RoomDetails = () => {
     const user = useAuth();
     const [users] = useUsers();
     const [currentUser, setCurrentUser] = useState({})
-    console.log(users);
     const axiosSecure = useAxiosSecure()
-    console.log(user);
     const data = useLoaderData();
     useEffect(() => {
         AOS.init({
             duration: 3000
         })
-    },[])
+    }, [])
 
     useEffect(() => {
         const filteredUser = users.filter(eachUser => eachUser?.email === user?.email)
         setCurrentUser(filteredUser[0])
-        console.log(currentUser);
     }, [currentUser, users, user?.email])
 
     const handleBooking = (seat) => {
-        console.log(seat);
-        if(!user){
+        if (!user) {
             Swal.fire({
                 title: "Oh!",
                 text: "You are not logged in! Please login first.",
                 icon: "error"
             });
-        }else{
+        } else {
             const newBookingInfo = {
                 room_number: data?.room_number,
                 seat_no: seat?.seat_no,
@@ -46,7 +42,6 @@ const RoomDetails = () => {
             if (currentUser.Badge !== 'Bronze') {
                 axiosSecure.post(`/bookedSeats`, newBookingInfo)
                     .then(res => {
-                        console.log('booking successfully', res.data)
                         if (res?.data) {
                             Swal.fire({
                                 title: "Good job!",
@@ -64,7 +59,7 @@ const RoomDetails = () => {
                                 })
                         }
                     })
-            }else{
+            } else {
                 Swal.fire({
                     title: "Oh Sorry!",
                     text: "You aren't purchase any package! Please purchase any package first...",
@@ -75,12 +70,12 @@ const RoomDetails = () => {
     }
     return (
         <div className="max-w-7xl mx-auto">
-            <h1 className="text-2xl md:text-4xl font-semibold text-center my-10  "> <span className="text-primary-300">{data.room_number}</span> No. Room Details </h1>
+            <h1 className="text-2xl md:text-4xl font-semibold text-center my-10 text-white "> <span className="text-primary-300">{data.room_number}</span> No. Room Details </h1>
             <div
-            data-aos="zoom-in"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                data-aos="zoom-in"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 {
-                    data?.seats?.map(seat => <div key={seat._id} className="rounded-md bg-base-100 shadow-xl">
+                    data?.seats?.map(seat => <div key={seat._id} className="rounded-md bg-base-100 shadow-xl text-white">
                         <figure><img src={seat.img} alt="Shoes" /></figure>
                         <div className="card-body">
                             <div className="min-h-[100px]">
@@ -93,7 +88,7 @@ const RoomDetails = () => {
                             </div>
                             <div>
                                 {
-                                    seat.status === 'occupied' ? <button className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn" disabled>Booking Now</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
+                                    seat.status === 'occupied' ? <button className="bg-secondary-100 text-white px-3 py-2   font-semibold rounded-sm w-full btn" >Booked</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
                                 }
                             </div>
                         </div>

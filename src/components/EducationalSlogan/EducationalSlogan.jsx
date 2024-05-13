@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 const EducationalSlogan = () => {
     return (
-        <div className=" bg-secondary-100 border py-5">
+        <div className=" bg-primary-100 border py-5 text-white">
             <Marquee>
                 <p className="mr-5 font-semibold">"Ignite Minds, Illuminate Futures."</p>
                 <p className="mr-5 font-semibold">"Empowering Minds, Inspiring Success."</p>

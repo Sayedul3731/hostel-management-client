@@ -10,9 +10,9 @@ const MealsByCategory = () => {
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
-    
+
     return (
-        <div className='pt-4 bg-primary-500'>
+        <div className='pt-4 bg-secondary-100 text-black'>
             <SectionTitle data-aos="fade-up" heading='Meals By Category'></SectionTitle>
             <div className='flex justify-between items-start flex-col-reverse md:flex-col-reverse lg:flex-row px-2 lg:px-20 pt-10'>
                 <div className='flex flex-col justify-center items-center lg:w-1/3'>

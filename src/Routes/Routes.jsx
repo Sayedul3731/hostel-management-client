@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       {
         path: '/roomDetails/:id',
         element: <RoomDetails></RoomDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/seats/${params.id}`)
+        loader: ({params}) => fetch(` https://hostel-management-server-two.vercel.app/seats/${params.id}`)
       },
       {
         path: '/NoticeBoard',
@@ -74,22 +74,22 @@ const router = createBrowserRouter([
       {
         path: "/meal/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/meals/meal/${params.id}`)
+        loader: ({ params }) => fetch(` https://hostel-management-server-two.vercel.app/meals/meal/${params.id}`)
       },
       {
         path: "/review/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`)
+        loader: ({ params }) => fetch(` https://hostel-management-server-two.vercel.app/review/${params.id}`)
       },
       {
         path: "/reviews/:id",
         element: <MealDetails></MealDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/reviews/review/${params.id}`)
+        loader: ({ params }) => fetch(` https://hostel-management-server-two.vercel.app/reviews/review/${params.id}`)
       },
       {
         path: "/checkout/:type",
         element: <PrivetRoutes><Checkout></Checkout></PrivetRoutes>,
-        loader: ({ params }) => fetch(`http://localhost:5000/packages/${params.type}`)
+        loader: ({ params }) => fetch(` https://hostel-management-server-two.vercel.app/packages/${params.type}`)
       }
     ]
   },

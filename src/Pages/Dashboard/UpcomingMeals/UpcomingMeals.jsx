@@ -11,7 +11,6 @@ import 'aos/dist/aos.css';
 const UpcomingMeals = () => {
     const [meals, refetch] = useUpcomingMeals();
     const axiosSecure = useAxiosSecure();
-    console.log(meals);
     const [currentPage, setCurrentPage] = useState(0);
     const [paginateUpcomingMeals, setPaginateUpcomingMeals] = useState([])
 
@@ -25,11 +24,9 @@ const UpcomingMeals = () => {
     }, [])
 
     const handlePublish = (meal) => {
-        console.log('meal click', meal);
         if (meal.like >= 10) {
             axiosSecure.post('/meals', meal)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data) {
                         Swal.fire({
                             position: "top-end",
@@ -50,19 +47,15 @@ const UpcomingMeals = () => {
     }
 
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/upcomingMeals?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setPaginateUpcomingMeals(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)

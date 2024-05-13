@@ -12,10 +12,10 @@ const NoticeBoard = () => {
         })
     }, [])
     return (
-        <div className="bg-primary-500 py-5">
+        <div className="bg-secondary-100 py-5">
             <div className="max-w-7xl mx-auto ">
                 <SectionTitle heading="Notice Board"></SectionTitle>
-                <div className="pt-3 mb-5  ">
+                <div className="pt-3 mb-5 text-black ">
                     <Marquee speed={70} >
                         <p className="mr-5 font-semibold">"Meeting tomorrow, 7 PM. Please attend."</p>
                         <p className="mr-5 font-semibold">"Maintenance next week. Tidy rooms, secure belongings."</p>
@@ -31,7 +31,7 @@ const NoticeBoard = () => {
                 </div>
                 <div
                     data-aos="zoom-in"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 text-black">
                     <div className="card bg-gray-200 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title">Enhanced Security Measures</h2>

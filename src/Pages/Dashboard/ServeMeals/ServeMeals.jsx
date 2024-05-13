@@ -21,8 +21,6 @@ const ServeMeals = () => {
     const totalPage = Math.ceil(totalData / itemPerPage);
     const pages = [...Array(totalPage).keys()]
 
-    console.log(user?.email);
-
     useEffect(() => {
         AOS.init()
     }, [])
@@ -30,7 +28,6 @@ const ServeMeals = () => {
     useEffect(() => {
         axiosSecure.get(`/requestedMeals`)
             .then(res => {
-                console.log(res.data);
                 setMeals(res.data)
             })
     }, [axiosSecure])
@@ -47,7 +44,6 @@ const ServeMeals = () => {
             }
             axiosSecure.patch(`/requestedMeals/${meal._id}`, newInfo)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data.modifiedCount > 0) {
                         Swal.fire({
                             position: "top-end",
@@ -63,21 +59,17 @@ const ServeMeals = () => {
 
     const onSubmit = async (data) => {
         const res = await axiosSecure.get(`/requestedMeals/${data.text}`)
-        console.log('searching user', res.data);
         setSearchingUser(res.data);
 
     }
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/requestedMeals?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setPaginateServeMeals(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage])
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
     const handlePrevPage = () => {

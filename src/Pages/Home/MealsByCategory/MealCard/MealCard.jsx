@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MealCard = ({ meal }) => {
   const { _id, title, image, price, rating } = meal;
   return (
-    <div className=" bg-base-100 rounded shadow-xl p-4">
+    <div className=" bg-base-100 rounded shadow-xl p-4 text-white">
       <div className="h-[300px]">
         <figure className="h-[300px] w-full"><img className="h-full object-cover w-full rounded" src={image} alt="Shoes" /></figure>
       </div>

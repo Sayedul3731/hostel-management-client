@@ -12,37 +12,32 @@ import useUsers from "../../../hooks/useUsers";
 const MyProfile = () => {
 
     const user = useAuth();
+    console.log(user.displayName);
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [identifiedUser, setIdentifiedUser] = useState({});
     const { register, handleSubmit, reset } = useForm();
     const [userData, setUserData] = useState({});
     const [, refetch] = useUsers();
-
+    console.log(userData);
     useEffect(() => {
         axiosPublic.get(`/users/${user?.email}`)
             .then(res => {
                 setIdentifiedUser(res.data[0])
             })
     }, [axiosPublic, user.email])
-
+    console.log(user?.email);
     useEffect(() => {
-        axiosSecure.get(`/userProfiles/${user?.email}`)
+        axiosSecure.get(`/userprofiles/${user?.email}`)
             .then(res => {
-                console.log('user biodata', res.data);
+                console.log(res.data);
                 setUserData(res.data)
             })
     }, [axiosSecure, user?.email])
-
-
-    console.log(user);
     const onSubmit = async (data) => {
-        console.log(data);
-        console.log('userData Email', userData?.email);
         if (userData?.email) {
             await axiosSecure.patch(`/userProfiles/${userData?.email}`, data)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data) {
                         Swal.fire({
                             title: "Success!",
@@ -56,8 +51,8 @@ const MyProfile = () => {
         } else {
             await axiosSecure.post(`/userProfiles`, data)
                 .then(res => {
-                    console.log(res.data);
                     if (res.data) {
+                        setUserData(res.data)
                         Swal.fire({
                             title: "Success!",
                             text: "Your Address Added Successfully.",
@@ -69,13 +64,12 @@ const MyProfile = () => {
                 })
         }
     }
-    console.log(userData);
 
     return (
         <div>
             <SectionTitle heading="my profile"></SectionTitle>
-            <div className="card bg-base-100 shadow-xl mx-10">
-                <figure><img src={user?.photoURL} alt="Shoes" /></figure>
+            <div className="card bg-base-100 shadow-xl mx-10 text-white">
+                <figure><img src={user?.photoURL} alt="Shoes" className="pt-5" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{user?.displayName}</h2>
                     <p> <span className="font-semibold">Email:</span> {user?.email}</p>
@@ -84,7 +78,7 @@ const MyProfile = () => {
             </div>
 
 
-            <div className="p-10 space-y-[2px]  ">
+            <div className="p-10 space-y-[2px] text-black ">
                 <h1 className="text-4xl font-semibold text-center my-5">About Me</h1>
                 <p className="flex"><h5 className="font-semibold  md:w-[180px] ">Full Name</h5> <span className="font-semibold md:mr-3">:</span> {userData.fullName}</p>
                 <p className="flex"><h5 className="font-semibold  md:w-[180px] ">Father's Name</h5> <span className="font-semibold md:mr-3">:</span> {userData.fathersName}</p>
@@ -105,13 +99,13 @@ const MyProfile = () => {
 
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="update_modal" className="modal modal-bottom bg-[#281617] sm:modal-middle">
-                <div className="modal-box bg-secondary-300 ">
-                    <h1 className="text-4xl font-semibold text-center my-5  ">About Me</h1>
-                    <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 mr-2 mt-3 bg-primary-100">
+                <div className="modal-box bg-primary-300 ">
+                    <h1 className="text-4xl font-semibold text-center my-5  text-black">About Me</h1>
+                    <form onSubmit={handleSubmit(onSubmit)} className="md:p-8 mr-2 mt-3 text-white bg-primary-100">
                         <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
 
                             <p className="w-full md:w-1/2">
-                                <input type='text' className='w-full my-4 px-3 py-1' placeholder='Full Name' {...register('fullName', { required: true })} />
+                                <input type='text' className='w-full my-4 px-3 py-1' defaultValue={user?.displayName} placeholder='Full Name' {...register('fullName', { required: true })} />
                             </p>
                             <p className="w-full md:w-1/2">
                                 <input type='text' className='w-full my-4 px-3 py-1' placeholder="Father's Name" {...register("fathersName", { required: true })} />
@@ -146,7 +140,7 @@ const MyProfile = () => {
                                 <input className='w-full my-4 px-3 py-1' placeholder="Phone Number" {...register('phone', { required: true })} />
                             </p>
                             <p className="w-full md:w-1/2">
-                                <input className='w-full my-4 px-3 py-1' placeholder='Email' {...register('email', { required: true })} />
+                                <input defaultValue={user?.email} className='w-full my-4 px-3 py-1' placeholder='Email' {...register('email', { required: true })} />
                             </p>
                         </div>
                         <div className="flex flex-col md:flex-row gap-5 w-full">
@@ -157,14 +151,14 @@ const MyProfile = () => {
                                 <input className='w-full my-4 px-3 py-1' placeholder='University ID Number' {...register('idNumber', { required: true })} />
                             </p>
                         </div>
-                        <button type="submit" className='text-center modal-backdrop font-semibold text-black hover:text-black  w-full mt-5 btn btn-outline py-2 hover:bg-secondary-300 hover:border-white'>
+                        <button type="submit" className='text-center modal-backdrop font-semibold text-white hover:text-black  w-full mt-5 btn btn-outline py-2 hover:bg-primary-300 hover:border-white'>
                             Submit
                         </button>
                     </form>
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost   absolute right-2 top-2">✕</button>
+                            <button className="btn btn-sm btn-circle btn-ghost  text-black absolute right-2 top-2">✕</button>
                         </form>
                     </div>
                 </div>

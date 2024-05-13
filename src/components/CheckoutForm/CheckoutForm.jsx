@@ -13,12 +13,10 @@ const CheckoutForm = ({ badge, price }) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const user = useAuth();
-    console.log(user);
 
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
             .then(res => {
-                console.log('client secret', res.data.clientSecret);
                 setClientSecret(res.data.clientSecret)
             })
     }, [axiosSecure, price])
@@ -34,15 +32,13 @@ const CheckoutForm = ({ badge, price }) => {
             return;
         }
         // payment method 
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
         if (error) {
-            console.log('payment error', error);
             setError(error.message)
         } else {
-            console.log('payment method', paymentMethod);
             setError('')
         }
 
@@ -57,12 +53,10 @@ const CheckoutForm = ({ badge, price }) => {
             }
         })
         if (confirmError) {
-            console.log('confirm error');
+            console.error(error.message);
         }
         else {
-            console.log('payment intent', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
-                console.log('transaction id', paymentIntent.id);
                 Swal.fire({
                     title: "Success!",
                     text: "Your payment has been succeeded.",

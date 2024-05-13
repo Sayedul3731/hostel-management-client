@@ -8,7 +8,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Memberships = () => {
     return (
-        <div className="bg-secondary-300 py-10 min-h-screen">
+        <div className="bg-secondary-100 py-10 min-h-screen text-black">
             <div className="max-w-7xl mx-auto px-1">
                 <div>
                     <SectionTitle heading='memberships'></SectionTitle>
@@ -16,7 +16,7 @@ const Memberships = () => {
                 <p className="text-center">
                     We provide quality services to our students. Below are three types of service <br /> packages. Purchase any of the following packages to avail our maximum benefits.
                 </p>
-                <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+                <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-8 text-white">
                     <Link to="/checkout/Silver" >
                         <div className="card bg-base-100 shadow-xl hover:shadow-red-500 hover:bg-green-500 cursor-pointer hover: ">
                             <div className=" lg:h-[400px] md:h-[376px]">

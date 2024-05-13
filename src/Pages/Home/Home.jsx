@@ -7,11 +7,11 @@ import Memberships from './Memberships/Memberships';
 const Home = () => {
     return (
         <div>
-                <Banner></Banner>
-                <EducationalSlogan></EducationalSlogan>
-                <Memberships></Memberships>
-                <MealsByCategory></MealsByCategory>
-                <HostelGallery></HostelGallery>
+            <Banner></Banner>
+            <EducationalSlogan></EducationalSlogan>
+            <Memberships></Memberships>
+            <MealsByCategory></MealsByCategory>
+            <HostelGallery></HostelGallery>
         </div>
     );
 };

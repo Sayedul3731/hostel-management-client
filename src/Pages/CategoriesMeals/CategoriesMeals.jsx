@@ -11,10 +11,10 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 
 const CategoriesMeals = () => {
 
-    useEffect(()=>{
-        window.scroll(0,0)
-      },[])
-      
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     useEffect(() => {
         AOS.init({
             duration: 200
@@ -25,7 +25,6 @@ const CategoriesMeals = () => {
     const [breakfastMeals, setBreakfastMeals] = useState([]);
     const [lunchMeals, setLunchMeals] = useState([]);
     const [dinnerMeals, setDinnerMeals] = useState([]);
-    console.log(meals);
 
 
 
@@ -45,7 +44,7 @@ const CategoriesMeals = () => {
         setDinnerMeals(dinnerMeals);
     }
     return (
-        <div className='bg-primary-500'>
+        <div className='bg-secondary-100 text-black pt-4'>
             <div className='lg:px-20 lg:py-10'>
                 <SectionTitle heading="meals by category"></SectionTitle>
                 <Tabs>
@@ -57,28 +56,28 @@ const CategoriesMeals = () => {
                     </TabList>
 
                     <TabPanel>
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-2'>
                             {
                                 allMeals.length > 0 ? allMeals?.map(meal => <MealCard key={meal._id} meal={meal} />) : meals?.map(meal => <MealCard key={meal._id} meal={meal} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-2'>
                             {
                                 breakfastMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-2'>
                             {
                                 lunchMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-2'>
                             {
                                 dinnerMeals?.map(meal => <MealCard key={meal._id} meal={meal} />)
                             }

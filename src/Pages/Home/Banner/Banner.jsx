@@ -8,11 +8,11 @@ import 'swiper/css/pagination';
 
 import './Banner.css';
 
-import gallery9 from "../../../assets/gallery9.jpg"
-import gallery10 from "../../../assets/gallery10.jpg"
-import gallery11 from "../../../assets/gallery11.avif"
-import gallery12 from "../../../assets/gallery12.avif"
-import gallery13 from "../../../assets/gallery13.avif"
+import gallery9 from "../../../assets/gallery14.avif"
+import gallery10 from "../../../assets/gallery15.avif"
+import gallery11 from "../../../assets/gallery16.avif"
+import gallery12 from "../../../assets/gallery15.avif"
+import gallery13 from "../../../assets/gallery16.avif"
 
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
@@ -20,7 +20,7 @@ import { Autoplay, Navigation } from 'swiper/modules';
 const Banner = () => {
   const progressContent = useRef(null);
   return (
-    <div className='bg-primary-500 py-5'>
+    <div className='bg-secondary-100 py-5'>
       <div className='max-w-7xl mx-auto'>
         <Swiper
           spaceBetween={30}
@@ -34,7 +34,8 @@ const Banner = () => {
           className="mySwiper"
           style={{
             marginTop: "40px",
-            marginBottom: "0px"
+            marginBottom: "0px",
+            paddingBottom: "30px"
           }}
         >
           <SwiperSlide>

@@ -12,12 +12,10 @@ const ManageUsers = () => {
 
     const [users, refetch] = useUsers();
     const [searchingUser, setSearchingUser] = useState([])
-    console.log(users);
     const axiosSecure = useAxiosSecure();
     const { register, handleSubmit } = useForm();
     const [currentPage, setCurrentPage] = useState(0);
     const [paginateUsers, setPaginateUsers] = useState([])
-    console.log(users);
     const totalData = users.length;
     const itemPerPage = 10;
     const totalPage = Math.ceil(totalData / itemPerPage);
@@ -32,7 +30,6 @@ const ManageUsers = () => {
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
-                console.log(res.data);
                 if (res.data?.modifiedCount > 0) {
                     refetch()
                     Swal.fire({
@@ -47,27 +44,19 @@ const ManageUsers = () => {
     }
     const onSubmit = async (data) => {
         const res = await axiosSecure.get(`/users/${data.text}`)
-        console.log('searching user', res.data);
         setSearchingUser(res.data);
 
     }
-    console.log(searchingUser[0]);
-    console.log('current page & item per page', currentPage, itemPerPage);
     useEffect(() => {
-        console.log(currentPage, itemPerPage);
         axiosSecure.get(`/users?page=${currentPage}&size=${itemPerPage}`)
             .then(res => {
-                console.log(res.data);
                 setPaginateUsers(res.data)
             })
     }, [axiosSecure, currentPage, itemPerPage])
-    console.log('paginate users', paginateUsers);
 
     const handleCurrentPage = (page) => {
-        console.log(page);
         setCurrentPage(page)
     }
-    console.log(currentPage);
     const handlePrevPage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
@@ -78,7 +67,6 @@ const ManageUsers = () => {
             setCurrentPage(currentPage + 1)
         }
     }
-    console.log('all users', users);
     return (
         <div className="">
             <SectionTitle heading='manage users'></SectionTitle>

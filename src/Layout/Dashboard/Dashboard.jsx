@@ -13,7 +13,6 @@ const Dashboard = () => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log(location.pathname);
         if (location.pathname == '/') {
             document.title = 'HappyHostel | Home'
         }
@@ -24,7 +23,7 @@ const Dashboard = () => {
 
 
     return (
-        <div className="flex flex-col bg-secondary-300 md:flex-row-reverse w-full">
+        <div className="flex flex-col bg-secondary-100 md:flex-row-reverse w-full text-white">
             <div className="w-full md:w-3/12 md:min-h-screen bg-primary-100 ">
                 <ul className="menu">
                     {

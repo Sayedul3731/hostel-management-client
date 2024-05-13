@@ -26,7 +26,6 @@ const Register = () => {
     const onSubmit = (data) => {
         userCreate(data.email, data.password)
             .then(result => {
-                console.log(result.user);
                 if (result.user) {
                     Swal.fire({
                         title: "Success!",
@@ -36,7 +35,6 @@ const Register = () => {
                     navigate('/')
                     userProfileUpdate(data.name, data.photoURL)
                         .then(() => {
-                            console.log('profile updated');
                             const userInfo = {
                                 name: data.name,
                                 email: data.email,
@@ -52,7 +50,6 @@ const Register = () => {
                 }
             })
             .catch(error => {
-                console.log(error.message);
                 Swal.fire({
                     title: "Oh!",
                     text: `${error.message}`,
@@ -64,7 +61,6 @@ const Register = () => {
     const handleLogInWithGoogle = () => {
         logInWithGoogle()
             .then(result => {
-                console.log(result.user);
                 if (result.user) {
                     Swal.fire({
                         title: "Success!",
@@ -72,7 +68,6 @@ const Register = () => {
                         icon: "success"
                     });
                     navigate('/')
-                    console.log(result.user?.displayName, result.user?.email);
                     const userInfo = {
                         name: result.user?.displayName,
                         email: result.user?.email,
@@ -92,11 +87,11 @@ const Register = () => {
 
     return (
         <div className='min-h-[550px] lg:min-h-[600px] max-w-7xl mx-auto w-full mx-auto flex justify-center items-center '>
-            <div className=' w-5/6 lg:w-1/2 bg-secondary-300 p-8 rounded-md'>
+            <div className=' w-5/6 lg:w-1/2 bg-primary-300 p-8 rounded-md text-black my-5'>
                 <h1 className='text-2xl font-semibold   mb-8'>Please Register!</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)} className='text-white'>
                     <p>
-                        <input type='text' className='w-full my-4 px-3 py-1' placeholder='Your Name' {...register('name', { required: true })} />
+                        <input type='text' className='w-full my-4 px-3 py-1 bg-black' placeholder='Your Name' {...register('name', { required: true })} />
                     </p>
                     <p>
                         <input type='text' className='w-full my-4 px-3 py-1' placeholder='Your photoURL' {...register('photoURL', { required: false })} />
@@ -127,7 +122,7 @@ const Register = () => {
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}
                         </p>
                     </div>
-                    <input className='text-center font-semibold   w-full mt-5 btn btn-outline py-2 hover:bg-primary-100 hover:border-white' type="submit" />
+                    <input className='text-center font-semibold   w-full mt-5 btn btn-outline py-2 text-black hover:bg-primary-100 hover:border-white hover:text-white' type="submit" />
                 </form>
                 <p className='mt-6   text-center'>Already Have An Account? Please <Link to="/Login"><span className=' font-semibold '>Login</span></Link> </p>
                 <div onClick={handleLogInWithGoogle} className=' cursor-pointer font-semibold flex justify-center items-center gap-2 mt-3'>

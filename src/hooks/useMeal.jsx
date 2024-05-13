@@ -8,7 +8,6 @@ const useMeal = (_id) => {
         queryKey: ['meal', _id],
         queryFn: async () => {
             const res = await axiosPublic.get(`/meals/${_id}`)
-            console.log('data when run this meal hook', res.data);
             return res.data;
         }
     })

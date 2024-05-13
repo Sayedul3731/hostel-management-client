@@ -14,33 +14,28 @@ const Meals = () => {
     const [priceRangeItems, setPriceRangeItems] = useState([])
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
         const searchItem = meals.filter(item => item.title.toLowerCase().includes(data.text.toLowerCase()))
         setSearchingItems(searchItem);
         setCategoryItems([])
         setPriceRangeItems([])
     }
     const handleFilterByCategory = data => {
-        console.log(data);
         const searchCategory = meals.filter(item => item.category.toLowerCase().includes(data.category.toLowerCase()))
         setCategoryItems(searchCategory);
         setSearchingItems([])
         setPriceRangeItems([])
     }
     const handleFilterByPrice = data => {
-        console.log(data);
         const minPrice = data.price.split('-')[0]
         const maxPrice = data.price.split('-')[1]
-        console.log(minPrice, maxPrice);
         const searchPrice = meals.filter(item => item.price >= minPrice && item.price <= maxPrice);
-        console.log('search Price', searchPrice);
         setPriceRangeItems(searchPrice)
         setCategoryItems([])
         setSearchingItems([])
     }
 
     return (
-        <div className=" pb-2 lg:px-20 bg-primary-500 ">
+        <div className=" pb-2 lg:px-20 bg-secondary-100 text-black px-2 ">
             <div className="pt-1"><SectionTitle heading='All meals'></SectionTitle></div>
             <div className="flex flex-col md:flex-row w-full">
                 <div className="w-full md:w-1/2 lg:w-1/3 ">
@@ -69,8 +64,8 @@ const Meals = () => {
                 </div>
                 <div className="input-group flex w-3/4 md:w-1/2 lg:w-2/3 md:justify-end lg:justify-end md:mt-[36px]  mt-5 md:mt-0">
                     <form onSubmit={handleSubmit(onSubmit)} className="flex h-[40px] mb-2 justify-center items-center">
-                        <input className='w-full h-full my-3 px-3 py-3' placeholder='Search by title...' {...register('text')} />
-                        <button type="submit" className="bg-white text-black h-full px-2">
+                        <input className='w-full h-full my-3 px-3 py-3 text-white' placeholder='Search by title...' {...register('text')} />
+                        <button type="submit" className="bg-white text-wh h-full px-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </button>
@@ -80,13 +75,13 @@ const Meals = () => {
             <InfiniteScroll dataLength={meals.length}
                 loader={<h4>Loading...</h4>}
                 endMessage={
-                    <p style={{ textAlign: 'center' , marginTop: '20px' }}>
+                    <p style={{ textAlign: 'center', marginTop: '20px' }}>
                         <b className=" ">Yay! You have seen it all</b>
                     </p>
                 }
 
             >
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
 
                     {
                         searchingItems.length > 0 ? searchingItems.map(meal => <MealCard key={meal._id} meal={meal} />) : categoryItems.length > 0 ? categoryItems.map(meal => <MealCard key={meal._id} meal={meal} />) : priceRangeItems.length > 0 ? priceRangeItems.map(meal => <MealCard key={meal._id} meal={meal} />) : meals.map(meal => <MealCard key={meal._id} meal={meal} />)

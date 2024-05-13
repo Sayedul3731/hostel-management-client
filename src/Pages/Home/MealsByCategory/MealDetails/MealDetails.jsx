@@ -1,5 +1,5 @@
 import { GrLike } from "react-icons/gr";
-import { Link, useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -15,25 +15,20 @@ const MealDetails = () => {
   const [, likeRefetch] = useUpcomingMeals();
   const user = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const meal = useLoaderData();
   const [reviews, setReviews] = useState([])
-  console.log('meal time', meal.time);
   const date = new Date(meal?.time);
   const localDate = date.toLocaleDateString();
-  console.log('now the time is', localDate);
 
 
   useEffect(() => {
     axiosSecure.get(`/reviews/${meal?._id}`)
       .then(res => {
-        console.log(res.data);
         setReviews(res.data)
       })
   }, [axiosSecure, meal._id])
 
   const handleLike = (id) => {
-    console.log('click on', id);
     if (user?.email) {
       axiosSecure.patch(`/meals/${id}`, { lk: 1 })
         .then(res => {
@@ -55,16 +50,13 @@ const MealDetails = () => {
         confirmButtonText: "Yes!"
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(location.pathname);
           navigate('/login')
         }
       });
     } else if (user?.email) {
       axiosSecure.get(`/users/${user.email}`)
         .then(res => {
-          console.log(res.data);
           if (res.data[0].Badge !== 'Bronze') {
-            console.log('Not Bronze');
             const newInfo = {
               title: meal?.title,
               like: meal?.like,
@@ -85,7 +77,6 @@ const MealDetails = () => {
             }
             axiosSecure.post('/requestedMeals', newInfo)
               .then(res => {
-                console.log(res.data);
                 if (res.data) {
                   Swal.fire({
                     position: "top-end",
@@ -97,7 +88,6 @@ const MealDetails = () => {
                 }
               })
           } else {
-            console.log('Yes Bronze');
             Swal.fire({
               title: "Oh Sorry!",
               text: "Your aren't purchase any package!",
@@ -118,7 +108,6 @@ const MealDetails = () => {
       });
     }
     else if (user?.email) {
-      console.log(user);
       const reviewsInfo = {
         review: data.reviews,
         userName: user?.displayName,
@@ -159,11 +148,11 @@ const MealDetails = () => {
 
   return (
 
-    <div className="p-4 max-w-7xl mx-auto">
+    <div className="p-4 max-w-7xl mx-auto px-2">
       <Link to="/meals">
-        <button className="my-5 px-5  bg-primary-300 py-2   font-semibold rounded-sm">SEE All</button>
+        <button className="my-5 px-5 mx-4 bg-primary-300 py-2 text-white  font-semibold rounded-sm">SEE All</button>
       </Link>
-      <div className=" bg-base-100 rounded shadow-sm p-4">
+      <div className=" bg-base-100 rounded shadow-sm p-4 text-white">
         <div className="">
           <figure className="h-[500px]"><img className="h-full w-full object-cover  rounded" src={meal?.image} alt="Shoes" /></figure>
         </div>
@@ -180,20 +169,20 @@ const MealDetails = () => {
             <p ><span className="font-semibold">Reviews:</span> {meal?.reviews} </p>
             <p className=" flex justify-end"><span className="font-semibold mr-1">Rating:</span> {meal?.rating}</p>
           </div>
-          <div>
-            <button onClick={handleMealRequest} className="w-full text-white bg-primary-300 py-2   font-semibold rounded-sm">Meal Request</button>
+          <div className="flex justify-end">
+            <button onClick={handleMealRequest} className="px-5 text-white bg-primary-300 py-2   font-semibold rounded-sm">Meal Request</button>
           </div>
         </div>
       </div>
       {/* reviews section here  */}
-      <div className="p-4">
+      <div className="p-4 text-white">
         <h1 className="text-3xl font-semibold text-center mt-10 mb-5  ">Reviews Section
         </h1>
 
         <div className="mb-5  ">
           {
             reviews.map((item, index) => <div key={item._id}>
-              <div className="flex justify-between items-center w-full">
+              <div className="flex justify-between items-center w-full ">
                 <h1 className="w-5/6"> {index + 1}<span className="text-xl">.</span> <span>{item.review}</span></h1>
                 <p className="font-thin text-gray-400 text-sm w-1/6 ">review by {item.userName}</p>
               </div>
@@ -203,12 +192,15 @@ const MealDetails = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="">
             <Controller
+
               name="reviews"
               control={control}
-              render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
+              render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7', color: "#000" }} />}
             />
           </div>
-          <button type="submit" className="w-full bg-primary-300 py-2 text-white  font-semibold rounded-sm">Add Review</button>
+          <div className="flex justify-end">
+            <button type="submit" className="px-5 bg-primary-300 py-2 text-white  font-semibold rounded-sm">Add Review</button>
+          </div>
         </form>
 
       </div>

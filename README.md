@@ -1,5 +1,5 @@
 ## HappyHostel
-## Live link: https://hostel-management-9654d.web.app/
+## Live link: https://hostel-management-server-two.vercel.app/
 
 # Features: 
 1. My project name is `HappyHostel` which is a `Hostel Management Site`. In the site has `Authentication System`, `Payment Method`, `Admin Pannel` & `User Dashboard` and also `Token` System for security purpose.
