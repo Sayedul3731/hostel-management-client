@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -74,25 +75,26 @@ const RequestedMeals = () => {
             setCurrentPage(currentPage + 1)
         }
     }
+    console.log(paginateRequestedMeals.length);
     return (
-        <div className="md:p-8">
-            <SectionTitle heading='my requested meals'></SectionTitle>
-            <div className="overflow-x-auto lg:min-h-[600px]">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                        <tr className="bg-primary-100 text-white">
-                            <th>SL.</th>
-                            <th>Title</th>
-                            <th>Likes</th>
-                            <th className="text-center">Reviews</th>
-                            <th className="text-center">Status</th>
-                            <th className="text-center">Button</th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-gray-100">
-                        {
-                            paginateRequestedMeals?.map((meal, index) => <tr key={meal?._id}>
+        <>{
+            paginateRequestedMeals?.length > 0 ? <> <div className="md:p-8">
+                <SectionTitle heading='my requested meals'></SectionTitle>
+                <div className="overflow-x-auto lg:min-h-[600px]">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr className="bg-primary-100 text-white">
+                                <th>SL.</th>
+                                <th>Title</th>
+                                <th>Likes</th>
+                                <th className="text-center">Reviews</th>
+                                <th className="text-center">Status</th>
+                                <th className="text-center">Button</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-gray-100 text-black">
+                            {paginateRequestedMeals?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>
                                 <td>{meal?.title}</td>
                                 <td>{meal?.like}</td>
@@ -100,22 +102,25 @@ const RequestedMeals = () => {
                                 <td className="text-center">{meal?.status}</td>
                                 <td onClick={() => handleDelete(meal?._id)} className="text-center cursor-pointer">Cancel</td>
                             </tr>)
-                        }
-                    </tbody>
+                            }
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
+                <div className="pagination ">
+                    <button onClick={handlePrevPage}>Prev</button>
+                    {
+                        pages.map((page, index) => <button
+                            onClick={() => handleCurrentPage(page)}
+                            className={currentPage === page ? 'selected' : ''}
+                            key={page}>{index + 1}</button>)
+                    }
+                    <button onClick={handleNextPage}>Next</button>
+                </div>
+            </div></> : <div className="flex justify-center items-center min-h-[400px]">
+                <p className="text-xl font-semibold text-red-500">You didn't request for any meal!</p>
             </div>
-            <div className="pagination ">
-                <button onClick={handlePrevPage}>Prev</button>
-                {
-                    pages.map((page, index) => <button
-                        onClick={() => handleCurrentPage(page)}
-                        className={currentPage === page ? 'selected' : ''}
-                        key={page}>{index + 1}</button>)
-                }
-                <button onClick={handleNextPage}>Next</button>
-            </div>
-        </div>
+        }</>
     );
 };
 

@@ -10,7 +10,7 @@ const Checkout = () => {
     const badge = packageData.title;
     const price = packageData.price;
     return (
-        <div className="px-12 max-w-7xl mx-auto   min-h-screen">
+        <div className="px-12 max-w-7xl mx-auto   min-h-screen text-black">
             <SectionTitle heading="checkout"></SectionTitle>
             <p className="mb-2"> <span className="font-semibold">Package:</span> {packageData.title}</p>
             <p className="mb-10"> <span className="font-semibold">Details:</span> {packageData.details}</p>

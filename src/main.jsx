@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <div className=' font-font-family'>
+        <div className=' font-font-family bg-secondary-100'>
           <RouterProvider router={router} />
         </div>
       </QueryClientProvider>

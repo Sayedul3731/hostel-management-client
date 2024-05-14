@@ -69,13 +69,13 @@ const RoomDetails = () => {
         }
     }
     return (
-        <div className="max-w-7xl mx-auto">
-            <h1 className="text-2xl md:text-4xl font-semibold text-center my-10 text-white "> <span className="text-primary-300">{data.room_number}</span> No. Room Details </h1>
+        <div className="max-w-7xl mx-auto bg-secondary-100">
+            <h1 className="text-2xl md:text-4xl font-semibold text-center my-10 text-black "> <span className="text-primary-300">{data.room_number}</span> No. Room Details </h1>
             <div
                 data-aos="zoom-in"
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
                 {
-                    data?.seats?.map(seat => <div key={seat._id} className="rounded-md bg-base-100 shadow-xl text-white">
+                    data?.seats?.map(seat => <div key={seat._id} className="rounded-sm bg-base-100 shadow-xl text-white">
                         <figure><img src={seat.img} alt="Shoes" /></figure>
                         <div className="card-body">
                             <div className="min-h-[100px]">
@@ -88,7 +88,7 @@ const RoomDetails = () => {
                             </div>
                             <div>
                                 {
-                                    seat.status === 'occupied' ? <button className="bg-secondary-100 text-white px-3 py-2   font-semibold rounded-sm w-full btn" >Booked</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
+                                    seat.status === 'occupied' ? <button className="bg-secondary-100 text-black px-3 py-2   font-semibold rounded-sm w-full btn hover:text-white" >Booked</button> : <button onClick={() => handleBooking(seat)} className="bg-primary-300 text-white px-3 py-2   font-semibold rounded-sm w-full btn">Booking Now</button>
                                 }
                             </div>
                         </div>
