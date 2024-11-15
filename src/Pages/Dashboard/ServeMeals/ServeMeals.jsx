@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 
 const ServeMeals = () => {
     const user = useAuth();
+    console.log("User", user);
     const axiosSecure = useAxiosSecure();
     const [meals, setMeals] = useState([]);
     const [searchingUser, setSearchingUser] = useState([]);
@@ -103,7 +104,7 @@ const ServeMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100  ">
+                        <tr className="bg-primary-100 text-white ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th className="text-center">Email</th>
@@ -112,7 +113,7 @@ const ServeMeals = () => {
                             <th className="text-center">Button</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-100">
+                    <tbody className="bg-gray-100 text-black">
                         {
                             searchingUser.length > 0 ? searchingUser?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>

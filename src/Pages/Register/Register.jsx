@@ -91,10 +91,10 @@ const Register = () => {
                 <h1 className='text-2xl font-semibold   mb-8'>Please Register!</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className='text-white'>
                     <p>
-                        <input type='text' className='w-full my-4 px-3 py-1 bg-black' placeholder='Your Name' {...register('name', { required: true })} />
+                        <input type='text' className='w-full my-4 px-3 py-1 bg-black focus:outline-none' placeholder='Your Name' {...register('name', { required: true })} />
                     </p>
                     <p>
-                        <input type='text' className='w-full my-4 px-3 py-1' placeholder='Your photoURL' {...register('photoURL', { required: false })} />
+                        <input type='text' className='w-full my-4 px-3 py-1 bg-black focus:outline-none' placeholder='Your photoURL' {...register('photoURL', { required: false })} />
                     </p>
                     <p>
                         <input className='w-full my-4 px-3 py-1' placeholder='Your Email' {...register('email', { required: true })} />

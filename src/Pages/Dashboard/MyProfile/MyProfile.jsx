@@ -12,25 +12,21 @@ import useUsers from "../../../hooks/useUsers";
 const MyProfile = () => {
 
     const user = useAuth();
-    console.log(user.displayName);
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const [identifiedUser, setIdentifiedUser] = useState({});
     const { register, handleSubmit, reset } = useForm();
     const [userData, setUserData] = useState({});
     const [, refetch] = useUsers();
-    console.log(userData);
     useEffect(() => {
         axiosPublic.get(`/users/${user?.email}`)
             .then(res => {
                 setIdentifiedUser(res.data[0])
             })
     }, [axiosPublic, user.email])
-    console.log(user?.email);
     useEffect(() => {
         axiosSecure.get(`/userprofiles/${user?.email}`)
             .then(res => {
-                console.log(res.data);
                 setUserData(res.data)
             })
     }, [axiosSecure, user?.email])

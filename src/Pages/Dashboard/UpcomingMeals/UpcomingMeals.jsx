@@ -79,7 +79,7 @@ const UpcomingMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100  ">
+                        <tr className="bg-primary-100 text-white ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th className="text-center">Likes</th>
@@ -89,7 +89,7 @@ const UpcomingMeals = () => {
                             <th className="text-center">Action</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-100">
+                    <tbody className="bg-gray-100 text-black">
                         {
                             paginateUpcomingMeals?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>

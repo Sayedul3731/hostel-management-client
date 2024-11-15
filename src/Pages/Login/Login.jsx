@@ -71,11 +71,11 @@ const Login = () => {
                 <h1 className='text-2xl font-semibold   mb-8'>Please Login!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <p>
-                        <input className='w-full my-3 px-3 py-1 text-white' placeholder='Your Email' {...register('email', { required: true })} />
+                        <input className='w-full my-3 px-3 py-1 text-white bg-black focus:outline-none' placeholder='Your Email' {...register('email', { required: true })} />
                     </p>
                     <div className='relative'>
                         <p>
-                            <input type={show ? 'text' : 'password'} className='w-full my-3 px-3 py-1 text-white' placeholder='Your Password' {...register('password', { required: true })} />
+                            <input type={show ? 'text' : 'password'} className='w-full my-3 px-3 py-1 text-white bg-black focus:outline-none' placeholder='Your Password' {...register('password', { required: true })} />
                         </p>
                         <p onClick={() => setShow(!show)} className=' absolute cursor-pointer -mt-[37px] ml-[220px] md:ml-[550px] text-white'>
                             {show ? <BsFillEyeSlashFill></BsFillEyeSlashFill> : <BsFillEyeFill></BsFillEyeFill>}

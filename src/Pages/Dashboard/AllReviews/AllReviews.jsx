@@ -93,7 +93,7 @@ const AllReviews = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100  ">
+                        <tr className="bg-primary-100 text-white ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th className="text-center">Likes</th>
@@ -102,7 +102,7 @@ const AllReviews = () => {
                             <th className="text-center">Button</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-100">
+                    <tbody className="bg-gray-100 text-black">
                         {
                             paginateReviews?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>

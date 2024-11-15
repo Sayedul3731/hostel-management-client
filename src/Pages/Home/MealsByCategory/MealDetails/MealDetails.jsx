@@ -175,7 +175,7 @@ const MealDetails = () => {
         </div>
       </div>
       {/* reviews section here  */}
-      <div className="p-4 text-white">
+      <div className="p-4 text-black">
         <h1 className="text-3xl font-semibold text-center mt-10 mb-5  ">Reviews Section
         </h1>
 

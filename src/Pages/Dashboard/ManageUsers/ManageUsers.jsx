@@ -87,7 +87,7 @@ const ManageUsers = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100">
+                        <tr className="bg-primary-100 text-white">
                             <th>SL.</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -95,7 +95,7 @@ const ManageUsers = () => {
                             <th className="text-center">Membership</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-100">
+                    <tbody className="bg-gray-100 text-black">
                         {
                             searchingUser.length > 0 && searchingUser[0] !== 'null' ? searchingUser?.map((user, index) => <tr key={user?._id}>
                                 <th> {user?.email && index + 1}</th>

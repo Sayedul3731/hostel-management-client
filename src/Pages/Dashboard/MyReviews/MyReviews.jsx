@@ -164,14 +164,14 @@ const MyReviews = () => {
                         <dialog id="update_modal" className="modal modal-bottom sm:modal-middle">
                             <div className="modal-box">
                                 <form onSubmit={handleSubmit(onSubmit)}>
-                                    <div className="">
+                                    <div className="text-black">
                                         <Controller
                                             name="reviews"
                                             control={control}
                                             render={({ field }) => <textarea {...field} style={{ width: "100%", minHeight: 100, padding: 5, backgroundColor: '#EFF3F7' }} />}
                                         />
                                     </div>
-                                    <button type="submit" className="w-full bg-red-500 py-2   font-semibold rounded-sm">Update Review</button>
+                                    <button type="submit" className="w-full bg-primary-300 py-2   font-semibold rounded-sm">Update Review</button>
                                 </form>
                                 <div className="modal-action">
                                     <form method="dialog">

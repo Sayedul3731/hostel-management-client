@@ -57,7 +57,7 @@ const AddMeal = () => {
                 data-aos-duration="1500"
                 onSubmit={handleSubmit(onSubmit)} className="p-8 bg-primary-100">
                 <div className="flex flex-col md:flex-row gap-5 w-full justify-center items-center relative">
-                    <label htmlFor="" className="absolute -mt-[132px] md:-mt-14 mr-[278px] md:mr-[356px] lg:mr-[860px]  ">Title:</label>
+                    <label htmlFor="" className="absolute -mt-[132px] md:-mt-14 mr-[278px] md:mr-[356px] lg:mr-[860px] -ml-64 ">Title:</label>
                     <select className="w-full md:w-1/2 h-8" {...register("title")}>
                         <option value="Breakfast">Breakfast</option>
                         <option value="Lunch">Lunch</option>

@@ -113,7 +113,7 @@ const AllMeals = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="bg-primary-100  ">
+                        <tr className="bg-primary-100 text-white ">
                             <th>SL.</th>
                             <th>Title</th>
                             <th>Likes</th>
@@ -125,7 +125,7 @@ const AllMeals = () => {
                             <th className="text-center">Button</th>
                         </tr>
                     </thead>
-                    <tbody className="bg-gray-100">
+                    <tbody className="bg-gray-100 text-black">
                         {
                             foods?.map((meal, index) => <tr key={meal?._id}>
                                 <th>{index + 1}</th>
@@ -209,7 +209,7 @@ const AllMeals = () => {
                                 <input defaultValue={adminEmail} className='w-full my-4 px-3 py-1' placeholder='Admin Email' {...register('adminEmail', { required: true })} />
                             </p>
                         </div>
-                        <button type="submit" className='text-center modal-backdrop font-semibold   w-full mt-5 bg-red-500 py-2'>
+                        <button type="submit" className='text-center modal-backdrop font-semibold   w-full mt-5 bg-red-500 text-white py-2'>
                             Update
                         </button>
                     </form>

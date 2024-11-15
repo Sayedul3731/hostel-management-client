@@ -75,7 +75,6 @@ const RequestedMeals = () => {
             setCurrentPage(currentPage + 1)
         }
     }
-    console.log(paginateRequestedMeals.length);
     return (
         <>{
             paginateRequestedMeals?.length > 0 ? <> <div className="md:p-8">
