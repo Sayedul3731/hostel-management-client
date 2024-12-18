@@ -30,7 +30,7 @@ const AdminProfile = () => {
 
 
     return (
-        <div className="bg-white pb-10 pt-5 mr-10 -ml-20">
+        <div className="bg-white pb-10 pt-5 mr-10">
             <SectionTitle heading="admin dashboard"></SectionTitle>
 
             <div className="mt-10 p-5">

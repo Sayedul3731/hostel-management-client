@@ -23,56 +23,135 @@ const Dashboard = () => {
 
 
     return (
-        <div className="flex flex-col bg-secondary-100 md:flex-row-reverse w-full text-white">
-            <div className="w-full md:w-3/12 md:min-h-screen bg-primary-100 ">
-                <ul className="menu">
-                    {
-                        isAdmin ? <>
+        <div className="flex flex-col md:flex-row bg-white w-full text-black">
+            <div className="w-full md:w-2/12 md:min-h-screen px-5 bg-blue-50">
+                <ul className="mt-32 ">
+                    {isAdmin ? (
+                        <ul className="space-y-2 ">
                             <li>
-                                <NavLink to="/Dashboard/AdminProfile" className='font-semibold'><CgProfile></CgProfile>Admin Profile</NavLink>
+                                <NavLink
+                                    to="/Dashboard/AdminProfile"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex justify-start items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <CgProfile /> Admin Profile
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/ManageUsers" className="font-semibold"><FaUsers></FaUsers> Manage Users</NavLink>
+                                <NavLink
+                                    to="/Dashboard/ManageUsers"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <FaUsers /> Manage Users
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AddMeal" className="font-semibold"><GiMeal></GiMeal>Add Meal</NavLink>
+                                <NavLink
+                                    to="/Dashboard/AddMeal"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <GiMeal /> Add Meal
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AllMeals" className="font-semibold"><FaUtensils></FaUtensils> All Meals</NavLink>
+                                <NavLink
+                                    to="/Dashboard/AllMeals"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <FaUtensils /> All Meals
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/AllReviews" className="font-semibold"><MdRateReview /> All Reviews</NavLink>
+                                <NavLink
+                                    to="/Dashboard/AllReviews"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <MdRateReview /> All Reviews
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/ServeMeals" className="font-semibold"><MdFoodBank /> Serve Meals</NavLink>
+                                <NavLink
+                                    to="/Dashboard/ServeMeals"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <MdFoodBank /> Serve Meals
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/Dashboard/UpcomingMeals" className="font-semibold"><BiSolidFoodMenu /> Upcoming Meals</NavLink>
+                                <NavLink
+                                    to="/Dashboard/UpcomingMeals"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <BiSolidFoodMenu /> Upcoming Meals
+                                </NavLink>
                             </li>
-                        </>
-                            : <>
-                                <li>
-                                    <NavLink to="/Dashboard/MyProfile" className="font-semibold"><CgProfile></CgProfile>My Profile</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/Dashboard/RequestedMeals" className="font-semibold"><GiMeal></GiMeal>Request Meals</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/Dashboard/MyReviews" className="font-semibold"><MdRateReview /> My Reviews</NavLink>
-                                </li>
-                            </>
-                    }
+                        </ul>
+                    ) : (
+                        <ul className="space-y-3">
+                            <li>
+                                <NavLink
+                                    to="/Dashboard/MyProfile"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-2 rounded ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <CgProfile /> My Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/Dashboard/RequestedMeals"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-2 rounded ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <GiMeal /> Request Meals
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/Dashboard/MyReviews"
+                                    className={({ isActive }) =>
+                                        `font-semibold px-4 py-2 rounded ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                    }
+                                >
+                                    <MdRateReview /> My Reviews
+                                </NavLink>
+                            </li>
+                        </ul>
+                    )}
                 </ul>
+
                 <div className="divider"></div>
                 <>
-                    <ul className="menu">
+                    <ul className="">
                         <li>
-                            <NavLink to="/" className="font-semibold"><FaHome /> Home</NavLink>
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    `font-semibold px-4 py-1 rounded flex  items-center gap-1 hover:bg-blue-500 hover:text-white ${isActive ? 'bg-blue-500 text-white' : ''}`
+                                }
+                            >
+                                <FaHome /> Home
+                            </NavLink>
                         </li>
                     </ul>
                 </>
             </div>
-            <div className=" md:w-8/12 m-5">
+            <div className=" md:w-9/12 m-10">
                 <Outlet></Outlet>
             </div>
         </div>
