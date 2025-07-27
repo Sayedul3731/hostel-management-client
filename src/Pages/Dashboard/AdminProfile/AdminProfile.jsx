@@ -1,13 +1,13 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import HostelChart from "./HostelChart";
-import Pie1Chart from "./Pie1Chart";
-import Line1Chart from "./Line1Chart";
 import Area1Chart from "./Area1Chart";
+import HostelChart from "./HostelChart";
+import Line1Chart from "./Line1Chart";
+import Pie1Chart from "./Pie1Chart";
 
 
 const AdminProfile = () => {
@@ -30,34 +30,43 @@ const AdminProfile = () => {
 
 
     return (
-        <div className="bg-white pb-10 pt-5 mr-10">
-            <SectionTitle heading="admin dashboard"></SectionTitle>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 pb-10 pt-5 px-2 md:px-10">
+            <div className="max-w-6xl mx-auto">
+                <SectionTitle heading="Admin Dashboard" />
 
-            <div className="mt-10 p-5">
-                <h1>Hostel Chart</h1>
-                <HostelChart></HostelChart>
-            </div>
-            <div className="flex w-full px-5 my-10">
-                <div className="w-1/2">
-                    <Pie1Chart></Pie1Chart>
-                </div>
-                <div className="w-1/2">
-                    <Area1Chart></Area1Chart>
+                {/* Charts Section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                    <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center border border-blue-100 hover:shadow-2xl transition-shadow duration-300">
+                        <h1 className="text-lg font-semibold text-blue-700 mb-4 tracking-wide">Hostel Chart</h1>
+                        <HostelChart />
+                    </div>
+                    <div className="flex flex-col gap-8">
+                        <div className="bg-white rounded-2xl shadow-lg p-6 border border-purple-100 flex items-center justify-center hover:shadow-2xl transition-shadow duration-300">
+                            <Pie1Chart />
+                        </div>
+                        <div className="bg-white rounded-2xl shadow-lg p-6 border border-pink-100 flex items-center justify-center hover:shadow-2xl transition-shadow duration-300">
+                            <Area1Chart />
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-            <div className="px-5">
-                <Line1Chart></Line1Chart>
-            </div>
-            <div data-aos="zoom-in-up" className=" bg-base-100 mb-10 mx-10 mt-20">
-                <div className="flex justify-center min-h-[150px] ">
-                    <figure><img className="mt-5 object-cover" src={user?.photoURL} alt="user picture" /></figure>
+                {/* Line Chart Section */}
+                <div className="mt-10 bg-white rounded-2xl shadow-lg p-6 border border-blue-100 hover:shadow-2xl transition-shadow duration-300">
+                    <Line1Chart />
                 </div>
-                <div data-aos="fade-up"
-                    data-aos-anchor-placement="bottom-bottom" className="card-body">
-                    <h2 className="card-title">{user?.displayName}</h2>
-                    <p> <span className="font-semibold">Email:</span> {user?.email}</p>
-                    <p> <span className="font-semibold">Total Meals Added:</span> {meals.length}</p>
+
+                {/* Profile Card */}
+                <div data-aos="zoom-in-up" className="flex justify-center mt-16">
+                    <div className="w-full max-w-md bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-3xl shadow-2xl border border-blue-100 p-8 flex flex-col items-center">
+                        <div className="flex flex-col items-center">
+                            <figure className="w-28 h-28 rounded-full overflow-hidden shadow-lg border-4 border-blue-200 bg-white mb-4">
+                                <img className="object-cover w-full h-full" src={user?.photoURL} alt="user picture" />
+                            </figure>
+                            <h2 className="text-2xl font-bold text-blue-800 mb-1">{user?.displayName}</h2>
+                            <p className="text-gray-600 mb-2"><span className="font-semibold text-blue-700">Email:</span> {user?.email}</p>
+                            <p className="text-gray-600"><span className="font-semibold text-blue-700">Total Meals Added:</span> {meals.length}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

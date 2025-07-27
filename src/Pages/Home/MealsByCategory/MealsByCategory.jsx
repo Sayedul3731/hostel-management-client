@@ -1,15 +1,27 @@
 /* eslint-disable react/no-unescaped-entities */
-import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import image1 from "../../../assets/meat2.jpg"
+import { useEffect, useState } from 'react';
 import { FaArrowRight } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+import image1 from "../../../assets/meat2.jpg";
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+
+const Loader = () => (
+    <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-primary-300"></div>
+    </div>
+);
 
 const MealsByCategory = () => {
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        window.scroll(0, 0)
-    }, [])
+        window.scroll(0, 0);
+        // Simulate loading for 600ms
+        const timer = setTimeout(() => setLoading(false), 600);
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (loading) return <Loader />;
 
     return (
         <div className='pt-4 bg-secondary-100 text-black'>
@@ -30,5 +42,4 @@ const MealsByCategory = () => {
         </div>
     );
 };
-
 export default MealsByCategory;

@@ -5,12 +5,13 @@ import useUpcomingMeals from "../../hooks/useUpcomingMeals";
 const UpcomingUMeals = () => {
     const [upcomingMeals] = useUpcomingMeals();
     return (
-        <div className="py-5 lg:px-20  bg-secondary-100">
-            <SectionTitle heading='upcoming meals'></SectionTitle>
-            <div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+        <div className="min-h-screen py-8 px-2 lg:px-24 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+            <SectionTitle heading="Upcoming Meals" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 mb-8">
                 {
-                    upcomingMeals.map(meal => <UpcomingMealCard key={meal._id} meal={meal}></UpcomingMealCard>)
+                    upcomingMeals.map(meal => (
+                        <UpcomingMealCard key={meal._id} meal={meal} />
+                    ))
                 }
             </div>
         </div>
